@@ -14,7 +14,7 @@ The Batch process system will also build GDE from an remote image, build Geo Ser
 This design architecture will use the modern AKS (Kubernetes Cluster), potentially decouple platform into multiple microservices and scale the application into the modern cloud environment 
 while centralizing project repository into a single git repository.
 
-## How To Run Container  
+# How To Run Container  
  ### Pre-Requisites:  
   -Download and install Docker Desktop  
   -Switch to Linux mode  
@@ -34,7 +34,7 @@ while centralizing project repository into a single git repository.
   ### Use calling convention:   
   https://localhost:8082/Function_{function_version}?key={api_key_value}&parameter1={param_1}&parameter2={param_2} .... etc ..
 
- ## How To Get New Versions of Geo Service Updates:  
+ # How To Get New Versions of Geo Service Updates:  
  - Open Web-Api.Dockerfile
  - Change lines 10,11 16 & 17 with the location of the new file version with the corrected file zip path
  - for example replace version 'linux_geo25b_25.2' and' version-25b_25.2' with new version paths
