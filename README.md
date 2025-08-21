@@ -12,3 +12,17 @@ The Batch process system will also build GDE from an remote image, build Geo Ser
 
 This design architecture will use the modern AKS (Kubernetes Cluster), potentially decouple platform into multiple microservices and scale the application into the modern cloud environment 
 while centralizing project repository into a single git repository.
+
+## How To Run Container  
+ ### PRE-Requisites:  
+  -Download and install Docker Desktop  
+  -Switch to Linux mode  
+  
+###  Instructions:  
+  -Download project    
+  -Open Command Line prompt and CD (change into GeoServices-Core-Container Directory)   
+
+ ### Run Commands:
+  
+  docker build -f Web-API.Dockerfile -t geoservicescorewebapi:dev .  
+  docker run -d -p 8082:8081 geoservicescorewebapi:dev
