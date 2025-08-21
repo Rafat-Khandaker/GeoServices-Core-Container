@@ -14,7 +14,7 @@ This design architecture will use the modern AKS (Kubernetes Cluster), potential
 while centralizing project repository into a single git repository.
 
 ## How To Run Container  
- ### PRE-Requisites:  
+ ### Pre-Requisites:  
   -Download and install Docker Desktop  
   -Switch to Linux mode  
   
