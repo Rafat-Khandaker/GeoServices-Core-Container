@@ -25,4 +25,12 @@ while centralizing project repository into a single git repository.
  ### Run Commands:
   
   docker build -f Web-API.Dockerfile -t geoservicescorewebapi:dev .  
-  docker run -d -p 8082:8081 geoservicescorewebapi:dev
+  docker run -d -p 8082:8081 geoservicescorewebapi:dev    
+
+  ### Navigate into SSL port:   
+  https://localhost:8082    
+  
+  ### Use calling convention:   
+  https://localhost:8082/Function_{function_version}?key={api_key_value}&parameter1={param_1}&parameter2={param_2}
+
+ 
