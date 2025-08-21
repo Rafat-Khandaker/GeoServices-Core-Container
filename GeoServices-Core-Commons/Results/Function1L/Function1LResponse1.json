@@ -1,0 +1,193 @@
+{
+  "display": null,
+  "root": {
+    "wa1": {
+      "in_func_code": "1L",
+      "in_hnd": "A120            ",
+      "in_hns": "           ",
+      "in_low_hnd": "                ",
+      "in_low_hns": "           ",
+      "in_b10sc1": {
+        "boro": " ",
+        "sc5": "     ",
+        "lgc": "  ",
+        "spv": "   "
+      },
+      "in_boro1": " ",
+      "in_boro2": " ",
+      "in_boro3": " ",
+      "in_stname1": "                                ",
+      "in_b10sc2": {
+        "boro": " ",
+        "sc5": "     ",
+        "lgc": "  ",
+        "spv": "   "
+      },
+      "in_stname2": "                                ",
+      "in_b10sc3": {
+        "boro": " ",
+        "sc5": "     ",
+        "lgc": "  ",
+        "spv": "   "
+      },
+      "in_stname3": "                                ",
+      "in_bbl": {
+        "boro": " ",
+        "block": "     ",
+        "lot": "    "
+      },
+      "in_filler01": " ",
+      "in_bin": {
+        "boro": " ",
+        "binnum": "      "
+      },
+      "in_bin_string": "       ",
+      "in_compass_dir": " ",
+      "in_compass_dir2": " ",
+      "in_node": "       ",
+      "in_platform_ind": " ",
+      "in_zip_code": "     ",
+      "in_unit": "              ",
+      "in_filler03": "                                                                                  ",
+      "in_long_wa2_flag": " ",
+      "in_hn_justification": " ",
+      "in_hnl": "  ",
+      "in_hn_norm_override": " ",
+      "in_snl": "  ",
+      "in_stname_normalization": " ",
+      "in_xstreet_names_flag": " ",
+      "in_roadbed_request_switch": " ",
+      "in_legacy_grc_flag": " ",
+      "in_auxseg_switch": " ",
+      "in_browse_flag": " ",
+      "in_real_street_only": " ",
+      "in_tpad_switch": " ",
+      "in_mode_switch": " ",
+      "in_filler4": "                              ",
+      "out_boro_name1": "         ",
+      "out_hnd": "                ",
+      "out_hns": "           ",
+      "out_b10sc1": {
+        "boro": " ",
+        "sc5": "     ",
+        "lgc": "  ",
+        "spv": "   "
+      },
+      "out_stname1": "                                ",
+      "out_b10sc2": {
+        "boro": " ",
+        "sc5": "     ",
+        "lgc": "  ",
+        "spv": "   "
+      },
+      "out_stname2": "                                ",
+      "out_b10sc3": {
+        "boro": " ",
+        "sc5": "     ",
+        "lgc": "  ",
+        "spv": "   "
+      },
+      "out_stname3": "                                ",
+      "out_bbl": {
+        "boro": " ",
+        "block": "     ",
+        "lot": "    "
+      },
+      "out_filler02": " ",
+      "out_low_hnd": "                ",
+      "out_low_hns": "           ",
+      "out_bin": {
+        "boro": " ",
+        "binnum": "      "
+      },
+      "out_attr_bytes": [
+        " ",
+        " ",
+        " "
+      ],
+      "out_reason_code2": " ",
+      "out_reason_code_qualifier2": " ",
+      "out_warning_code2": "  ",
+      "out_grc2": "  ",
+      "out_error_message2": "                                                                                ",
+      "out_node": "       ",
+      "out_units": {
+        "unit_type": "    ",
+        "unit_identifier": "          "
+      },
+      "out_unit": "              ",
+      "out_filler03": "                 ",
+      "out_st_attr": " ",
+      "out_reason_code": "1",
+      "out_reason_code_qualifier": " ",
+      "out_warning_code": "  ",
+      "out_grc": "13",
+      "out_error_message": "ADDRESS NBR A120  CONTAINS AN INVALID CHARACTER(A) IN POSITION 1.               ",
+      "out_number_of_stcodes": "  ",
+      "out_b7sc_list": [
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        },
+        {
+          "boro": " ",
+          "sc5": "     ",
+          "lgc": "  "
+        }
+      ],
+      "out_stname_list": [
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                ",
+        "                                "
+      ]
+    }
+  }
+}

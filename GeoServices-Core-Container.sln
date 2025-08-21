@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServices-Core-Web-API", "GeoServices-Core-Web-API\GeoServices-Core-Web-API.csproj", "{AF907BAD-DEBC-4079-AE49-0B642CBCB034}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoXWrapperLib", "GeoXWrapperLib\GeoXWrapperLib\GeoXWrapperLib.csproj", "{D65CB005-619E-93B8-5EE7-071909B99373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoXWrapperTest", "GeoXWrapperLib\GeoXWrapperTest\GeoXWrapperTest.csproj", "{912F1CA2-A791-75B0-BD59-198384CF573F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServices-Core-Commons", "GeoServices-Core-Commons\GeoServices-Core-Commons.csproj", "{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF907BAD-DEBC-4079-AE49-0B642CBCB034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF907BAD-DEBC-4079-AE49-0B642CBCB034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF907BAD-DEBC-4079-AE49-0B642CBCB034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF907BAD-DEBC-4079-AE49-0B642CBCB034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D65CB005-619E-93B8-5EE7-071909B99373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D65CB005-619E-93B8-5EE7-071909B99373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D65CB005-619E-93B8-5EE7-071909B99373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D65CB005-619E-93B8-5EE7-071909B99373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912F1CA2-A791-75B0-BD59-198384CF573F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912F1CA2-A791-75B0-BD59-198384CF573F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912F1CA2-A791-75B0-BD59-198384CF573F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912F1CA2-A791-75B0-BD59-198384CF573F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E4C3EA7-AF21-48FA-89CB-8D0450435897}
+	EndGlobalSection
+EndGlobal

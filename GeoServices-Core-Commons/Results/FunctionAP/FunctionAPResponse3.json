@@ -1,0 +1,50 @@
+{
+  "display": {
+    "AddressRangeList": [
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "             620",
+        "high_address_number": "             620",
+        "street_name": "ATLANTIC AVENUE                 ",
+        "bin": "3398156",
+        "b7sc": "31343001"
+      }
+    ],
+    "SimilarNamesList": [],
+    "in_func_code": "AP",
+    "in_boro": "3",
+    "in_hnd": "620             ",
+    "in_stname1": "ATLANTIC AVE                    ",
+    "in_zip_code": "     ",
+    "in_hns": "           ",
+    "in_unit": "              ",
+    "out_stname1": "ATLANTIC AVENUE                 ",
+    "out_hnd": "620             ",
+    "out_hns": "000620000AA",
+    "out_boro_name1": "BROOKLYN ",
+    "out_reason_code": " ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_wa1_message": "                                                                                ",
+    "out_bbl_block": "1118",
+    "out_bbl_lot": "1",
+    "out_bbl_bbl": "3011180001",
+    "out_x_coord": "990911",
+    "out_y_coord": "188139",
+    "out_bin": "3398156",
+    "out_ap_id": "5135210",
+    "out_condo_lot": "Non-Condo",
+    "out_rpad_condo_num": "N/A",
+    "out_rpad_coop_num": "N/A",
+    "out_low_bbl_condo": "N/A",
+    "out_high_bbl_condo": "N/A",
+    "out_latitude": "40.683073",
+    "out_longitude": "-73.975984 ",
+    "out_num_of_bldgs": "1",
+    "out_unit": "              ",
+    "out_unit_type": "    ",
+    "out_unit_identifier": "          "
+  },
+  "root": null
+}

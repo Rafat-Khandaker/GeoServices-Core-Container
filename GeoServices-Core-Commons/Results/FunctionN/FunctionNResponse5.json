@@ -1,0 +1,13 @@
+{
+  "display": {
+    "in_func_code": "N*",
+    "in_snl": "99",
+    "in_stname1": "SEAVIEW AVE                     ",
+    "in_stname_normalization": "S",
+    "out_error_message": "INVALID SNL VALUE - MUST BE BETWEEN 4 AND 32 INCLUSIVE                          ",
+    "out_grc": "10",
+    "out_reason_code": " ",
+    "out_stname1": "                                "
+  },
+  "root": null
+}

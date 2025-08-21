@@ -1,0 +1,118 @@
+{
+  "display": {
+    "F3SList": [
+      {
+        "out_intersecting_street": "PINE STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "0",
+        "out_gap_flag": "",
+        "out_node_num": "0015252"
+      },
+      {
+        "out_intersecting_street": "THAMES STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "124",
+        "out_gap_flag": "",
+        "out_node_num": "0015253"
+      },
+      {
+        "out_intersecting_street": "CEDAR STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "87",
+        "out_gap_flag": "",
+        "out_node_num": "0015254"
+      },
+      {
+        "out_intersecting_street": "LIBERTY STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "155",
+        "out_gap_flag": "",
+        "out_node_num": "0015255"
+      },
+      {
+        "out_intersecting_street": "CORTLANDT STREET",
+        "out_second_intersecting_street": "MAIDEN LANE",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "2",
+        "out_distance": "283",
+        "out_gap_flag": "",
+        "out_node_num": "0015257"
+      },
+      {
+        "out_intersecting_street": "JOHN STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "227",
+        "out_gap_flag": "",
+        "out_node_num": "0015271"
+      },
+      {
+        "out_intersecting_street": "DEY STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "36",
+        "out_gap_flag": "",
+        "out_node_num": "0015272"
+      },
+      {
+        "out_intersecting_street": "FULTON STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "207",
+        "out_gap_flag": "",
+        "out_node_num": "0015273"
+      }
+    ],
+    "SimilarNamesList": [],
+    "in_func_code": "3S",
+    "in_boro": "1",
+    "in_stname1": "BROADWAY                        ",
+    "in_stname2": "FULTON ST                       ",
+    "in_stname3": "PINE ST                         ",
+    "in_b10sc1": "1          ",
+    "in_b10sc2": "           ",
+    "in_b10sc3": "           ",
+    "in_compass_dir": " ",
+    "in_compass_dir2": " ",
+    "in_real_street_only": " ",
+    "in_roadbed_request_switch": " ",
+    "out_boro_name1": "MANHATTAN",
+    "out_stname1": "BROADWAY                        ",
+    "out_stname2": "FULTON STREET                   ",
+    "out_stname3": "PINE STREET                     ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_wa1_message": "                                                                                ",
+    "out_reason_code": " ",
+    "out_number_of_intersections": "008",
+    "out_total_street_distance": "1,119 feet"
+  },
+  "root": null
+}

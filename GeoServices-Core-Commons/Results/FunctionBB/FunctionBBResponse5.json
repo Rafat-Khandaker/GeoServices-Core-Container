@@ -1,0 +1,65 @@
+{
+  "display": {
+    "FunctionBBList": [
+      {
+        "out_b7sc": "19778001",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDGE ARCH                     "
+      },
+      {
+        "out_b7sc": "11355001",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDGE STREET                   "
+      },
+      {
+        "out_b7sc": "12574016",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDGEHAVEN COMMUNITY RESIDENCE "
+      },
+      {
+        "out_b7sc": "11117001",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH                     "
+      },
+      {
+        "out_b7sc": "11117002",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH EAST                "
+      },
+      {
+        "out_b7sc": "11117003",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH NORTH               "
+      },
+      {
+        "out_b7sc": "11117004",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH SOUTH               "
+      },
+      {
+        "out_b7sc": "11117005",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH WEST                "
+      },
+      {
+        "out_b7sc": "11117006",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PTH W OV   65 TRNVS EB EN"
+      },
+      {
+        "out_b7sc": "11252516",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRINCKERHOFF HALL               "
+      }
+    ],
+    "in_func_code": "BB",
+    "in_boro": "1",
+    "in_stname1": "BRINCKERHOFF HALL               ",
+    "in_browse_flag": " ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_reason_code": " ",
+    "out_boro_name1": "MANHATTAN"
+  },
+  "root": null
+}

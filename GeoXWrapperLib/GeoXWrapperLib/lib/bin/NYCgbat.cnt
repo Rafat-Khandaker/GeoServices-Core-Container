@@ -1,0 +1,29 @@
+:Base NYCgbat.hlp
+1 Getting Started
+2 Creating a Data Source Name=create_dsn
+2 Choosing which Geosupport Function to Call=choose_function
+2 Common Problems=common_problems
+1 NYCgbat Screens
+2 Creating and Using a Data Source Name=create_dsn
+2 Function Selection Screen=HIDD_FUNCTIONSELECTION_DLG
+2 Function 1 Screen=HIDD_FUNCTION1_DLG
+2 Function 1E Screen=HIDD_FUNCTION1E_DLG
+2 Function 2 Screen=HIDD_FUNCTION2_DLG
+2 Function 3 Screen=HIDD_FUNCTION3_DLG
+2 Function 3C Screen=HIDD_FUNCTION3C_DLG
+2 Function 3S Screen=HIDD_FUNCTION3S_DLG
+2 Function 1A Screen=HIDD_FUNCTION1A_DLG
+2 Function BL Screen=HIDD_FUNCTIONBL_DLG
+2 Function BN Screen=HIDD_FUNCTIONBN_DLG
+2 Function 1B Screen=HIDD_FUNCTION1B_DLG
+2 Function D Screen=HIDD_FUNCTIOND_DLG
+2 Function DG Screen=HIDD_FUNCTIONDG_DLG
+2 Function DN Screen=HIDD_FUNCTIONDN_DLG
+2 Function 1N=HIDD_FUNCTION1N_DLG
+2 Input Configuration Screen=HIDD_GENERIC_INPUT_DLG
+2 Output Configuration Screen=HIDD_OUTPUT_DLG
+2 Function Processing Screen=HIDD_FUNCTION_PROCESSING_DLG
+1 Data Dictionary
+2 Output Data Fields=output_data
+1 Finishing Up
+2 Geosupport Return Codes=output_grc

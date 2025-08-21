@@ -1,0 +1,212 @@
+{
+  "display": {
+    "AddressRangeKeys": {
+      "": "Ordinary Address Range",
+      "V": "Vanity Address",
+      "B": "Non-Addressable Unnamed Building",
+      "G": "Name of NAP Complex"
+    },
+    "SimilarNamesList": [],
+    "AddressRangeList": [
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               3",
+        "high_address_number": "               3",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               5",
+        "high_address_number": "               5",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               7",
+        "high_address_number": "               7",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               9",
+        "high_address_number": "               9",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               2",
+        "high_address_number": "               8",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               1",
+        "high_address_number": "               3",
+        "street_name": "BOROUGH PLACE                   ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51193001"
+      },
+      {
+        "type": "V",
+        "type_meaning": "Vanity Address",
+        "low_address_number": "               2",
+        "high_address_number": "               2",
+        "street_name": "BOROUGH PLACE                   ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51193001"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               1",
+        "high_address_number": "               1",
+        "street_name": "BAY STREET                      ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51745001"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "               2",
+        "high_address_number": "               2",
+        "street_name": "BAY STREET                      ",
+        "bin": "5141706",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51745001"
+      },
+      {
+        "type": "B",
+        "type_meaning": "Non-Addressable Unnamed Building",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5157464",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": "B",
+        "type_meaning": "Non-Addressable Unnamed Building",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "BANK STREET                     ",
+        "bin": "5167058",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51734501"
+      },
+      {
+        "type": "B",
+        "type_meaning": "Non-Addressable Unnamed Building",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "FERRY TERMINAL DRIVE            ",
+        "bin": "5167059",
+        "tpad_bin_status": "N/A",
+        "b7sc": "51084501"
+      },
+      {
+        "type": "G",
+        "type_meaning": "Name of NAP Complex",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "ST GEORGE STATION               ",
+        "bin": "5000000",
+        "tpad_bin_status": "N/A",
+        "b7sc": "52817501"
+      }
+    ],
+    "CompleteBINList": [
+      {
+        "bin": "5141706",
+        "tpad": null
+      },
+      {
+        "bin": "5157464",
+        "tpad": null
+      },
+      {
+        "bin": "5167058",
+        "tpad": null
+      },
+      {
+        "bin": "5167059",
+        "tpad": null
+      },
+      {
+        "bin": "5000000",
+        "tpad": null
+      }
+    ],
+    "in_bbl_block": "00002",
+    "in_bbl_lot": "0001",
+    "in_boro": "5",
+    "in_func_code": "BL",
+    "in_tpad_switch": " ",
+    "out_TPAD_bin": "       ",
+    "out_TPAD_bin_status": "No Activity",
+    "out_TPAD_conflict_flag": " ",
+    "out_bbl": "5000020001",
+    "out_bbl_block": "2",
+    "out_bbl_lot": "1",
+    "out_bid": "",
+    "out_bin": "5141706",
+    "out_bin_status": "No Activity",
+    "out_boro_name1": "STATEN IS",
+    "out_condo_base_bbl": "N/A",
+    "out_condo_billing_bbl": "N/A",
+    "out_condo_flag": "Non-Condo",
+    "out_condo_num": "N/A",
+    "out_coop_num": "N/A",
+    "out_corner_code": "  ",
+    "out_dcp_zoning_map": "21C",
+    "out_error_message": "                                                                                ",
+    "out_grc": "00",
+    "out_high_bbl_condo": "N/A",
+    "out_interior_flag": "I",
+    "out_irreg_flag": "I",
+    "out_lat_property": "40.643980",
+    "out_lon_property": "-74.072587 ",
+    "out_low_bbl_condo": "N/A",
+    "out_num_of_bldgs": "4",
+    "out_num_of_blockfaces": "4",
+    "out_reason_code": " ",
+    "out_rpad_bldg_class": "4",
+    "out_rpad_scc": "T9",
+    "out_sanborn_boro": "5",
+    "out_sanborn_page": "016 ",
+    "out_sanborn_volume": "01 ",
+    "out_stname1": "                                ",
+    "out_tax_map": "5",
+    "out_tax_section": "01",
+    "out_tax_volume": "01",
+    "out_vacant_flag": "Not Vacant",
+    "out_wa1_message": "                                                                                ",
+    "out_x_coord_property": "964106",
+    "out_y_coord_property": "173904"
+  },
+  "root": null
+}

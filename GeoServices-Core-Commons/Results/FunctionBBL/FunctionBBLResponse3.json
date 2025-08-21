@@ -1,0 +1,125 @@
+{
+  "display": {
+    "AddressRangeKeys": {
+      "": "Ordinary Address Range",
+      "N": "Non-Addressable Place Name",
+      "W": "Non-Addressable Building Frontage"
+    },
+    "SimilarNamesList": [],
+    "AddressRangeList": [
+      {
+        "type": "N",
+        "type_meaning": "Non-Addressable Place Name",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "BARCLAYS CENTER                 ",
+        "bin": "3398156",
+        "tpad_bin_status": "N/A",
+        "b7sc": "30002201"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "              12",
+        "high_address_number": "              12",
+        "street_name": "   6 AVENUE                     ",
+        "bin": "3398156",
+        "tpad_bin_status": "N/A",
+        "b7sc": "30568001"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "             600",
+        "high_address_number": "             620",
+        "street_name": "ATLANTIC AVENUE                 ",
+        "bin": "3398156",
+        "tpad_bin_status": "N/A",
+        "b7sc": "31343001"
+      },
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "             171",
+        "high_address_number": "             183",
+        "street_name": "FLATBUSH AVENUE                 ",
+        "bin": "3398156",
+        "tpad_bin_status": "N/A",
+        "b7sc": "34093001"
+      },
+      {
+        "type": "W",
+        "type_meaning": "Non-Addressable Building Frontage",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "   5 AVENUE                     ",
+        "bin": "3398156",
+        "tpad_bin_status": "N/A",
+        "b7sc": "30558001"
+      },
+      {
+        "type": "W",
+        "type_meaning": "Non-Addressable Building Frontage",
+        "low_address_number": "                ",
+        "high_address_number": "                ",
+        "street_name": "DEAN STREET                     ",
+        "bin": "3398156",
+        "tpad_bin_status": "N/A",
+        "b7sc": "33183001"
+      }
+    ],
+    "CompleteBINList": [
+      {
+        "bin": "3398156",
+        "tpad": null
+      }
+    ],
+    "in_bbl_block": "01118",
+    "in_bbl_lot": "0001",
+    "in_boro": "3",
+    "in_func_code": "BL",
+    "in_tpad_switch": " ",
+    "out_TPAD_bin": "       ",
+    "out_TPAD_bin_status": "No Activity",
+    "out_TPAD_conflict_flag": " ",
+    "out_bbl": "3011180001",
+    "out_bbl_block": "1118",
+    "out_bbl_lot": "1",
+    "out_bid": "NORTH FLATBUSH BID              ",
+    "out_bin": "3398156",
+    "out_bin_status": "No Activity",
+    "out_boro_name1": "BROOKLYN ",
+    "out_condo_base_bbl": "N/A",
+    "out_condo_billing_bbl": "N/A",
+    "out_condo_flag": "Non-Condo",
+    "out_condo_num": "N/A",
+    "out_coop_num": "N/A",
+    "out_corner_code": "CR",
+    "out_dcp_zoning_map": "16C",
+    "out_error_message": "                                                                                ",
+    "out_grc": "00",
+    "out_high_bbl_condo": "N/A",
+    "out_interior_flag": "Not Interior Lot",
+    "out_irreg_flag": "Not Irregular Lot",
+    "out_lat_property": "40.682680",
+    "out_lon_property": "-73.975407 ",
+    "out_low_bbl_condo": "N/A",
+    "out_num_of_bldgs": "1",
+    "out_num_of_blockfaces": "5",
+    "out_reason_code": " ",
+    "out_rpad_bldg_class": "7",
+    "out_rpad_scc": "P9",
+    "out_sanborn_boro": "3",
+    "out_sanborn_page": "029 ",
+    "out_sanborn_volume": "06 ",
+    "out_stname1": "                                ",
+    "out_tax_map": "3",
+    "out_tax_section": "04",
+    "out_tax_volume": "07",
+    "out_vacant_flag": "Not Vacant",
+    "out_wa1_message": "                                                                                ",
+    "out_x_coord_property": "991071",
+    "out_y_coord_property": "187996"
+  },
+  "root": null
+}

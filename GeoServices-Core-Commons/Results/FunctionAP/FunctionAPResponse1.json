@@ -1,0 +1,50 @@
+{
+  "display": {
+    "AddressRangeList": [
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "             120",
+        "high_address_number": "             120",
+        "street_name": "BROADWAY                        ",
+        "bin": "1001026",
+        "b7sc": "11361001"
+      }
+    ],
+    "SimilarNamesList": [],
+    "in_func_code": "AP",
+    "in_boro": "1",
+    "in_hnd": "120             ",
+    "in_stname1": "BROADWAY                        ",
+    "in_zip_code": "     ",
+    "in_hns": "           ",
+    "in_unit": "              ",
+    "out_stname1": "BROADWAY                        ",
+    "out_hnd": "120             ",
+    "out_hns": "000120000AA",
+    "out_boro_name1": "MANHATTAN",
+    "out_reason_code": " ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_wa1_message": "                                                                                ",
+    "out_bbl_block": "47",
+    "out_bbl_lot": "7501",
+    "out_bbl_bbl": "1000477501",
+    "out_x_coord": "981197",
+    "out_y_coord": "197350",
+    "out_bin": "1001026",
+    "out_ap_id": "1000645",
+    "out_condo_lot": "Condominium",
+    "out_rpad_condo_num": "0871",
+    "out_rpad_coop_num": "N/A",
+    "out_low_bbl_condo": "1 - 00047 - 1001",
+    "out_high_bbl_condo": "1 - 00047 - 1006",
+    "out_latitude": "40.708357",
+    "out_longitude": "-74.011012 ",
+    "out_num_of_bldgs": "1",
+    "out_unit": "              ",
+    "out_unit_type": "    ",
+    "out_unit_identifier": "          "
+  },
+  "root": null
+}

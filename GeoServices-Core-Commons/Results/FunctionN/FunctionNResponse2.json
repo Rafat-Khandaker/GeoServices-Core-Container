@@ -1,0 +1,13 @@
+{
+  "display": {
+    "in_func_code": "N*",
+    "in_snl": "6 ",
+    "in_stname1": "GRAND CONCOURSE                 ",
+    "in_stname_normalization": "S",
+    "out_error_message": "STREET NAME CANNOT BE NORMALIZED WITHIN REQUESTED SNL                           ",
+    "out_grc": "59",
+    "out_reason_code": " ",
+    "out_stname1": "                                "
+  },
+  "root": null
+}

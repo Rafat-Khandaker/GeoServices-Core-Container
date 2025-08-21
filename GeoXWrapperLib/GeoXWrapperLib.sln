@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoXWrapperLib", "GeoXWrapperLib\GeoXWrapperLib.csproj", "{63C4E7ED-799D-4B85-A00D-AC735E4D5CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoXWrapperTest", "GeoXWrapperTest\GeoXWrapperTest.csproj", "{FC62A3D7-9B9B-40FA-82C1-8FADE6F011CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63C4E7ED-799D-4B85-A00D-AC735E4D5CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C4E7ED-799D-4B85-A00D-AC735E4D5CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C4E7ED-799D-4B85-A00D-AC735E4D5CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C4E7ED-799D-4B85-A00D-AC735E4D5CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC62A3D7-9B9B-40FA-82C1-8FADE6F011CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC62A3D7-9B9B-40FA-82C1-8FADE6F011CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC62A3D7-9B9B-40FA-82C1-8FADE6F011CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC62A3D7-9B9B-40FA-82C1-8FADE6F011CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51D6FE54-B841-47B9-BC8F-79020820ED0B}
+	EndGlobalSection
+EndGlobal

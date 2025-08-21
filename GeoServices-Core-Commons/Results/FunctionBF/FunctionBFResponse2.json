@@ -1,0 +1,65 @@
+{
+  "display": {
+    "FunctionBFList": [
+      {
+        "out_b7sc": "11117004",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH SOUTH               "
+      },
+      {
+        "out_b7sc": "11117005",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PATH WEST                "
+      },
+      {
+        "out_b7sc": "11117006",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRIDLE PTH W OV   65 TRNVS EB EN"
+      },
+      {
+        "out_b7sc": "11252516",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRINCKERHOFF HALL               "
+      },
+      {
+        "out_b7sc": "10121801",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRISAS DEL CARIBE GARDEN        "
+      },
+      {
+        "out_b7sc": "11225001",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRITISH GARDEN AT HANOVER SQUARE"
+      },
+      {
+        "out_b7sc": "12507611",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BRITTANY HALL                   "
+      },
+      {
+        "out_b7sc": "11359001",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BROAD STREET                    "
+      },
+      {
+        "out_b7sc": "11361001",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BROADWAY                        "
+      },
+      {
+        "out_b7sc": "12731013",
+        "out_boro_name1": "MANHATTAN",
+        "out_stname1": "BROADWAY    7 AVENUE LINE       "
+      }
+    ],
+    "in_boro": "1",
+    "in_browse_flag": " ",
+    "in_func_code": "BF",
+    "in_stname1": "BRIDLE PATH SOUTH               ",
+    "out_boro_name1": "MANHATTAN",
+    "out_error_message": "                                                                                ",
+    "out_grc": "00",
+    "out_reason_code": " "
+  },
+  "root": null
+}

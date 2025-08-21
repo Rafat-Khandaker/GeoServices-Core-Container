@@ -1,0 +1,13 @@
+{
+  "display": {
+    "in_func_code": "N*",
+    "in_snl": "32",
+    "in_stname1": "ATLANTIC AVE                    ",
+    "in_stname_normalization": "S",
+    "out_error_message": "                                                                                ",
+    "out_grc": "00",
+    "out_reason_code": " ",
+    "out_stname1": "ATLANTIC AVENUE                 "
+  },
+  "root": null
+}

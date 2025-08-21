@@ -1,0 +1,50 @@
+{
+  "display": {
+    "AddressRangeList": [
+      {
+        "type": " ",
+        "type_meaning": "Ordinary Address Range",
+        "low_address_number": "          90-015",
+        "high_address_number": "          90-015",
+        "street_name": "QUEENS BOULEVARD                ",
+        "bin": "4045999",
+        "b7sc": "45999001"
+      }
+    ],
+    "SimilarNamesList": [],
+    "in_func_code": "AP",
+    "in_boro": "4",
+    "in_hnd": "90-15           ",
+    "in_stname1": "QUEENS BLVD                     ",
+    "in_zip_code": "     ",
+    "in_hns": "           ",
+    "in_unit": "              ",
+    "out_stname1": "QUEENS BOULEVARD                ",
+    "out_hnd": "90-15           ",
+    "out_hns": "100090015AA",
+    "out_boro_name1": "QUEENS   ",
+    "out_reason_code": " ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_wa1_message": "                                                                                ",
+    "out_bbl_block": "1860",
+    "out_bbl_lot": "100",
+    "out_bbl_bbl": "4018600100",
+    "out_x_coord": "1020086",
+    "out_y_coord": "206713",
+    "out_bin": "4045999",
+    "out_ap_id": "51561",
+    "out_condo_lot": "Non-Condo",
+    "out_rpad_condo_num": "N/A",
+    "out_rpad_coop_num": "N/A",
+    "out_low_bbl_condo": "N/A",
+    "out_high_bbl_condo": "N/A",
+    "out_latitude": "40.733984",
+    "out_longitude": "-73.870693 ",
+    "out_num_of_bldgs": "1",
+    "out_unit": "              ",
+    "out_unit_type": "    ",
+    "out_unit_identifier": "          "
+  },
+  "root": null
+}

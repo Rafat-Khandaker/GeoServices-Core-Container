@@ -1,0 +1,52 @@
+{
+  "display": {
+    "F3SList": [
+      {
+        "out_intersecting_street": "DEWHURST STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "0",
+        "out_gap_flag": "",
+        "out_node_num": "0005602"
+      },
+      {
+        "out_intersecting_street": "DRYSDALE STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "260",
+        "out_gap_flag": "",
+        "out_node_num": "0005601"
+      }
+    ],
+    "SimilarNamesList": [],
+    "in_func_code": "3S",
+    "in_boro": "5",
+    "in_stname1": "FOREST HILL RD                  ",
+    "in_stname2": "DEWHURST ST                     ",
+    "in_stname3": "DRYSDALE ST                     ",
+    "in_b10sc1": "5          ",
+    "in_b10sc2": "           ",
+    "in_b10sc3": "           ",
+    "in_compass_dir": " ",
+    "in_compass_dir2": " ",
+    "in_real_street_only": " ",
+    "in_roadbed_request_switch": " ",
+    "out_boro_name1": "STATEN IS",
+    "out_stname1": "FOREST HILL ROAD                ",
+    "out_stname2": "DEWHURST STREET                 ",
+    "out_stname3": "DRYSDALE STREET                 ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_wa1_message": "                                                                                ",
+    "out_reason_code": " ",
+    "out_number_of_intersections": "002",
+    "out_total_street_distance": "260 feet"
+  },
+  "root": null
+}

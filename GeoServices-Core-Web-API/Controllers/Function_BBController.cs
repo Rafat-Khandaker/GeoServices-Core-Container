@@ -1,0 +1,94 @@
+﻿using GeoServices_Core_Commons.Helper;
+using GeoXWrapperLib;
+using GeoXWrapperLib.Model;
+using GeoXWrapperTest.Model.Display;
+using GeoXWrapperTest.Model;
+using Microsoft.AspNetCore.Mvc;
+using GeoXWrapperTest.Model.Response;
+using GeoXWrapperTest.Helper;
+
+namespace GeoServices_Core_Web_API.Controllers
+{
+    public class Function_BBController : Controller
+    {
+        private Geo _geo;
+        private AccessControlList _accessControl;
+
+        public Function_BBController(Geo geo, AccessControlList accessControlList)
+        {
+            _geo = geo;
+            _accessControl = accessControlList.ReadKeyFile(true).Result;
+        }
+
+        /// <summary>
+        /// Enter a street name. Function BB will return that street name with its B10SC code, as well as the prevous nine street names alphabetically from the Street Name Dictionary. Use this to "Browse Backward" in the SND
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Borough Codes: 
+        /// | 1 - MN - MANHATTAN
+        /// | 2 - BX - BRONX
+        /// | 3 - BK - BROOKLYN
+        /// | 4 - QN - QUEENS
+        /// | 5 - SI - STATEN ISLAND
+        /// | "" (empty string) - default value
+        /// </para>
+        /// <para>
+        /// Browse Flags: 
+        /// | "P" - Primary street Name
+        /// | "F" - Principal street name
+        /// | "R" - BOE preferred street name
+        /// | "" (empty string) - default value, does not swap the output name with its known variant, only normalizes it
+        /// </para>
+        /// </remarks>
+        /// <param name="key">Your geoservice key, apply at https://geoservice.planning.nyc.gov/Register</param>
+        /// <param name="borough">Borough of street input. Borough codes are preferred, but abbreviations and full borough names are accepted. See remarks for acceptable inputs</param>
+        /// <param name="streetName">Street name to begin browsing from</param>
+        /// <param name="browseFlag">Browse flag to be used for normalizing the inputted street name and the returned SND entries. See remarks for acceptable inputs</param>
+        /// <param name="displayFormat">Defaults to "true" for the beautified GOAT-like format. Use "false" for raw format to see the returned work areas</param>
+        /// <returns>FBF geocall response</returns>
+        /// <response code="200">Your geocall response. May be a hit, warning, or reject based on your input. `root` will be populated for raw format `displayFormat=false`, while `display` will be populated for goat-like format `displayFormat=true`</response>
+        /// <response code="400">If required key parameter is missing</response>
+        /// <response code="401">If key is invalid or deactivated</response>
+        [HttpGet]
+        public IActionResult Get(string key, string borough = "", string streetName = "", string browseFlag = "", string displayFormat = "true")
+        {
+            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+
+            //work area setup
+            //marshall validated inputs into wa1
+            Wa1 wa1 = new Wa1
+            {
+                in_func_code = "BB",
+
+                in_boro1 = ValidationHelper.ValidateBoroInput(borough),
+                in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty,
+                in_browse_flag = browseFlag ?? string.Empty,
+            };
+
+            //geocall and finalize responses
+            _geo.GeoCall(ref wa1);
+
+            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
+            {
+                GeocallResponse<FBBDisplay, FBBResponse> raw = new GeocallResponse<FBBDisplay, FBBResponse>
+                {
+                    display = null,
+                    root = new FBBResponse(wa1)
+                };
+
+                return Ok(raw);
+            }
+            else
+            {
+                GeocallResponse<FBBDisplay, FBBResponse> goatlike = new GeocallResponse<FBBDisplay, FBBResponse>
+                {
+                    display = new FBBDisplay(wa1),
+                    root = null
+                };
+
+                return Ok(goatlike);
+            }
+        }
+    }
+}

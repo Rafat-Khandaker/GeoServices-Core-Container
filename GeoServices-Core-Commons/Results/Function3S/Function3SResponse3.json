@@ -1,0 +1,52 @@
+{
+  "display": {
+    "F3SList": [
+      {
+        "out_intersecting_street": "ASHLAND PLACE",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "0",
+        "out_gap_flag": "",
+        "out_node_num": "0018582"
+      },
+      {
+        "out_intersecting_street": "ST FELIX STREET",
+        "out_second_intersecting_street": "",
+        "out_third_intersecting_street": "",
+        "out_fourth_intersecting_street": "",
+        "out_fifth_intersecting_street": "",
+        "out_xstr_cnt": "1",
+        "out_distance": "235",
+        "out_gap_flag": "",
+        "out_node_num": "0018585"
+      }
+    ],
+    "SimilarNamesList": [],
+    "in_func_code": "3S",
+    "in_boro": "3",
+    "in_stname1": "LAFAYETTE AVE                   ",
+    "in_stname2": "ST FELIX ST                     ",
+    "in_stname3": "ASHLAND PL                      ",
+    "in_b10sc1": "3          ",
+    "in_b10sc2": "           ",
+    "in_b10sc3": "           ",
+    "in_compass_dir": " ",
+    "in_compass_dir2": " ",
+    "in_real_street_only": " ",
+    "in_roadbed_request_switch": " ",
+    "out_boro_name1": "BROOKLYN ",
+    "out_stname1": "LAFAYETTE AVENUE                ",
+    "out_stname2": "ST FELIX STREET                 ",
+    "out_stname3": "ASHLAND PLACE                   ",
+    "out_grc": "00",
+    "out_error_message": "                                                                                ",
+    "out_wa1_message": "                                                                                ",
+    "out_reason_code": " ",
+    "out_number_of_intersections": "002",
+    "out_total_street_distance": "235 feet"
+  },
+  "root": null
+}

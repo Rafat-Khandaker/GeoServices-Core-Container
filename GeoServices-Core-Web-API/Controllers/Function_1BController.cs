@@ -1,0 +1,124 @@
+﻿using GeoServices_Core_Commons.Helper;
+using GeoXWrapperLib;
+using GeoXWrapperLib.Model;
+using GeoXWrapperTest.Model.Display;
+using GeoXWrapperTest.Model.Enum;
+using GeoXWrapperTest.Model;
+using Microsoft.AspNetCore.Mvc;
+using GeoXWrapperTest.Helper;
+using GeoXWrapperTest.Model.Response;
+
+
+namespace GeoServices_Core_Web_API.Controllers
+{
+    public class Function_1BController : ControllerBase
+    {
+        private Geo _geo;
+        private AccessControlList _accessControl;
+
+        public Function_1BController(Geo geo, AccessControlList accessControlList)
+        {
+            _geo = geo;
+            _accessControl = accessControlList.ReadKeyFile(true).Result;
+        }
+
+        /// <summary>
+        /// Function 1B finds an address or place name in two ways. The first section, entitled Geographic Information, contains information on the street segment to which the address number is assigned. In addition to information about the street itself, it includes information on city services and political districts for the side of the street on which the address is located. The coordinates shown in this section are for the interpolated location of the address on the street segment. The coordinates are offset from the centerline to the correct side of the street. The information in this section is the same as returned by function 1E. The second section, entitled Property Level Information, is for the tax lot to which the address or place name has been assigned. This section contains property level information for that tax lot, including buildings on the lot. The coordinates shown are for the tax lot centroid. The information in this section is the same as returned by function 1A.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Borough Codes: 
+        /// | 1 - MN - MANHATTAN
+        /// | 2 - BX - BRONX
+        /// | 3 - BK - BROOKLYN
+        /// | 4 - QN - QUEENS
+        /// | 5 - SI - STATEN ISLAND
+        /// | "" (empty string) - default value
+        /// </para>
+        /// <para>
+        /// Browse Flags: 
+        /// | "P" - Primary street Name
+        /// | "F" - Principal street name
+        /// | "R" - BOE preferred street name
+        /// | "" (empty string) - default value, does not swap the output name with its known variant, only normalizes it
+        /// </para>
+        /// </remarks>
+        /// <param name="key">Your geoservice key, apply at https://geoservice.planning.nyc.gov/Register</param>
+        /// <param name="borough">Borough of the address or place name input. Borough codes are preferred, but abbreviations and full borough names are accepted. See remarks for acceptable inputs. This may be omitted if zipcode is used</param>
+        /// <param name="zipCode">5 digit zip code. This may be omitted if borough is used</param>
+        /// <param name="addressNo">The address number for the input. May be omitted for place names, or if freeform input is being used in streetName</param>
+        /// <param name="streetName">The street name or freeform (address number + street name) for the input</param>
+        /// <param name="roadbed">The roadbed request switch. Enter "R" to get roadbed information. Defaults to "" (empty string) for generic street information</param>
+        /// <param name="tpad">Enter "true" or "y" to read from the TPAD file. Defaults to "" (empty string) which will not execute the read</param>
+        /// <param name="browseFlag">Browse flag to be used for normalizing the inputted street name. See remarks for acceptable inputs</param>
+        /// <param name="unit">Unit number, ex. the suite or office number, etc</param>
+        /// <param name="hns">Enter "true" or "y" to use Sort Format for your `addressNo` parameter. Defaults to normal format</param>
+        /// <param name="displayFormat">Defaults to "true" for the beautified GOAT-like format. Use "false" for raw format to see the returned work areas</param>
+        /// <returns>F1B geocall response</returns>
+        /// <response code="200">Your geocall response. May be a hit, warning, or reject based on your input. `root` will be populated for raw format `displayFormat=false`, while `display` will be populated for goat-like format `displayFormat=true`</response>
+        /// <response code="400">If required key parameter is missing</response>
+        /// <response code="401">If key is invalid or deactivated</response>
+        [HttpGet]
+        public IActionResult Get(string key, string borough = "", string zipCode = "", string addressNo = "", string streetName = "", string roadbed = "", string tpad = "", string browseFlag = "", string unit = "", string hns = "n", string displayFormat = "true")
+        {
+            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+
+
+            //work area setup & marshall validated inputs into wa1
+            Wa1 wa1 = new Wa1()
+            {
+                in_func_code = "1B",
+                in_platform_ind = "C",
+
+                in_b10sc1 = new B10sc { boro = ValidationHelper.ValidateBoroInput(borough) },
+                in_zip_code = zipCode ?? string.Empty,
+                in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty,
+                in_roadbed_request_switch = roadbed ?? string.Empty,
+                in_browse_flag = browseFlag ?? string.Empty,
+                in_tpad_switch = tpad ?? string.Empty,
+                in_unit = unit?.Trim() ?? string.Empty
+            };
+            Wa2F1b wa2f1b = new Wa2F1b();
+
+            if (string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase))
+            {
+                wa1.in_hnd = string.Empty;
+                wa1.in_hns = addressNo ?? string.Empty;
+            }
+            else
+            {
+                wa1.in_hnd = addressNo ?? string.Empty;
+                wa1.in_hns = string.Empty;
+            }
+
+            //geocall and finalize
+            _geo.GeoCall(ref wa1, ref wa2f1b);
+
+            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
+            {
+                GeocallResponse<F1bDisplay, F1bResponse> raw = new GeocallResponse<F1bDisplay, F1bResponse>()
+                {
+                    display = null,
+                    root = new F1bResponse(wa1, wa2f1b)
+                };
+
+                return Ok(raw);
+            }
+            else
+            {
+                GeocallResponse<F1bDisplay, F1bResponse> goatlike = new GeocallResponse<F1bDisplay, F1bResponse>()
+                {
+                    display = new F1bDisplay(wa1, wa2f1b, _geo)
+                    {
+                        AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1b.wa2f1ax.addr_x_list, wa1.in_tpad_switch),
+                        CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1b.wa2f1ax, wa1.in_tpad_switch, FunctionCode.F1B, _geo)
+                    },
+                    root = null
+                };
+
+                return Ok(goatlike);
+            }
+        }
+    }
+}
+
