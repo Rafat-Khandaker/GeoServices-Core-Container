@@ -38,3 +38,11 @@ while centralizing project repository into a single git repository.
  - Open Web-Api.Dockerfile
  - Change lines 10,11 16 & 17 with the location of the new file version with the corrected file zip path
  - for example replace version 'linux_geo25b_25.2' and' version-25b_25.2' with new version paths
+
+# Troubleshooting steps:   
+- Make sure that docker container has access to internet via with or without proxy if needed  
+- Uncomment line 13 in Web-API.Dockerfile "LD_DEBUG=libs" (this will give more detailed debug logs during the build process and running application container)  
+
+# Running Project from Visual Studio Instructions with DEBUG enabled  
+- Simply execute with Dockerfile inside the Project directory eg:.. GeoServices-Core-Container/Geoservices-Core-Web-API/Dockerfile  
+- You can run the docker container inside visual studio with breakpoints in program
