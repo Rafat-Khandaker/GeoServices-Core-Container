@@ -32,10 +32,10 @@ while centralizing project repository into a single git repository.
    ```
 
   ### Navigate into SSL port  
-  https://localhost:8082    
+    https://localhost:8082    
   
   ### Use calling convention:   
-  https://localhost:8082/Function_{function_version}?key={api_key_value}&parameter1={param_1}&parameter2={param_2} .... etc ..
+    https://localhost:8082/Function_{function_version}?key={api_key_value}&parameter1={param_1}&parameter2={param_2} .... etc ..
 
  # How To Get New Versions of Geo Service Updates  
  - Open Web-Api.Dockerfile
