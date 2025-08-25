@@ -44,7 +44,7 @@ while centralizing project repository into a single git repository.
 
 # Troubleshooting steps:   
 - Make sure that docker container has access to internet via with or without proxy if needed  
-- Uncomment line 13 in Web-API.Dockerfile "LD_DEBUG=libs" (this will give more detailed debug logs during the build process and running application container)  
+- Un-comment line 13 in Web-API.Dockerfile "LD_DEBUG=libs" (this will give more detailed debug logs during the build process and running application container)  
 
 # Debug in Visual Studio  
 - Simply execute with Dockerfile inside the Project directory eg:.. GeoServices-Core-Container/Geoservices-Core-Web-API/Dockerfile  
