@@ -43,6 +43,6 @@ while centralizing project repository into a single git repository.
 - Make sure that docker container has access to internet via with or without proxy if needed  
 - Uncomment line 13 in Web-API.Dockerfile "LD_DEBUG=libs" (this will give more detailed debug logs during the build process and running application container)  
 
-# Running Project from Visual Studio Instructions with DEBUG enabled  
+# Debug in Visual Studio  
 - Simply execute with Dockerfile inside the Project directory eg:.. GeoServices-Core-Container/Geoservices-Core-Web-API/Dockerfile  
 - You can run the docker container inside visual studio with breakpoints in program
