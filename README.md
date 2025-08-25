@@ -20,8 +20,8 @@ while centralizing project repository into a single git repository.
   - Switch to Linux mode  
   
 ###  Instructions  
-  -Download project    
-  -Open Command Line prompt and CD (change into GeoServices-Core-Container Directory)   
+  - Download project    
+  - Open Command Line prompt and CD (change into GeoServices-Core-Container Directory)   
 
  ### Run Commands
   ```bash
