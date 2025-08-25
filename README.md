@@ -15,15 +15,15 @@ This design architecture will use the modern AKS (Kubernetes Cluster), potential
 while centralizing project repository into a single git repository.
 
 # How To Run Container  
- ### Pre-Requisites:  
+ ### Pre-Requisites 
   - Download and install Docker Desktop  
   - Switch to Linux mode  
   
-###  Instructions:  
+###  Instructions  
   -Download project    
   -Open Command Line prompt and CD (change into GeoServices-Core-Container Directory)   
 
- ### Run Commands:
+ ### Run Commands
   ```bash
   docker build -f Web-API.Dockerfile -t geoservicescorewebapi:dev .
   ```
