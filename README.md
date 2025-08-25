@@ -24,9 +24,12 @@ while centralizing project repository into a single git repository.
   -Open Command Line prompt and CD (change into GeoServices-Core-Container Directory)   
 
  ### Run Commands:
-  
-  docker build -f Web-API.Dockerfile -t geoservicescorewebapi:dev .  
+  ```bash
+  docker build -f Web-API.Dockerfile -t geoservicescorewebapi:dev .
+  ```
+  ```bash
   docker run -d -p 8082:8081 geoservicescorewebapi:dev    
+   ```
 
   ### Navigate into SSL port:   
   https://localhost:8082    
