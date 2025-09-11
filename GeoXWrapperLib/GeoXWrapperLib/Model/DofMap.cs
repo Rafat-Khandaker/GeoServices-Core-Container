@@ -127,6 +127,17 @@ namespace GeoXWrapperLib.Model
             }
         }
 
+        /// <summary><value>Property for page</value></summary>
+        public string page
+        {
+            get { return m_page; }
+            set
+            {
+                m_page = value.Length > 4 ? value.Substring(0, 4) : value.PadRight(4, ' ');
+            }
+        }
+
+
         /// <summary><value>Property for section_volume</value></summary>
         public string section_volume
         {
@@ -137,14 +148,5 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        /// <summary><value>Property for page</value></summary>
-        public string page
-        {
-            get { return m_page; }
-            set
-            {
-                m_page = value.Length > 4 ? value.Substring(0, 4) : value.PadRight(4, ' ');
-            }
-        }
     }
 }

@@ -25,8 +25,8 @@ if (!builder.Environment.IsDevelopment())
         // Configure HTTPS with a certificate located in the "Certificates" folder
         options.Listen(IPAddress.Any, 8081, listenOptions =>
         {
-            var certificatePath = builder.Configuration["ASPNETCORE_Kestrel__Certificates__Default__Path"];
-            var certificatePassword = builder.Configuration["ASPNETCORE_Kestrel__Certificates__Default__Password"];
+            var certificatePath = builder.Configuration["ASPNETCORE_Kestrel_Certificates_Default_Path"];
+            var certificatePassword = builder.Configuration["ASPNETCORE_Kestrel_Certificates_Default_Password"];
 
             listenOptions.UseHttps(certificatePath, certificatePassword);
         });

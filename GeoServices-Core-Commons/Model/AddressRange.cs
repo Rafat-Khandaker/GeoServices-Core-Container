@@ -8,14 +8,15 @@ namespace GeoXWrapperTest.Model
 {
     public class AddressRange : IEquatable<AddressRange>
     {
+
+        public string b7sc { get; set; }
+        public string bin { get; set; }
+        public string high_address_number { get; set; }
+        public string low_address_number { get; set; }
+        public string street_name { get; set; }
+        public string tpad_bin_status { get; set; }
         public string type { get; set; }
         public string type_meaning { get; set; }
-        public string low_address_number { get; set; }
-        public string high_address_number { get; set; }
-        public string street_name { get; set; }
-        public string bin { get; set; }
-        public string tpad_bin_status { get; set; }
-        public string b7sc { get; set; }
 
         public static string NormalizedType(string type)
         {

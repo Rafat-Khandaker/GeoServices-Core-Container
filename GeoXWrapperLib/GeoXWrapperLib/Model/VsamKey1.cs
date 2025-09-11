@@ -90,36 +90,22 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
-        // Property for record_type
-        public string record_type
-        {
-            get => m_record_type;
-            set
-            {
-                var strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_record_type = new string(' ', 2);
-                if (strlen > 0) m_record_type = value.Substring(0, strlen);
-            }
-        }
-
         // Property for b5sc
         public B5sc b5sc
         {
             get => m_b5sc;
             set => m_b5sc = value;
         }
-
-        // Property for parity
-        public string parity
+        // Property for filler
+        public string filler
         {
-            get => m_parity;
+            get => m_filler;
             set
             {
                 var strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_parity = new string(' ', 1);
-                if (strlen > 0) m_parity = value.Substring(0, strlen);
+                m_filler = " ";
+                if (strlen > 0) m_filler = value.Substring(0, strlen);
             }
         }
 
@@ -135,18 +121,31 @@ namespace GeoXWrapperLib.Model
                 if (strlen > 0) m_hi_hns = value.Substring(0, strlen);
             }
         }
-
-        // Property for filler
-        public string filler
+        // Property for parity
+        public string parity
         {
-            get => m_filler;
+            get => m_parity;
             set
             {
                 var strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_filler = " ";
-                if (strlen > 0) m_filler = value.Substring(0, strlen);
+                m_parity = new string(' ', 1);
+                if (strlen > 0) m_parity = value.Substring(0, strlen);
             }
         }
+
+        // Property for record_type
+        public string record_type
+        {
+            get => m_record_type;
+            set
+            {
+                var strlen = value.Length;
+                if (strlen > 2) strlen = 2;
+                m_record_type = new string(' ', 2);
+                if (strlen > 0) m_record_type = value.Substring(0, strlen);
+            }
+        }
+
     }
 }

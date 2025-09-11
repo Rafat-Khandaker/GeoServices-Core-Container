@@ -140,30 +140,6 @@ public class B10sc
         }
     }
 
-
-    /// <value>Property for sc5</value>
-    public string sc5
-    {
-        get
-        {
-            return m_sc5;
-        }
-        set
-        {
-            int strlen = value.Length;
-            if (strlen > 5)
-                strlen = 5;
-
-            m_sc5 = "00000";
-            if (strlen > 0)
-            {
-                // The equivalent of Mid for strings in C# is assigning a substring to a specific index.
-                m_sc5 = m_sc5.Substring(0, 5 - strlen) + value.Substring(0, strlen);
-            }
-        }
-    }
-
-
     /// <value>Property for lgc</value>
     public string lgc
     {
@@ -186,6 +162,27 @@ public class B10sc
         }
     }
 
+    /// <value>Property for sc5</value>
+    public string sc5
+    {
+        get
+        {
+            return m_sc5;
+        }
+        set
+        {
+            int strlen = value.Length;
+            if (strlen > 5)
+                strlen = 5;
+
+            m_sc5 = "00000";
+            if (strlen > 0)
+            {
+                // The equivalent of Mid for strings in C# is assigning a substring to a specific index.
+                m_sc5 = m_sc5.Substring(0, 5 - strlen) + value.Substring(0, strlen);
+            }
+        }
+    }
 
     /// <value>Property for spv</value>
     public string spv

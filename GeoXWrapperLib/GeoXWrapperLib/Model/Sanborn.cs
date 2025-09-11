@@ -133,6 +133,33 @@ namespace GeoXWrapperLib.Model
             }
         }
 
+        // Property for page
+        public string page
+        {
+            get => m_page;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 3) strlen = 3;
+                m_page = "   ";
+                if (strlen > 0)
+                    m_page = value.Substring(0, strlen);
+            }
+        }
+
+        // Property for page_suffix
+        public string page_suffix
+        {
+            get => m_page_suffix;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_page_suffix = " ";
+                if (strlen > 0)
+                    m_page_suffix = value.Substring(0, strlen);
+            }
+        }
         // Property for volume
         public string volume
         {
@@ -160,33 +187,6 @@ namespace GeoXWrapperLib.Model
                     m_volume_suffix = value.Substring(0, strlen);
             }
         }
-
-        // Property for page
-        public string page
-        {
-            get => m_page; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 3) strlen = 3;
-                m_page = "   ";
-                if (strlen > 0)
-                    m_page = value.Substring(0, strlen);
-            }
-        }
-
-        // Property for page_suffix
-        public string page_suffix
-        { 
-            get => m_page_suffix; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_page_suffix = " ";
-                if (strlen > 0)
-                    m_page_suffix = value.Substring(0, strlen);
-            }
-        }
+     
     }
 }

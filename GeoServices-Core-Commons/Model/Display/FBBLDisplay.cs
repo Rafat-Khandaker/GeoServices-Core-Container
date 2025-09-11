@@ -2,6 +2,7 @@
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace GeoXWrapperTest.Model.Display
         }
 
         #region Data Lists - Must be set in func controller
-        public Dictionary<string, string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_wa2f1ax.addr_x_list);
+        public Dictionary<string,string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_wa2f1ax.addr_x_list);
         public List<SimilarName> SimilarNamesList => ValidationHelper.CreateSimilarNamesList(_wa1.out_b7sc_list, _wa1.out_stname_list); //FIXME I don't know if this is actually needed for FBL
 
         public List<AddressRange> AddressRangeList { get;  set; }

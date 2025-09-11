@@ -2,6 +2,7 @@
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -24,10 +25,13 @@ namespace GeoXWrapperTest.Model.Display
         }
 
         #region Data Lists - Must Set in Function Controller
-        public Dictionary<string, string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_wa2f1ax.addr_x_list);
-        public List<SimilarName> SimilarNamesList => ValidationHelper.CreateSimilarNamesList(_wa1.out_b7sc_list, _wa1.out_stname_list);
+
+        public Dictionary<string,string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_wa2f1ax.addr_x_list);
 
         public List<AddressRange> AddressRangeList { get; set; }
+
+        public List<SimilarName> SimilarNamesList => ValidationHelper.CreateSimilarNamesList(_wa1.out_b7sc_list, _wa1.out_stname_list);
+
         public List<CompleteBIN> CompleteBINList { get; set; }
         #endregion
 

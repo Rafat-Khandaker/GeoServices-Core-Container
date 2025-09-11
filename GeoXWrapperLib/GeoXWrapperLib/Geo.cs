@@ -25,10 +25,12 @@ namespace GeoXWrapperLib
         }
 
         private void LinuxNYCgeo(byte[] wa1, byte[] wa2 = null) {
-            string wa1String = WA.ByteArrayToStr(wa1);
-            string wa2String = WA.ByteArrayToStr(wa2);
+            //string wa1String = WA.ByteArrayToStr(wa1);
+            //string wa2String = string.Empty;
+            //if (wa2 != null)
+            //    wa2String = WA.ByteArrayToStr(wa2);
 
-            NYCgeo_Linux(wa1String, wa2String); 
+            NYCgeo_Linux(wa1, wa2); 
         } 
         
         private void WindowsNYCgeo(byte[] wa1, byte[] wa2 = null){
@@ -40,7 +42,7 @@ namespace GeoXWrapperLib
         public static extern void NYCgeo_Windows(byte[] wa1, byte[] wa2 = null);
        
         [DllImport("libNYCgeo", EntryPoint = "geo", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void NYCgeo_Linux( [MarshalAs(UnmanagedType.LPStr)] string ptr_wa1, [MarshalAs(UnmanagedType.LPStr)] string ptr_wa2 = null);
+        public static extern void NYCgeo_Linux(byte[] ptr_wa1, byte[] ptr_wa2 = null);
 
         // #Region "GDE calls"
 

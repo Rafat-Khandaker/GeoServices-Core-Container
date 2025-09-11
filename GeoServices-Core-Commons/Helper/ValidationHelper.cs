@@ -5,6 +5,7 @@ using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Model.Enum;
 using GeoXWrapperLib;
 using DCP.Geosupport.DotNet.fld_def_lib;
+using System.Collections;
 
 namespace GeoXWrapperTest.Helper
 {
@@ -101,30 +102,59 @@ namespace GeoXWrapperTest.Helper
         /// </summary>
         /// <param name="addrXList">The addr_x_list coming from wa2</param>
         /// <returns>Dictionary of k: address type flag as string, v: address type string</returns>
-        public static Dictionary<string, string> CreateAddressRangeKeys(IEnumerable<AddrRangeX> addrXList)
+        public static Dictionary<string,string> CreateAddressRangeKeys(AddrRangeX[] addrXList)
         {
-            Dictionary<string, string> arkDict = new Dictionary<string, string>
+            var arHt = new Dictionary<string,string>();
+
+            for (int i = 0; i < addrXList.Length; i++)
             {
-                [string.Empty] = "Ordinary Address Range" //always present
-            };
+                string addrType = addrXList[i].addr_type.Trim();
 
-            if (!addrXList.Any())
-                return arkDict;
-
-            List<AddrRangeX> arl = addrXList.ToList();
-            for (int i = 0; i < arl.Count; i++)
-            {
-                string addrType = arl[i].addr_type.Trim();
-
-                if (string.IsNullOrWhiteSpace(addrType) || arkDict.ContainsKey(addrType))
-                    continue;
-
-                arkDict[addrType] = DescribeAddrKey(addrType);
+                if (!string.IsNullOrWhiteSpace(addrType) && !arHt.ContainsKey(addrType))
+                    arHt.Add(addrType, DescribeKey(addrType));
             }
 
-            return arkDict;
+            arHt.Add(string.Empty, "Ordinary Address Range");
+
+            return arHt;
         }
 
+        private static string DescribeKey(string typeKey)
+        {
+            switch (typeKey)
+            {
+                case "N":
+                    return "Non-Addressable Place Name";
+                case "A":
+                    return "Addressable Place Name";
+                case "B":
+                    return "Non-Addressable Unnamed Building";
+                case "F":
+                    return "Vacant Street Frontage";
+                case "G":
+                    return "Name of NAP Complex";
+                case "H":
+                    return "Hyphenated Address Range";
+                case "M":
+                    return "Mixed Hyphenation Address Range";
+                case "O":
+                    return "Out of Sequence Address";
+                case "Q":
+                    return "Pseudo Address";
+                case "R":
+                    return "Real Address for Vanity Address";
+                case "U":
+                    return "Miscellaneous Structure";
+                case "V":
+                    return "Vanity Address";
+                case "W":
+                    return "Non-Addressable Building Frontage";
+                case "X":
+                    return "Constituent NAP of Complex";
+                default:
+                    return string.Empty;
+            }
+        }
         /// <summary>
         /// Assemble similar names list
         /// </summary>

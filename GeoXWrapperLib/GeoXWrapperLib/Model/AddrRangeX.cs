@@ -20,64 +20,19 @@ namespace GeoXWrapperLib.Model
         private string m_stname;
         private string m_filler01;
 
-        // Property for lhnd
-        public string lhnd
-        {
-            get { return m_lhnd; }
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 16) strlen = 16;
-                m_lhnd = new string(' ', 16);
-                if (strlen > 0)
-                {
-                    m_lhnd = value.Substring(0, strlen).PadRight(16);
-                }
-            }
-        }
 
-        // Property for hhnd
-        public string hhnd
+        // Property for TPAD_bin_status
+        public string TPAD_bin_status
         {
-            get { return m_hhnd; }
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 16) strlen = 16;
-                m_hhnd = new string(' ', 16);
-                if (strlen > 0)
-                {
-                    m_hhnd = value.Substring(0, strlen).PadRight(16);
-                }
-            }
-        }
-
-        // Property for b7sc
-        public B7sc b7sc
-        {
-            get { return m_b7sc; }
-            set { m_b7sc = value; }
-        }
-
-        // Property for bin
-        public BIN bin
-        {
-            get { return m_bin; }
-            set { m_bin = value; }
-        }
-
-        // Property for sos
-        public string sos
-        {
-            get { return m_sos; }
+            get { return m_TPAD_bin_status; }
             set
             {
                 int strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_sos = new string(' ', 1);
+                m_TPAD_bin_status = new string(' ', 1);
                 if (strlen > 0)
                 {
-                    m_sos = value.Substring(0, strlen);
+                    m_TPAD_bin_status = value.Substring(0, strlen);
                 }
             }
         }
@@ -97,19 +52,80 @@ namespace GeoXWrapperLib.Model
                 }
             }
         }
-
-        // Property for TPAD_bin_status
-        public string TPAD_bin_status
+        // Property for b7sc
+        public B7sc b7sc
         {
-            get { return m_TPAD_bin_status; }
+            get { return m_b7sc; }
+            set { m_b7sc = value; }
+        }
+
+        // Property for bin
+        public BIN bin
+        {
+            get { return m_bin; }
+            set { m_bin = value; }
+        }
+
+        // Property for filler01
+        public string filler01
+        {
+            get { return m_filler01; }
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 34) strlen = 34;
+                m_filler01 = new string(' ', 34);
+                if (strlen > 0)
+                {
+                    m_filler01 = value.Substring(0, strlen).PadRight(34);
+                }
+            }
+        }
+
+
+        // Property for hhnd
+        public string hhnd
+        {
+            get { return m_hhnd; }
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 16) strlen = 16;
+                m_hhnd = new string(' ', 16);
+                if (strlen > 0)
+                {
+                    m_hhnd = value.Substring(0, strlen).PadRight(16);
+                }
+            }
+        }
+        // Property for lhnd
+        public string lhnd
+        {
+            get { return m_lhnd; }
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 16) strlen = 16;
+                m_lhnd = new string(' ', 16);
+                if (strlen > 0)
+                {
+                    m_lhnd = value.Substring(0, strlen).PadRight(16);
+                }
+            }
+        }
+
+        // Property for sos
+        public string sos
+        {
+            get { return m_sos; }
             set
             {
                 int strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_TPAD_bin_status = new string(' ', 1);
+                m_sos = new string(' ', 1);
                 if (strlen > 0)
                 {
-                    m_TPAD_bin_status = value.Substring(0, strlen);
+                    m_sos = value.Substring(0, strlen);
                 }
             }
         }
@@ -130,21 +146,7 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        // Property for filler01
-        public string filler01
-        {
-            get { return m_filler01; }
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 34) strlen = 34;
-                m_filler01 = new string(' ', 34);
-                if (strlen > 0)
-                {
-                    m_filler01 = value.Substring(0, strlen).PadRight(34);
-                }
-            }
-        }
+
 
         // Default constructor
         public AddrRangeX()

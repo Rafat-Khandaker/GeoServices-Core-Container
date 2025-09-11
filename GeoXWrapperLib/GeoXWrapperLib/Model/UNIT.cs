@@ -107,21 +107,6 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
-        /// <value>Property for unit_type</value>
-        public string unit_type
-        {
-            get => m_unit_type;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 4) strlen = 4;
-                m_unit_type = "    ";
-                if (strlen > 0)
-                {
-                    m_unit_type = value.Substring(0, strlen);
-                }
-            }
-        }
 
         /// <value>Property for unit_identifier</value>
         public string unit_identifier
@@ -136,6 +121,22 @@ namespace GeoXWrapperLib.Model
                 {
                     m_unit_identifier = "          ";
                     m_unit_identifier = m_unit_identifier.Substring(0, 10 - strlen) + value.Substring(0, strlen);
+                }
+            }
+        }
+
+        /// <value>Property for unit_type</value>
+        public string unit_type
+        {
+            get => m_unit_type;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 4) strlen = 4;
+                m_unit_type = "    ";
+                if (strlen > 0)
+                {
+                    m_unit_type = value.Substring(0, strlen);
                 }
             }
         }

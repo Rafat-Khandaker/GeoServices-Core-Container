@@ -7,7 +7,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y wget && apt-get install -y unzip  && apt-get clean 
 
-RUN wget -O "linux_geo25b_25.2.zip" "https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/geosupport/linux_geo25b_25.2.zip"
+RUN wget -O "linux_geo25b_25.2.zip" "https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/geosupport/linux_geo25c_25.3.zip"
 RUN unzip linux_geo25b_25.2.zip
 
 #ENV LD_DEBUG=libs
@@ -19,8 +19,8 @@ ENV GEOFILES=version-25b_25.2/fls/
 #ENV LD_LIBRARY_PATH=app/bin/Debug/net9.0/lib/bin
 #ENV GEOFILES=app/bin/Debug/net9.0/lib/fls/
 
-ENV ASPNETCORE_Kestrel__Certificates__Default__Path=Certificate/geoservices-core-web-api.pfx
-ENV ASPNETCORE_Kestrel__Certificates__Default__Password=df212dauh109k
+ENV ASPNETCORE_Kestrel_Certificates_Default_Path=Certificate/geoservices-core-web-api.pfx
+ENV ASPNETCORE_Kestrel_Certificates_Default_Password=df212dauh109k
 
 EXPOSE 8080
 EXPOSE 8081

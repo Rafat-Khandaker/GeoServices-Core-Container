@@ -1,5 +1,4 @@
 using GeoServices_Core_Commons.Helper;
-using GeoServices_Core_Commons.Model.Inputs;
 using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
@@ -8,7 +7,6 @@ using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model.Enum;
 using GeoXWrapperTest.Model.Response;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Concurrent;
 
 namespace GeoServices_Core_Web_API.Controllers;
 
@@ -79,7 +77,9 @@ public class Function_1AController : ControllerBase
             in_zip_code = zipCode ?? string.Empty,
             in_unit = unit?.Trim() ?? string.Empty,
             in_browse_flag = browseFlag ?? string.Empty,
-            in_tpad_switch = tpad ?? string.Empty
+            in_tpad_switch = tpad ?? string.Empty,
+            in_hnd = string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase) ? string.Empty : addressNo ?? string.Empty,
+            in_hns = string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase) ? addressNo ?? string.Empty : string.Empty,
         };
         Wa2F1ax wa2f1ax = new Wa2F1ax();
 
@@ -96,6 +96,27 @@ public class Function_1AController : ControllerBase
 
         //geocall and finalize responses
         _geo.GeoCall(ref wa1, ref wa2f1ax);
+
+        var _funcReadStNameFd = (string inBoro, string inStCode) =>
+        {
+            Wa1 wa1 = new Wa1
+            {
+                in_func_code = "D",
+                in_platform_ind = "C",
+                in_b10sc1 = new B10sc
+                {
+                    boro = inBoro,
+                    sc5 = inStCode
+                }
+            };
+
+            _geo.GeoCall(ref wa1);
+
+            return wa1.out_stname1;
+        };
+
+        _funcReadStNameFd(wa2f1ax.bid_id.boro, wa2f1ax.bid_id.B5scToString().Remove(0, 1));
+
 
         if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
         {

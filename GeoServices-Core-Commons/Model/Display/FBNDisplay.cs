@@ -3,6 +3,7 @@ using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace GeoXWrapperTest.Model.Display
         }
 
         #region Data Lists - Must be set in controller
-        public Dictionary<string, string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_wa2f1ax.addr_x_list);
+        public Dictionary<string,string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_wa2f1ax.addr_x_list);
         public List<AddressRange> AddressRangeList { get; set; }
         #endregion
 

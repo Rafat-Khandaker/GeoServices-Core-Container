@@ -93,6 +93,168 @@ namespace GeoXWrapperLib.Model
         string[] m_out_stname_list { get; set; } = new string[10];
 
 
+        // Property for in_auxseg_switch
+        public string in_auxseg_switch
+        {
+            get => m_in_auxseg_switch;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_auxseg_switch = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_in_auxseg_switch = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        public B10sc in_b10sc1
+        {
+            get => m_in_b10sc1;
+            set { m_in_b10sc1 = value; }
+        }
+
+        public B10sc in_b10sc2
+        {
+            get => m_in_b10sc2;
+            set { m_in_b10sc2 = value; }
+        }
+
+
+        public B10sc in_b10sc3
+        {
+            get => m_in_b10sc3;
+            set { m_in_b10sc3 = value; }
+        }
+
+        public BBL in_bbl
+        {
+            get => m_in_bbl;
+            set { m_in_bbl = value; }
+        }
+
+        public BIN in_bin
+        {
+            get => m_in_bin;
+            set { m_in_bin = value; }
+        }
+
+        [XmlIgnore]
+        public string in_bin_string
+        {
+            get => m_in_bin?.ToString();
+            set { m_in_bin = new BIN(value); }
+        }
+
+        [XmlIgnore]
+        public string in_boro1
+        {
+            get => m_in_b10sc1?.boro;
+            set { m_in_b10sc1.boro = value; }
+        }
+
+        [XmlIgnore]
+        public string in_boro2
+        {
+            get => m_in_b10sc2?.boro;
+            set { m_in_b10sc2.boro = value; }
+        }
+
+        [XmlIgnore]
+        public string in_boro3
+        {
+            get => m_in_b10sc3?.boro;
+            set { m_in_b10sc3.boro = value; }
+        }
+
+        // Property for in_browse_flag
+        public string in_browse_flag
+        {
+            get => m_in_browse_flag;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_browse_flag = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_in_browse_flag = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        public string in_compass_dir
+        {
+            get => m_in_compass_dir;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_compass_dir = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_compass_dir = value.Substring(0, strlen).PadRight(1);
+            }
+        }
+
+        public string in_compass_dir2
+        {
+            get => m_in_compass_dir2;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_compass_dir2 = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_compass_dir2 = value.Substring(0, strlen).PadRight(1);
+            }
+        }
+
+        public string in_filler01
+        {
+            get => m_in_filler01;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_filler01 = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_filler01 = value.Substring(0, strlen).PadRight(1);
+            }
+        }
+
+        public string in_filler03
+        {
+            get => m_in_filler03;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 82) strlen = 82;
+                m_in_filler03 = new string(' ', 82);
+                if (strlen > 0)
+                    m_in_filler03 = value.Substring(0, strlen).PadRight(82);
+            }
+        }
+
+        // Property for in_filler4
+        public string in_filler4
+        {
+            get => m_in_filler04;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 30) strlen = 30;
+                m_in_filler04 = new string(' ', 30);
+                if (strlen > 0)
+                {
+                    m_in_filler04 = value.Substring(0, strlen).PadRight(30);
+                }
+            }
+        }
+
         public string in_func_code
         {
             get => m_in_func_code;
@@ -109,6 +271,35 @@ namespace GeoXWrapperLib.Model
                 }
             }
         }
+
+
+        public string in_hn_justification
+        {
+            get => m_in_hn_justification;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_hn_justification = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_hn_justification = value.Substring(0, strlen).PadRight(1);
+            }
+        }
+
+        public string in_hn_norm_override
+        {
+            get => m_in_hn_norm_override;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_hn_norm_override = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_hn_norm_override = value.Substring(0, strlen).PadRight(1);
+            }
+        }
+
+
         public string in_hnd
         {
             get => m_in_hnd;
@@ -123,6 +314,20 @@ namespace GeoXWrapperLib.Model
                 {
                     m_in_hnd = value.Substring(0, strlen).PadRight(16);
                 }
+            }
+        }
+
+
+        public string in_hnl
+        {
+            get => m_in_hnl;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 2) strlen = 2;
+                m_in_hnl = new string(' ', 2);
+                if (strlen > 0)
+                    m_in_hnl = value.Substring(0, strlen).PadRight(2);
             }
         }
 
@@ -142,6 +347,37 @@ namespace GeoXWrapperLib.Model
                 }
             }
         }
+
+        // Property for in_legacy_grc_flag
+        public string in_legacy_grc_flag
+        {
+            get => m_in_legacy_grc_flag;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_legacy_grc_flag = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_in_legacy_grc_flag = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        public string in_long_wa2_flag
+        {
+            get => m_in_long_wa2_flag;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_long_wa2_flag = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_long_wa2_flag = value.Substring(0, strlen).PadRight(1);
+            }
+        }
+
         public string in_low_hnd
         {
             get => m_in_low_hnd; 
@@ -168,31 +404,106 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public B10sc in_b10sc1
+        public string in_mode_switch
         {
-            get => m_in_b10sc1; 
-            set { m_in_b10sc1 = value; }
+            get
+            {
+                return m_in_mode_switch;
+            }
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1)
+                    strlen = 1;
+
+                m_in_mode_switch = new string(' ', 1);  // Initialize with a single space
+
+                if (strlen > 0)
+                {
+                    m_in_mode_switch = value.Substring(0, strlen);
+                }
+            }
         }
 
-        [XmlIgnore]
-        public string in_boro1
+
+        public string in_node
         {
-            get => m_in_b10sc1?.boro; 
-            set { m_in_b10sc1.boro = value; }
+            get => m_in_node;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 7) strlen = 7;
+                m_in_node = new string(' ', 7);
+                if (strlen > 0)
+                    m_in_node = value.Substring(0, strlen).PadRight(7);
+            }
         }
 
-        [XmlIgnore]
-        public string in_boro2
+
+        public string in_platform_ind
         {
-            get => m_in_b10sc2?.boro; 
-            set { m_in_b10sc2.boro = value; }
+            get => m_in_platform_ind;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_platform_ind = new string(' ', 1);
+                if (strlen > 0)
+                    m_in_platform_ind = value.Substring(0, strlen).PadRight(1);
+            }
         }
 
-        [XmlIgnore]
-        public string in_boro3
+
+        // Property for in_real_street_only
+        public string in_real_street_only
         {
-            get => m_in_b10sc3?.boro; 
-            set { m_in_b10sc3.boro = value; }
+            get => m_in_real_street_only;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_real_street_only = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_in_real_street_only = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+
+        // Property for in_roadbed_request_switch
+        public string in_roadbed_request_switch
+        {
+            get => m_in_roadbed_request_switch;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_in_roadbed_request_switch = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_in_roadbed_request_switch = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        // Property for in_snl
+        public string in_snl
+        {
+            get => m_in_snl;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 2) strlen = 2;
+                m_in_snl = new string(' ', 2);
+                if (strlen > 0)
+                {
+                    m_in_snl = value.Substring(0, strlen).PadRight(2);
+                }
+            }
         }
 
         public string in_stname1
@@ -208,12 +519,6 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public B10sc in_b10sc2
-        {
-            get => m_in_b10sc2; 
-            set { m_in_b10sc2 = value; }
-        }
-
         public string in_stname2
         {
             get => m_in_stname2; 
@@ -225,12 +530,6 @@ namespace GeoXWrapperLib.Model
                 if (strlen > 0)
                     m_in_stname2 = value.Substring(0, strlen).PadRight(32);
             }
-        }
-
-        public B10sc in_b10sc3
-        {
-            get => m_in_b10sc3; 
-            set { m_in_b10sc3 = value; }
         }
 
         public string in_stname3
@@ -246,87 +545,66 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public BBL in_bbl
+        // Property for in_stname_normalization
+        public string in_stname_normalization
         {
-            get => m_in_bbl; 
-            set { m_in_bbl = value; }
-        }
+            get => m_in_stname_normalization;
 
-        public string in_filler01
-        {
-            get => m_in_filler01; 
             set
             {
                 int strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_in_filler01 = new string(' ', 1);
+                m_in_stname_normalization = new string(' ', 1);
                 if (strlen > 0)
-                    m_in_filler01 = value.Substring(0, strlen).PadRight(1);
+                {
+                    try { m_in_stname_normalization = value.Substring(0, strlen).PadRight(1); } catch { m_in_stname_normalization = string.Empty; }
+                }
             }
         }
 
-        public BIN in_bin
+        // Property for in_tpad_switch
+        public string in_tpad_switch
         {
-            get => m_in_bin; 
-            set { m_in_bin = value; }
-        }
+            get => m_in_tpad_switch;
 
-        [XmlIgnore]
-        public string in_bin_string
-        {
-            get => m_in_bin?.ToString(); 
-            set { m_in_bin = new BIN(value); }
-        }
-
-        public string in_compass_dir
-        {
-            get => m_in_compass_dir; 
             set
             {
                 int strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_in_compass_dir = new string(' ', 1);
+                m_in_tpad_switch = new string(' ', 1);
                 if (strlen > 0)
-                    m_in_compass_dir = value.Substring(0, strlen).PadRight(1);
+                {
+                    m_in_tpad_switch = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+        public string in_unit
+        {
+            get => m_in_unit;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 14) strlen = 14;
+                m_in_unit = new string(' ', 14);
+                if (strlen > 0)
+                    m_in_unit = value.Substring(0, strlen).PadRight(14);
             }
         }
 
-        public string in_compass_dir2
+        // Property for in_xstreet_names_flag
+        public string in_xstreet_names_flag
         {
-            get => m_in_compass_dir2; 
+            get => m_in_xstreet_names_flag;
+
             set
             {
                 int strlen = value.Length;
                 if (strlen > 1) strlen = 1;
-                m_in_compass_dir2 = new string(' ', 1);
+                m_in_xstreet_names_flag = new string(' ', 1);
                 if (strlen > 0)
-                    m_in_compass_dir2 = value.Substring(0, strlen).PadRight(1);
-            }
-        }
-
-        public string in_node
-        {
-            get => m_in_node; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 7) strlen = 7;
-                m_in_node = new string(' ', 7);
-                if (strlen > 0)
-                    m_in_node = value.Substring(0, strlen).PadRight(7);
-            }
-        }
-
-        public string in_platform_ind
-        {
-            get => m_in_platform_ind; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_platform_ind = new string(' ', 1);
-                if (strlen > 0)
-                    m_in_platform_ind = value.Substring(0, strlen).PadRight(1);
+                {
+                    m_in_xstreet_names_flag = value.Substring(0, strlen).PadRight(1);
+                }
             }
         }
 
@@ -343,270 +621,74 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public string in_unit
+
+        // Property for out_attr_bytes array
+        [XmlArrayItem(typeof(string), ElementName = "attr_byte")]
+        public string[] out_attr_bytes
         {
-            get => m_in_unit; 
+            get => m_out_attr_bytes;
+            set => m_out_attr_bytes = value;
+        }
+
+        // Property for out_b10sc1
+        public B10sc out_b10sc1
+        {
+            get => m_out_b10sc1;
+
             set
             {
-                int strlen = value.Length;
-                if (strlen > 14) strlen = 14;
-                m_in_unit = new string(' ', 14);
-                if (strlen > 0)
-                    m_in_unit = value.Substring(0, strlen).PadRight(14);
+                m_out_b10sc1 = value;
             }
         }
 
-        public string in_filler03
+        // Property for out_b10sc2
+        public B10sc out_b10sc2
         {
-            get => m_in_filler03; 
+            get => m_out_b10sc2;
+            set => m_out_b10sc2 = value;
+        }
+
+        // Property for out_b10sc3
+        public B10sc out_b10sc3
+        {
+            get
+            {
+                return m_out_b10sc3;
+            }
             set
             {
-                int strlen = value.Length;
-                if (strlen > 82) strlen = 82;
-                m_in_filler03 = new string(' ', 82);
-                if (strlen > 0)
-                    m_in_filler03 = value.Substring(0, strlen).PadRight(82);
+                m_out_b10sc3 = value;
             }
         }
 
-        public string in_long_wa2_flag
-        { 
-            get => m_in_long_wa2_flag; 
+
+        public B7sc[] out_b7sc_list
+        {
+            get => m_out_b7sc_list;
+            set => m_out_b7sc_list = value;
+        }
+
+        // Property for out_bbl
+        public BBL out_bbl
+        {
+            get
+            {
+                return m_out_bbl;
+            }
             set
             {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_long_wa2_flag = new string(' ', 1);
-                if (strlen > 0)
-                    m_in_long_wa2_flag = value.Substring(0, strlen).PadRight(1);
+                m_out_bbl = value;
             }
         }
 
-        public string in_hn_justification
+
+        // Property for out_bin
+        public BIN out_bin
         {
-            get => m_in_hn_justification; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_hn_justification = new string(' ', 1);
-                if (strlen > 0)
-                    m_in_hn_justification = value.Substring(0, strlen).PadRight(1);
-            }
+            get => m_out_bin;
+            set => m_out_bin = value;
         }
 
-        public string in_hnl
-        {
-            get => m_in_hnl; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_in_hnl = new string(' ', 2);
-                if (strlen > 0)
-                    m_in_hnl = value.Substring(0, strlen).PadRight(2);
-            }
-        }
-
-        public string in_hn_norm_override
-        {
-            get => m_in_hn_norm_override; 
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_hn_norm_override = new string(' ', 1);
-                if (strlen > 0)
-                    m_in_hn_norm_override = value.Substring(0, strlen).PadRight(1);
-            }
-        }
-
-        // Property for in_snl
-        public string in_snl
-        {
-            get => m_in_snl;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_in_snl = new string(' ', 2);
-                if (strlen > 0)
-                {
-                    m_in_snl = value.Substring(0, strlen).PadRight(2);
-                }
-            }
-        }
-
-        // Property for in_stname_normalization
-        public string in_stname_normalization
-        {
-            get => m_in_stname_normalization;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_stname_normalization = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    try { m_in_stname_normalization = value.Substring(0, strlen).PadRight(1); } catch { m_in_stname_normalization = string.Empty; }
-                }
-            }
-        }
-
-        // Property for in_xstreet_names_flag
-        public string in_xstreet_names_flag
-        {
-            get => m_in_xstreet_names_flag;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_xstreet_names_flag = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_xstreet_names_flag = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_roadbed_request_switch
-        public string in_roadbed_request_switch
-        {
-            get => m_in_roadbed_request_switch;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_roadbed_request_switch = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_roadbed_request_switch = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_legacy_grc_flag
-        public string in_legacy_grc_flag
-        {
-            get => m_in_legacy_grc_flag;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_legacy_grc_flag = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_legacy_grc_flag = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_auxseg_switch
-        public string in_auxseg_switch
-        {
-            get => m_in_auxseg_switch;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_auxseg_switch = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_auxseg_switch = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_browse_flag
-        public string in_browse_flag
-        {
-            get => m_in_browse_flag;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_browse_flag = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_browse_flag = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_real_street_only
-        public string in_real_street_only
-        {
-            get => m_in_real_street_only;
-          
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_real_street_only = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_real_street_only = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_tpad_switch
-        public string in_tpad_switch
-        {
-            get => m_in_tpad_switch;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_tpad_switch = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_tpad_switch = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_mode_switch
-        public string in_mode_switch
-        {
-            get => m_in_mode_switch;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_in_mode_switch = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_in_mode_switch = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for in_filler4
-        public string in_filler4
-        {
-            get =>  m_in_filler04;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 30) strlen = 30;
-                m_in_filler04 = new string(' ', 30);
-                if (strlen > 0)
-                {
-                    m_in_filler04 = value.Substring(0, strlen).PadRight(30);
-                }
-            }
-        }
 
         // Property for out_boro_name1
         public string out_boro_name1
@@ -621,6 +703,101 @@ namespace GeoXWrapperLib.Model
                 if (strlen > 0)
                 {
                     m_out_boro_name1 = value.Substring(0, strlen).PadRight(9);
+                }
+            }
+        }
+
+        public string out_error_message
+        {
+            get => m_out_error_message;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 80) strlen = 80;
+                m_out_error_message = new string(' ', 80);
+                if (strlen > 0)
+                {
+                    m_out_error_message = value.Substring(0, strlen).PadRight(80);
+                }
+            }
+        }
+
+        // Property for out_error_message2
+        public string out_error_message2
+        {
+            get => m_out_error_message2;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 80) strlen = 80;
+                m_out_error_message2 = new string(' ', 80);
+                if (strlen > 0)
+                {
+                    m_out_error_message2 = value.Substring(0, strlen).PadRight(80);
+                }
+            }
+        }
+
+        // Property for out_filler02
+        public string out_filler02
+        {
+            get
+            {
+                return m_out_filler02;
+            }
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_out_filler02 = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_out_filler02 = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        public string out_filler03
+        {
+            get => m_out_filler03;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 17) strlen = 17;
+                m_out_filler03 = new string(' ', 17);
+                if (strlen > 0)
+                {
+                    m_out_filler03 = value.Substring(0, strlen).PadRight(17);
+                }
+            }
+        }
+        public string out_grc
+        {
+            get => m_out_grc;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 2) strlen = 2;
+                m_out_grc = new string(' ', 2);
+                if (strlen > 0)
+                {
+                    m_out_grc = value.Substring(0, strlen).PadRight(2);
+                }
+            }
+        }
+
+        // Property for out_grc2
+        public string out_grc2
+        {
+            get => m_out_grc2;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 2) strlen = 2;
+                m_out_grc2 = new string(' ', 2);
+                if (strlen > 0)
+                {
+                    m_out_grc2 = value.Substring(0, strlen).PadRight(2);
                 }
             }
         }
@@ -659,14 +836,145 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        // Property for out_b10sc1
-        public B10sc out_b10sc1
+        // Property for out_low_hnd
+        public string out_low_hnd
         {
-            get => m_out_b10sc1;
-            
+            get => m_out_low_hnd;
+
             set
             {
-                m_out_b10sc1 = value;
+                int strlen = value.Length;
+                if (strlen > 16) strlen = 16;
+                m_out_low_hnd = new string(' ', 16);
+                if (strlen > 0)
+                {
+                    m_out_low_hnd = value.Substring(0, strlen).PadRight(16);
+                }
+            }
+        }
+
+        // Property for out_low_hns
+        public string out_low_hns
+        {
+            get => m_out_low_hns;
+
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 11) strlen = 11;
+                m_out_low_hns = new string(' ', 11);
+                if (strlen > 0)
+                {
+                    m_out_low_hns = value.Substring(0, strlen).PadRight(11);
+                }
+            }
+        }
+
+        public string out_node
+        {
+            get => m_out_node;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 7) strlen = 7;
+                m_out_node = new string(' ', 7);
+                if (strlen > 0)
+                {
+                    m_out_node = value.Substring(0, strlen).PadRight(7);
+                }
+            }
+        }
+
+        public string out_number_of_stcodes
+        {
+            get => m_out_number_of_stcodes;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 2) strlen = 2;
+                m_out_number_of_stcodes = new string(' ', 2);
+                if (strlen > 0)
+                {
+                    m_out_number_of_stcodes = value.Substring(0, strlen).PadRight(2);
+                }
+            }
+        }
+
+
+        public string out_reason_code
+        {
+            get => m_out_reason_code;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_out_reason_code = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_out_reason_code = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        // Property for out_reason_code2
+        public string out_reason_code2
+        {
+            get => m_out_reason_code2;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_out_reason_code2 = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_out_reason_code2 = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        public string out_reason_code_qualifier
+        {
+            get => m_out_reason_code_qualifier;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_out_reason_code_qualifier = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_out_reason_code_qualifier = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        // Property for out_reason_code_qualifier2
+        public string out_reason_code_qualifier2
+        {
+            get => m_out_reason_code_qualifier2;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_out_reason_code_qualifier2 = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_out_reason_code_qualifier2 = value.Substring(0, strlen).PadRight(1);
+                }
+            }
+        }
+
+        public string out_st_attr
+        {
+            get => m_out_st_attr;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_out_st_attr = new string(' ', 1);
+                if (strlen > 0)
+                {
+                    m_out_st_attr = value.Substring(0, strlen).PadRight(1);
+                }
             }
         }
 
@@ -674,7 +982,7 @@ namespace GeoXWrapperLib.Model
         public string out_stname1
         {
             get => m_out_stname1;
-            
+
             set
             {
                 int strlen = value.Length;
@@ -687,12 +995,6 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        // Property for out_b10sc2
-        public B10sc out_b10sc2
-        {
-            get => m_out_b10sc2;
-            set => m_out_b10sc2 = value;
-        }
         // Property for out_stname2
         public string out_stname2
         {
@@ -709,19 +1011,6 @@ namespace GeoXWrapperLib.Model
                 {
                     m_out_stname2 = value.Substring(0, strlen).PadRight(32);
                 }
-            }
-        }
-
-        // Property for out_b10sc3
-        public B10sc out_b10sc3
-        {
-            get
-            {
-                return m_out_b10sc3;
-            }
-            set
-            {
-                m_out_b10sc3 = value;
             }
         }
 
@@ -744,130 +1033,45 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        // Property for out_bbl
-        public BBL out_bbl
+        public string[] out_stname_list
         {
-            get
-            {
-                return m_out_bbl;
-            }
-            set
-            {
-                m_out_bbl = value;
-            }
+            get => m_out_stname_list;
+            set => m_out_stname_list = value;
         }
 
-        // Property for out_filler02
-        public string out_filler02
+        public string out_unit
         {
-            get
-            {
-                return m_out_filler02;
-            }
+            get => m_out_unit;
             set
             {
                 int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_out_filler02 = new string(' ', 1);
+                if (strlen > 14) strlen = 14;
+                m_out_unit = new string(' ', 14);
                 if (strlen > 0)
                 {
-                    m_out_filler02 = value.Substring(0, strlen).PadRight(1);
+                    m_out_unit = value.Substring(0, strlen).PadRight(14);
                 }
             }
         }
 
-        // Property for out_low_hnd
-        public string out_low_hnd
+        public UNIT out_units
         {
-            get => m_out_low_hnd;
-            
+            get => m_out_units;
+            set => m_out_units = value;
+        }
+
+
+        public string out_warning_code
+        {
+            get => m_out_warning_code;
             set
             {
                 int strlen = value.Length;
-                if (strlen > 16) strlen = 16;
-                m_out_low_hnd = new string(' ', 16);
+                if (strlen > 2) strlen = 2;
+                m_out_warning_code = new string(' ', 2);
                 if (strlen > 0)
                 {
-                    m_out_low_hnd = value.Substring(0, strlen).PadRight(16);
-                }
-            }
-        }
-
-        // Property for out_low_hns
-        public string out_low_hns
-        {
-            get => m_out_low_hns;
-            
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 11) strlen = 11;
-                m_out_low_hns = new string(' ', 11);
-                if (strlen > 0)
-                {
-                    m_out_low_hns = value.Substring(0, strlen).PadRight(11);
-                }
-            }
-        }
-
-        // Property for out_bin
-        public BIN out_bin
-        {
-            get => m_out_bin;
-            set => m_out_bin = value;
-        }
-
-        // Property for out_attr_bytes array
-        [XmlArrayItem(typeof(string), ElementName = "attr_byte")]
-        public string[] out_attr_bytes
-        {
-            get => m_out_attr_bytes;
-            set => m_out_attr_bytes = value;
-        }
-
-
-        public string out_attr_bytes_item(int index) => m_out_attr_bytes[index];
-
-        public void out_attr_bytes_item(int index, string value) {
-
-            int strlen = value.Length;
-            if (strlen > 1) strlen = 1;
-            m_out_attr_bytes[index] = new string(' ', 1);
-            if (strlen > 0)
-            {
-                m_out_attr_bytes[index] = value.Substring(0, strlen).PadRight(1);
-            }
-
-        }
-     
-        // Property for out_reason_code2
-        public string out_reason_code2
-        {
-            get => m_out_reason_code2;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_out_reason_code2 = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_out_reason_code2 = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        // Property for out_reason_code_qualifier2
-        public string out_reason_code_qualifier2
-        {
-            get => m_out_reason_code_qualifier2;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_out_reason_code_qualifier2 = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_out_reason_code_qualifier2 = value.Substring(0, strlen).PadRight(1);
+                    m_out_warning_code = value.Substring(0, strlen).PadRight(2);
                 }
             }
         }
@@ -888,210 +1092,24 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        // Property for out_grc2
-        public string out_grc2
-        {
-            get => m_out_grc2;
-            set
+        public string out_attr_bytes_item(int index) => m_out_attr_bytes[index];
+
+        public void out_attr_bytes_item(int index, string value) {
+
+            int strlen = value.Length;
+            if (strlen > 1) strlen = 1;
+            m_out_attr_bytes[index] = new string(' ', 1);
+            if (strlen > 0)
             {
-                int strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_out_grc2 = new string(' ', 2);
-                if (strlen > 0)
-                {
-                    m_out_grc2 = value.Substring(0, strlen).PadRight(2);
-                }
+                m_out_attr_bytes[index] = value.Substring(0, strlen).PadRight(1);
             }
-        }
 
-        // Property for out_error_message2
-        public string out_error_message2
-        {
-            get => m_out_error_message2;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 80) strlen = 80;
-                m_out_error_message2 = new string(' ', 80);
-                if (strlen > 0)
-                {
-                    m_out_error_message2 = value.Substring(0, strlen).PadRight(80);
-                }
-            }
-        }
-
-        public string out_node
-        {
-            get => m_out_node;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 7) strlen = 7;
-                m_out_node = new string(' ', 7);
-                if (strlen > 0)
-                {
-                    m_out_node = value.Substring(0, strlen).PadRight(7);
-                }
-            }
-        }
-
-        public UNIT out_units
-        {
-            get => m_out_units;
-            set => m_out_units = value;
-        }
-
-        public string out_unit
-        {
-            get => m_out_unit;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 14) strlen = 14;
-                m_out_unit = new string(' ', 14);
-                if (strlen > 0)
-                {
-                    m_out_unit = value.Substring(0, strlen).PadRight(14);
-                }
-            }
-        }
-
-        public string out_filler03
-        {
-            get => m_out_filler03;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 17) strlen = 17;
-                m_out_filler03 = new string(' ', 17);
-                if (strlen > 0)
-                {
-                    m_out_filler03 = value.Substring(0, strlen).PadRight(17);
-                }
-            }
-        }
-
-        public string out_st_attr
-        {
-            get => m_out_st_attr;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_out_st_attr = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_out_st_attr = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        public string out_reason_code
-        {
-            get => m_out_reason_code;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_out_reason_code = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_out_reason_code = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        public string out_reason_code_qualifier
-        {
-            get => m_out_reason_code_qualifier;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_out_reason_code_qualifier = new string(' ', 1);
-                if (strlen > 0)
-                {
-                    m_out_reason_code_qualifier = value.Substring(0, strlen).PadRight(1);
-                }
-            }
-        }
-
-        public string out_warning_code
-        {
-            get => m_out_warning_code;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_out_warning_code = new string(' ', 2);
-                if (strlen > 0)
-                {
-                    m_out_warning_code = value.Substring(0, strlen).PadRight(2);
-                }
-            }
-        }
-
-        public string out_grc
-        {
-            get => m_out_grc;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_out_grc = new string(' ', 2);
-                if (strlen > 0)
-                {
-                    m_out_grc = value.Substring(0, strlen).PadRight(2);
-                }
-            }
-        }
-
-        public string out_error_message
-        {
-            get => m_out_error_message;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 80) strlen = 80;
-                m_out_error_message = new string(' ', 80);
-                if (strlen > 0)
-                {
-                    m_out_error_message = value.Substring(0, strlen).PadRight(80);
-                }
-            }
-        }
-
-        public string out_number_of_stcodes
-        {
-            get => m_out_number_of_stcodes;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 2) strlen = 2;
-                m_out_number_of_stcodes = new string(' ', 2);
-                if (strlen > 0)
-                {
-                    m_out_number_of_stcodes = value.Substring(0, strlen).PadRight(2);
-                }
-            }
-        }
-
-        public B7sc[] out_b7sc_list
-        {
-            get => m_out_b7sc_list;
-            set => m_out_b7sc_list = value;
         }
 
         public B7sc out_b7sc_list_item(int index) => m_out_b7sc_list[index];
 
         public void out_b7sc_list_item(int index, B7sc value) {
             m_out_b7sc_list[index] = value;
-        }
-
-        public string[] out_stname_list
-        {
-            get => m_out_stname_list;
-            set => m_out_stname_list = value;
         }
 
         public string out_stname_list_item(int index) => m_out_stname_list[index];

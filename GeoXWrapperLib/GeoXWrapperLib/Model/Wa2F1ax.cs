@@ -769,11 +769,143 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
-
-        public VsamKey1 gridkey1
+        public string DCP_Zoning_Map
         {
-            get => m_gridkey1;
-            set => m_gridkey1 = value;
+            get => m_DCP_Zoning_Map;
+            set
+            {
+                int strlen = Math.Min(value.Length, 3);
+                m_DCP_Zoning_Map = value.Substring(0, strlen);
+            }
+        }
+
+        public string TPAD_bin_status
+        {
+            get => m_TPAD_bin_status;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_TPAD_bin_status = value.Substring(0, strlen);
+            }
+        }
+
+        public string TPAD_conflict_flag
+        {
+            get => m_TPAD_conflict_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_TPAD_conflict_flag = value.Substring(0, strlen);
+            }
+        }
+
+        public BIN TPAD_new_bin
+        {
+            get => m_TPAD_new_bin;
+            set => m_TPAD_new_bin = value;
+        }
+
+        public string TPAD_new_bin_status
+        {
+            get => m_TPAD_new_bin_status;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_TPAD_new_bin_status = value.Substring(0, strlen);
+            }
+        }
+
+        public string addr_overflow_flag
+        {
+            get => m_addr_overflow_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_addr_overflow_flag = value.Substring(0, strlen);
+            }
+        }
+
+        public AddrRangeX[] addr_x_list
+        {
+            get => m_addr_x_list;
+            set => m_addr_x_list = value;
+        }
+
+        public BBL bbl
+        {
+            get => m_bbl;
+            set => m_bbl = value;
+        }
+
+        public B5sc bid_id
+        {
+            get => m_bid_id;
+            set => m_bid_id = value;
+        }
+
+        public BIN bin
+        {
+            get => m_bin;
+            set => m_bin = value;
+        }
+        public BusArea business_area
+        {
+            get => m_business_area;
+            set => m_business_area = value;
+        }
+
+        public BBL condo_base_bbl
+        {
+            get => m_condo_base_bbl;
+            set => m_condo_base_bbl = value;
+        }
+
+        public BBL condo_bill_bbl
+        {
+            get => m_condo_bill_bbl;
+            set => m_condo_bill_bbl = value;
+        }
+
+        public string condo_bill_scc
+        {
+            get => m_condo_bill_scc;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_condo_bill_scc = value.Substring(0, strlen);
+            }
+        }
+
+        public string condo_flag
+        {
+            get => m_condo_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_condo_flag = value.Substring(0, strlen);
+            }
+        }
+
+        public BBL condo_hi_bbl
+        {
+            get => m_condo_hi_bbl;
+            set => m_condo_hi_bbl = value;
+        }
+
+        public BBL condo_lo_bbl
+        {
+            get => m_condo_lo_bbl;
+            set => m_condo_lo_bbl = value;
+        }
+
+        public string condo_num
+        {
+            get => m_condo_num;
+            set
+            {
+                int strlen = Math.Min(value.Length, 4);
+                m_condo_num = value.Substring(0, strlen);
+            }
         }
 
         public string cont_parity_ind
@@ -786,21 +918,32 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public string lohns
+        public string coop_num
         {
-            get => m_lohns;
+            get => m_coop_num;
             set
             {
-                int strlen = Math.Min(value.Length, 11);
-                m_lohns = value.Substring(0, strlen);
+                int strlen = Math.Min(value.Length, 4);
+                m_coop_num = value.Substring(0, strlen);
             }
         }
 
-        public BBL bbl
+        public string corner_code
         {
-            get => m_bbl;
-            set => m_bbl = value;
+            get => m_corner_code;
+            set
+            {
+                int strlen = Math.Min(value.Length, 2);
+                m_corner_code = value.Substring(0, strlen);
+            }
         }
+
+        public DofMap dof_map
+        {
+            get => m_dof_map;
+            set => m_dof_map = value;
+        }
+
 
         public string filler1
         {
@@ -811,14 +954,23 @@ namespace GeoXWrapperLib.Model
                 m_filler1 = value.Substring(0, strlen);
             }
         }
-
-        public string rpad_scc
+        public string filler10
         {
-            get => m_rpad_scc;
+            get => m_filler10;
             set
             {
-                int strlen = Math.Min(value.Length, 1);
-                m_rpad_scc = value.Substring(0, strlen);
+                int strlen = Math.Min(value.Length, 6);  // Adjusted max length to 6
+                m_filler10 = value.Substring(0, strlen);
+            }
+        }
+
+        public string filler11
+        {
+            get => m_filler11;
+            set
+            {
+                int strlen = Math.Min(value.Length, 108);
+                m_filler11 = value.Substring(0, strlen);
             }
         }
 
@@ -832,23 +984,158 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public string rpad_bldg_class
+        public string filler3
         {
-            get => m_rpad_bldg_class;
+            get => m_filler3;
             set
             {
-                int strlen = Math.Min(value.Length, 2);
-                m_rpad_bldg_class = value.Substring(0, strlen);
+                int strlen = Math.Min(value.Length, 1);
+                m_filler3 = value.Substring(0, strlen);
             }
         }
 
-        public string corner_code
+        public string filler4
         {
-            get => m_corner_code;
+            get => m_filler4;
+            set
+            {
+                int strlen = Math.Min(value.Length, 7);
+                m_filler4 = value.Substring(0, strlen);
+            }
+        }
+
+        public string filler5
+        {
+            get => m_filler5;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_filler5 = value.Substring(0, strlen);
+            }
+        }
+
+        public string filler6
+        {
+            get => m_filler6;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_filler6 = value.Substring(0, strlen);
+            }
+        }
+
+        public string filler7
+        {
+            get => m_filler7;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_filler7 = value.Substring(0, strlen);
+            }
+        }
+
+        public string filler8
+        {
+            get => m_filler8;
+            set
+            {
+                int strlen = Math.Min(value.Length, 5);
+                m_filler8 = value.Substring(0, strlen);
+            }
+        }
+        public string filler9
+        {
+            get => m_filler9;
+            set
+            {
+                int strlen = Math.Min(value.Length, 3);
+                m_filler9 = value.Substring(0, strlen);
+            }
+        }
+
+        public string grc
+        {
+            get => m_grc;
             set
             {
                 int strlen = Math.Min(value.Length, 2);
-                m_corner_code = value.Substring(0, strlen);
+                m_grc = value.Substring(0, strlen);
+            }
+        }
+
+        public VsamKey1 gridkey1
+        {
+            get => m_gridkey1;
+            set => m_gridkey1 = value;
+        }
+
+        public string interior_flag
+        {
+            get => m_interior_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_interior_flag = value.Substring(0, strlen);
+            }
+        }
+        public string irreg_flag
+        {
+            get => m_irreg_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_irreg_flag = value.Substring(0, strlen);
+            }
+        }
+
+
+        public string latitude
+        {
+            get => m_latitude;
+            set
+            {
+                int strlen = Math.Min(value.Length, 9);
+                m_latitude = value.Substring(0, strlen);
+            }
+        }
+
+        public string lohns
+        {
+            get => m_lohns;
+            set
+            {
+                int strlen = Math.Min(value.Length, 11);
+                m_lohns = value.Substring(0, strlen);
+            }
+        }
+
+        public string longitude
+        {
+            get => m_longitude;
+            set
+            {
+                int strlen = Math.Min(value.Length, 11);
+                m_longitude = value.Substring(0, strlen);
+            }
+        }
+
+        public string mh_ri_flag
+        {
+            get => m_mh_ri_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_mh_ri_flag = value.Substring(0, strlen);
+            }
+        }
+
+        public string num_of_addrs
+        {
+            get => m_num_of_addrs;
+            set
+            {
+                int strlen = Math.Min(value.Length, 4);
+                m_num_of_addrs = value.Substring(0, strlen);
             }
         }
 
@@ -872,349 +1159,6 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public string interior_flag
-        {
-            get => m_interior_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_interior_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string vacant_flag
-        {
-            get => m_vacant_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_vacant_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string irreg_flag
-        {
-            get => m_irreg_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_irreg_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string mh_ri_flag
-        {
-            get => m_mh_ri_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_mh_ri_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string addr_overflow_flag
-        {
-            get => m_addr_overflow_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_addr_overflow_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string stroll_key
-        {
-            get => m_stroll_key;
-            set
-            {
-                int strlen = Math.Min(value.Length, 19);
-                m_stroll_key = value.Substring(0, strlen);
-            }
-        }
-
-        public string res_internal_use
-        {
-            get => m_res_internal_use;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_res_internal_use = value.Substring(0, strlen);
-            }
-        }
-
-        public BIN bin
-        {
-            get => m_bin;
-            set => m_bin = value;
-        }
-
-        public string condo_flag
-        {
-            get => m_condo_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_condo_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string filler3
-        {
-            get => m_filler3;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_filler3 = value.Substring(0, strlen);
-            }
-        }
-
-        public string condo_num
-        {
-            get => m_condo_num;
-            set
-            {
-                int strlen = Math.Min(value.Length, 4);
-                m_condo_num = value.Substring(0, strlen);
-            }
-        }
-
-        public string filler4
-        {
-            get => m_filler4;
-            set
-            {
-                int strlen = Math.Min(value.Length, 7);
-                m_filler4 = value.Substring(0, strlen);
-            }
-        }
-
-        public BBL condo_bill_bbl
-        {
-            get => m_condo_bill_bbl;
-            set => m_condo_bill_bbl = value;
-        }
-
-        public string filler5
-        {
-            get => m_filler5;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_filler5 = value.Substring(0, strlen);
-            }
-        }
-
-        public string condo_bill_scc
-        {
-            get => m_condo_bill_scc;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_condo_bill_scc = value.Substring(0, strlen);
-            }
-        }
-
-        public BBL condo_lo_bbl
-        {
-            get => m_condo_lo_bbl;
-            set => m_condo_lo_bbl = value;
-        }
-
-        public string filler6
-        {
-            get => m_filler6;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_filler6 = value.Substring(0, strlen);
-            }
-        }
-
-        public BBL condo_hi_bbl
-        {
-            get => m_condo_hi_bbl;
-            set => m_condo_hi_bbl = value;
-        }
-
-        public string filler7
-        {
-            get => m_filler7;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_filler7 = value.Substring(0, strlen);
-            }
-        }
-
-        public BBL condo_base_bbl
-        {
-            get => m_condo_base_bbl;
-            set => m_condo_base_bbl = value;
-        }
-
-        public string filler8
-        {
-            get => m_filler8;
-            set
-            {
-                int strlen = Math.Min(value.Length, 5);
-                m_filler8 = value.Substring(0, strlen);
-            }
-        }
-
-        public string coop_num
-        {
-            get => m_coop_num;
-            set
-            {
-                int strlen = Math.Min(value.Length, 4);
-                m_coop_num = value.Substring(0, strlen);
-            }
-        }
-
-        public Sanborn sanborn
-        {
-            get => m_sanborn;
-            set => m_sanborn = value;
-        }
-
-        public BusArea business_area
-        {
-            get => m_business_area;
-            set => m_business_area = value;
-        }
-
-        public DofMap dof_map
-        {
-            get => m_dof_map;
-            set => m_dof_map = value;
-        }
-
-        public string filler9
-        {
-            get => m_filler9;
-            set
-            {
-                int strlen = Math.Min(value.Length, 3);
-                m_filler9 = value.Substring(0, strlen);
-            }
-        }
-
-        public string latitude
-        {
-            get => m_latitude;
-            set
-            {
-                int strlen = Math.Min(value.Length, 9);
-                m_latitude = value.Substring(0, strlen);
-            }
-        }
-
-        public string longitude
-        {
-            get => m_longitude;
-            set
-            {
-                int strlen = Math.Min(value.Length, 11);
-                m_longitude = value.Substring(0, strlen);
-            }
-        }
-        public string x_coord
-        {
-            get => m_x_coord;
-            set
-            {
-                int strlen = Math.Min(value.Length, 7);
-                m_x_coord = value.Substring(0, strlen);
-            }
-        }
-
-        public string y_coord
-        {
-            get => m_y_coord;
-            set
-            {
-                int strlen = Math.Min(value.Length, 7);
-                m_y_coord = value.Substring(0, strlen);
-            }
-        }
-
-        public B5sc bid_id
-        {
-            get => m_bid_id;
-            set => m_bid_id = value;
-        }
-
-        public string TPAD_bin_status
-        {
-            get => m_TPAD_bin_status;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_TPAD_bin_status = value.Substring(0, strlen);
-            }
-        }
-
-        public BIN TPAD_new_bin
-        {
-            get => m_TPAD_new_bin;
-            set => m_TPAD_new_bin = value;
-        }
-
-        public string TPAD_new_bin_status
-        {
-            get => m_TPAD_new_bin_status;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_TPAD_new_bin_status = value.Substring(0, strlen);
-            }
-        }
-
-        public string TPAD_conflict_flag
-        {
-            get => m_TPAD_conflict_flag;
-            set
-            {
-                int strlen = Math.Min(value.Length, 1);
-                m_TPAD_conflict_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string DCP_Zoning_Map
-        {
-            get => m_DCP_Zoning_Map;
-            set
-            {
-                int strlen = Math.Min(value.Length, 3);
-                m_DCP_Zoning_Map = value.Substring(0, strlen);
-            }
-        }
-
-        public string filler10
-        {
-            get => m_filler10;
-            set
-            {
-                int strlen = Math.Min(value.Length, 6);  // Adjusted max length to 6
-                m_filler10 = value.Substring(0, strlen);
-            }
-        }
-
-        [XmlArrayItem("lgc", typeof(string))]
-        public string[] valid_lgcs
-        {
-            get => m_valid_lgcs;
-            set => m_valid_lgcs = value;
-        }
-
-        public string valid_lgcs_item(int index) => m_valid_lgcs[index];
-        public void valid_lgcs_item(int index, string value) 
-        {
-            int strlen = Math.Min(value.Length, 2);
-            m_valid_lgcs[index] = value.Substring(0, strlen);
-        }
-
         public string reason_code
         {
             get => m_reason_code;
@@ -1235,6 +1179,68 @@ namespace GeoXWrapperLib.Model
             }
         }
 
+        public string res_internal_use
+        {
+            get => m_res_internal_use;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_res_internal_use = value.Substring(0, strlen);
+            }
+        }
+
+        public string rpad_bldg_class
+        {
+            get => m_rpad_bldg_class;
+            set
+            {
+                int strlen = Math.Min(value.Length, 2);
+                m_rpad_bldg_class = value.Substring(0, strlen);
+            }
+        }
+        public string rpad_scc
+        {
+            get => m_rpad_scc;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_rpad_scc = value.Substring(0, strlen);
+            }
+        }
+
+        public Sanborn sanborn
+        {
+            get => m_sanborn;
+            set => m_sanborn = value;
+        }
+
+        public string stroll_key
+        {
+            get => m_stroll_key;
+            set
+            {
+                int strlen = Math.Min(value.Length, 19);
+                m_stroll_key = value.Substring(0, strlen);
+            }
+        }
+
+        public string vacant_flag
+        {
+            get => m_vacant_flag;
+            set
+            {
+                int strlen = Math.Min(value.Length, 1);
+                m_vacant_flag = value.Substring(0, strlen);
+            }
+        }
+
+        [XmlArrayItem("lgc", typeof(string))]
+        public string[] valid_lgcs
+        {
+            get => m_valid_lgcs;
+            set => m_valid_lgcs = value;
+        }
+
         public string warning_code
         {
             get => m_warning_code;
@@ -1245,42 +1251,33 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        public string grc
+        public string x_coord
         {
-            get => m_grc;
+            get => m_x_coord;
             set
             {
-                int strlen = Math.Min(value.Length, 2);
-                m_grc = value.Substring(0, strlen);
+                int strlen = Math.Min(value.Length, 7);
+                m_x_coord = value.Substring(0, strlen);
             }
         }
 
-        public string filler11
+        public string y_coord
         {
-            get => m_filler11;
+            get => m_y_coord;
             set
             {
-                int strlen = Math.Min(value.Length, 108);
-                m_filler11 = value.Substring(0, strlen);
+                int strlen = Math.Min(value.Length, 7);
+                m_y_coord = value.Substring(0, strlen);
             }
         }
 
-        public string num_of_addrs
+        public string valid_lgcs_item(int index) => m_valid_lgcs[index];
+        public void valid_lgcs_item(int index, string value) 
         {
-            get => m_num_of_addrs;
-            set
-            {
-                int strlen = Math.Min(value.Length, 4);
-                m_num_of_addrs = value.Substring(0, strlen);
-            }
+            int strlen = Math.Min(value.Length, 2);
+            m_valid_lgcs[index] = value.Substring(0, strlen);
         }
 
-        public AddrRangeX[] addr_x_list
-        {
-            get => m_addr_x_list;
-            set => m_addr_x_list = value;
-        }
-  
         public AddrRangeX addr_x_list_item(int index) => m_addr_x_list[index];
 
         public void addr_x_list_item(int index, AddrRangeX value)  => m_addr_x_list[index] = value;

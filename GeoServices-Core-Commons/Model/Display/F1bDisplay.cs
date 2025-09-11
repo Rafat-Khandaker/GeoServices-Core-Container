@@ -3,6 +3,7 @@ using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace GeoXWrapperTest.Model.Display
         }
 
         #region Data Lists - Must Set in Function Controller
-        public Dictionary<string, string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_f1ax.addr_x_list);
+        public Dictionary<string,string> AddressRangeKeys => ValidationHelper.CreateAddressRangeKeys(_f1ax.addr_x_list);
         public List<LowHighB7SC> LowB7SCList => ValidationHelper.CreateB7ScList(_f1ex.lo_x_b7sc_list, _f1ex.lo_x_stname_list);
         public List<LowHighB7SC> HighB7SCList => ValidationHelper.CreateB7ScList(_f1ex.hi_x_b7sc_list, _f1ex.hi_x_stname_list);
         public List<SimilarName> SimilarNamesList => ValidationHelper.CreateSimilarNamesList(_wa1.out_b7sc_list, _wa1.out_stname_list);

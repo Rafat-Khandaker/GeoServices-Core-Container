@@ -110,22 +110,6 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
-        /// <value>Property for boro</value>
-        public string boro
-        {
-            get => m_boro;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_boro = " ";
-                if (strlen > 0)
-                {
-                    m_boro = value.Substring(0, strlen);
-                }
-            }
-        }
-
         /// <value>Property for binnum</value>
         public string binnum
         {
@@ -142,6 +126,23 @@ namespace GeoXWrapperLib.Model
                 }
             }
         }
+        /// <value>Property for boro</value>
+        public string boro
+        {
+            get => m_boro;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_boro = " ";
+                if (strlen > 0)
+                {
+                    m_boro = value.Substring(0, strlen);
+                }
+            }
+        }
+
+
     }
 
 }

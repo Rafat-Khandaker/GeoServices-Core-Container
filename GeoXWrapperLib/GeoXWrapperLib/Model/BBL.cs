@@ -121,22 +121,6 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
-        /// <value>Property for boro</value>
-        public string boro
-        {
-            get => m_boro;
-            set
-            {
-                int strlen = value.Length;
-                if (strlen > 1) strlen = 1;
-                m_boro = " ";
-                if (strlen > 0)
-                {
-                    m_boro = value.Substring(0, strlen);
-                }
-            }
-        }
-
         /// <value>Property for block</value>
         public string block
         {
@@ -150,6 +134,22 @@ namespace GeoXWrapperLib.Model
                 {
                     m_block = "00000";
                     m_block = m_block.Substring(0, 5 - strlen) + value.Substring(0, strlen);
+                }
+            }
+        }
+
+        /// <value>Property for boro</value>
+        public string boro
+        {
+            get => m_boro;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_boro = " ";
+                if (strlen > 0)
+                {
+                    m_boro = value.Substring(0, strlen);
                 }
             }
         }
