@@ -80,7 +80,11 @@ public class B10sc
     public void B10scFromString(string inString)
     {
         try { m_boro = inString.Substring(0, 1); } catch { m_boro = string.Empty; }
-        try { m_sc5 = inString.Substring(1, 5); } catch { m_sc5 = string.Empty; }
+        try { 
+            m_sc5 = inString.Substring(1, 5); 
+        } catch {
+            m_sc5 = string.Empty; 
+        }
         try { m_lgc = inString.Substring(6, 2); } catch { m_lgc = string.Empty; }
         try { m_spv = inString.Substring(8, 3); } catch { m_spv = string.Empty; }
     }
