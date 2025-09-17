@@ -5,6 +5,7 @@ using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -12,11 +13,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_HRController(Geo geo, AccessControlList accessControlList)
+        public Function_HRController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -29,40 +32,20 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup
-            Wa1 wa1 = new Wa1
-            {
-                in_func_code = "HR"
-            };
-            Wa2Fhr wa2fhr = new Wa2Fhr();
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1, ref wa2fhr);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<FHRDisplay, FHRResponse> raw = new GeocallResponse<FHRDisplay, FHRResponse>
-                {
-                    display = null,
-                    root = new FHRResponse(wa1, wa2fhr)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<FHRDisplay, FHRResponse> goatlike = new GeocallResponse<FHRDisplay, FHRResponse>
-                {
-                    display = new FHRDisplay(wa1, wa2fhr),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.FunctionHR(
+                        new FunctionInput {
+                            Key = key,
+                            DisplayFormat = displayFormat
+                    }));
         }
     }
 }

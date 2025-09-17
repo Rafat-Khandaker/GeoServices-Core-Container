@@ -1,3 +1,4 @@
+using GeoServices_Core_Commons.Core;
 using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
@@ -16,11 +17,13 @@ public class Function_1AController : ControllerBase
 {
     private Geo _geo;
     private AccessControlList _accessControl;
+    private GeoService _geoService;
 
-    public Function_1AController(Geo geo, AccessControlList accessControlList) 
+    public Function_1AController(Geo geo, AccessControlList accessControlList, GeoService geoService) 
     {
         _geo = geo;
         _accessControl = accessControlList.ReadKeyFile(true).Result;
+        _geoService = geoService;
     }
 
     /// <summary>
@@ -59,93 +62,37 @@ public class Function_1AController : ControllerBase
     /// <response code="400">If required key parameter is missing</response>
     /// <response code="401">If key is invalid or deactivated</response>
     [HttpGet]
-    public IActionResult Get(string key, string borough = "", string zipCode = "", string addressNo = "", string streetName = "", string tpad = "", string browseFlag = "", string unit = "", string hns = "n",
-        string displayFormat = "true")
-    {
-        if (string.IsNullOrEmpty(key))  return BadRequest("Please provide your API key as a parameter");  else if (!_accessControl.Verify(key))  return Unauthorized();
+    public IActionResult Get(
+            string key, 
+            string borough = "", 
+            string zipCode = "", 
+            string addressNo = "", 
+            string streetName = "", 
+            string tpad = "", 
+            string browseFlag = "", 
+            string unit = "", 
+            string hns = "n",
+            string displayFormat = "true"
+        ){
+        if (string.IsNullOrEmpty(key))  
+            return BadRequest("Please provide your API key as a parameter");  
+        else if (!_accessControl.Verify(key)) 
+            return Unauthorized();
 
-        //work area setup & marshall validated inputs into wa1
-        Wa1 wa1 = new Wa1
-        {
-            in_func_code = "1A",
-            in_platform_ind = "C",
-            in_mode_switch = "X",
-
-            in_b10sc1 = new B10sc { boro = ValidationHelper.ValidateBoroInput(borough) },
-            in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty,
-
-            in_zip_code = zipCode ?? string.Empty,
-            in_unit = unit?.Trim() ?? string.Empty,
-            in_browse_flag = browseFlag ?? string.Empty,
-            in_tpad_switch = tpad ?? string.Empty,
-            in_hnd = string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase) ? string.Empty : addressNo ?? string.Empty,
-            in_hns = string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase) ? addressNo ?? string.Empty : string.Empty,
-        };
-        Wa2F1ax wa2f1ax = new Wa2F1ax();
-
-        if (string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase))
-        {
-            wa1.in_hnd = string.Empty;
-            wa1.in_hns = addressNo ?? string.Empty;
-        }
-        else
-        {
-            wa1.in_hnd = addressNo ?? string.Empty;
-            wa1.in_hns = string.Empty;
-        }
-
-        //geocall and finalize responses
-        _geo.GeoCall(ref wa1, ref wa2f1ax);
-
-        var _funcReadStNameFd = (string inBoro, string inStCode) =>
-        {
-            Wa1 wa1 = new Wa1
+        return Ok(_geoService.Function1A(
+            new FunctionInput
             {
-                in_func_code = "D",
-                in_platform_ind = "C",
-                in_b10sc1 = new B10sc
-                {
-                    boro = inBoro,
-                    sc5 = inStCode
-                }
-            };
-
-            _geo.GeoCall(ref wa1);
-
-            return wa1.out_stname1;
-        };
-
-        _funcReadStNameFd(wa2f1ax.bid_id.boro, wa2f1ax.bid_id.B5scToString().Remove(0, 1));
-
-
-        if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-        {
-            GeocallResponse<F1aDisplay, F1aResponse> raw = new GeocallResponse<F1aDisplay, F1aResponse>
-            {
-                display = null,
-                root = new F1aResponse(wa1, wa2f1ax)
-                {
-                    AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1ax.addr_x_list, wa1.in_tpad_switch),
-                    CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1ax, wa1.in_tpad_switch, FunctionCode.F1A, _geo) //FIXME write test cases
-                }
-            };
-
-            return Ok(raw);
-        }
-        else
-        {
-            GeocallResponse<F1aDisplay, F1aResponse> goatlike = new GeocallResponse<F1aDisplay, F1aResponse>
-            {
-                display = new F1aDisplay(wa1, wa2f1ax)
-                {
-                    AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1ax.addr_x_list, wa1.in_tpad_switch),
-                    CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1ax, wa1.in_tpad_switch, FunctionCode.F1A, _geo)
-                },
-                root = null
-            };
-
-            return Ok(goatlike);
-        }
+                Key = key,
+                Borough = borough,
+                ZipCode = zipCode,
+                AddressNo = addressNo,
+                StreetName = streetName,
+                TPad = tpad,
+                BrowseFlag = browseFlag,
+                Unit = unit,
+                Hns = hns,
+                DisplayFormat = displayFormat
+            }));
     }
 
   

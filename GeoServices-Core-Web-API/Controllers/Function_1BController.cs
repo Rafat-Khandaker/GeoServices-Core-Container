@@ -7,6 +7,7 @@ using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 
 namespace GeoServices_Core_Web_API.Controllers
@@ -15,11 +16,12 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
-
-        public Function_1BController(Geo geo, AccessControlList accessControlList)
+        private GeoService _geoService; 
+        public Function_1BController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -59,65 +61,38 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough = "", string zipCode = "", string addressNo = "", string streetName = "", string roadbed = "", string tpad = "", string browseFlag = "", string unit = "", string hns = "n", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string borough = "", 
+            string zipCode = "", 
+            string addressNo = "", 
+            string streetName = "", 
+            string roadbed = "", 
+            string tpad = "",
+            string browseFlag = "", 
+            string unit = "", 
+            string hns = "n", 
+            string displayFormat = "true"
+          ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-
-            //work area setup & marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1()
-            {
-                in_func_code = "1B",
-                in_platform_ind = "C",
-
-                in_b10sc1 = new B10sc { boro = ValidationHelper.ValidateBoroInput(borough) },
-                in_zip_code = zipCode ?? string.Empty,
-                in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty,
-                in_roadbed_request_switch = roadbed ?? string.Empty,
-                in_browse_flag = browseFlag ?? string.Empty,
-                in_tpad_switch = tpad ?? string.Empty,
-                in_unit = unit?.Trim() ?? string.Empty
-            };
-            Wa2F1b wa2f1b = new Wa2F1b();
-
-            if (string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase))
-            {
-                wa1.in_hnd = string.Empty;
-                wa1.in_hns = addressNo ?? string.Empty;
-            }
-            else
-            {
-                wa1.in_hnd = addressNo ?? string.Empty;
-                wa1.in_hns = string.Empty;
-            }
-
-            //geocall and finalize
-            _geo.GeoCall(ref wa1, ref wa2f1b);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F1bDisplay, F1bResponse> raw = new GeocallResponse<F1bDisplay, F1bResponse>()
-                {
-                    display = null,
-                    root = new F1bResponse(wa1, wa2f1b)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<F1bDisplay, F1bResponse> goatlike = new GeocallResponse<F1bDisplay, F1bResponse>()
-                {
-                    display = new F1bDisplay(wa1, wa2f1b, _geo)
-                    {
-                        AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1b.wa2f1ax.addr_x_list, wa1.in_tpad_switch),
-                        CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1b.wa2f1ax, wa1.in_tpad_switch, FunctionCode.F1B, _geo)
-                    },
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.Function1B(
+                new FunctionInput { 
+                    Key = key,
+                    Borough = borough,
+                    ZipCode = zipCode,
+                    AddressNo = addressNo,
+                    StreetName = streetName,
+                    Roadbed = roadbed,
+                    TPad = tpad,
+                    BrowseFlag = browseFlag,
+                    Unit = unit,
+                    Hns = hns,
+                    DisplayFormat = displayFormat
+            }));
         }
     }
 }

@@ -5,6 +5,7 @@ using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -12,11 +13,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_2_NodeIdController(Geo geo, AccessControlList accessControlList)
+        public Function_2_NodeIdController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -30,45 +33,22 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string nodeId = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string nodeId = "", 
+            string displayFormat = "true"
+         ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter");
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup & marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1
-            {
-                in_func_code = "2W",
-                in_platform_ind = "C",
-                in_xstreet_names_flag = "E",
-
-                in_node = nodeId ?? string.Empty
-            };
-            Wa2F2w wa2f2w = new Wa2F2w();
-
-            //execute geocall and finalize response
-            _geo.GeoCall(ref wa1, ref wa2f2w);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F2Display, F2Response> raw = new GeocallResponse<F2Display, F2Response>
-                {
-                    display = null,
-                    root = new F2Response(wa1, wa2f2w)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                //there will be no data lists aside from the similar names list -> all of them deal with GRC03 exclusively, and there is no GRC03 for a F2Node
-                GeocallResponse<F2Display, F2Response> goatlike = new GeocallResponse<F2Display, F2Response>
-                {
-                    display = new F2Display(wa1, wa2f2w, _geo),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.Function2NodeId(
+                new FunctionInput { 
+                    Key = key, 
+                    NodeId = nodeId, 
+                    DisplayFormat = displayFormat 
+                }));
         }
     }
 }

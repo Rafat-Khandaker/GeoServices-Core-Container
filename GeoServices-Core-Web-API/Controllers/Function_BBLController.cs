@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model.Response;
 using GeoXWrapperTest.Helper;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -14,11 +15,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_BBLController(Geo geo, AccessControlList accessControlList)
+        public Function_BBLController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -47,65 +50,30 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough = "", string block = "", string lot = "", string bbl = "", string tpad = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string borough = "", 
+            string block = "", 
+            string lot = "", 
+            string bbl = "", 
+            string tpad = "", 
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup
-            Wa1 wa1 = new Wa1
-            {
-                in_mode_switch = "X",
-                in_func_code = "BL",
-                in_platform_ind = "C",
-
-                in_tpad_switch = tpad ?? string.Empty
-            };
-            Wa2F1ax wa2f1ax = new Wa2F1ax();
-
-            //marshall validated inputs into wa1
-            if (string.IsNullOrWhiteSpace(bbl))
-            {
-                wa1.in_bbl.Clear();
-                wa1.in_b10sc1.boro = ValidationHelper.ValidateBoroInput(borough);
-                wa1.in_bbl = new BBL
-                {
-                    block = block ?? string.Empty,
-                    lot = lot ?? string.Empty
-                };
-            }
-            else
-            {
-                wa1.in_bbl.Clear();
-                wa1.in_bbl.BBLFromString(bbl);
-            }
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1, ref wa2f1ax);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<FBBLDisplay, FBBLResponse> raw = new GeocallResponse<FBBLDisplay, FBBLResponse>
-                {
-                    display = null,
-                    root = new FBBLResponse(wa1, wa2f1ax)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<FBBLDisplay, FBBLResponse> goatlike = new GeocallResponse<FBBLDisplay, FBBLResponse>
-                {
-                    display = new FBBLDisplay(wa1, wa2f1ax, _geo)
-                    {
-                        AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1ax.addr_x_list, wa1.in_tpad_switch),
-                        CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1ax, wa1.in_tpad_switch, FunctionCode.FBBL, _geo),
-                    },
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.FunctionBBL(
+                new FunctionInput { 
+                    Key = key,
+                    Borough = borough,
+                    Block = block,
+                    Lot = lot,
+                    BBL = bbl,
+                    TPad = tpad,
+                    DisplayFormat = displayFormat
+            }));
         }
     }
 }

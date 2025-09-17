@@ -6,6 +6,7 @@ using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -13,11 +14,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_5Controller(Geo geo, AccessControlList accessControlList)
+        public Function_5Controller(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -35,57 +38,30 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough = "", string lowAddressNo = "", string highAddressNo = "", string streetName = "", string stCode = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string borough = "", 
+            string lowAddressNo = "", 
+            string highAddressNo = "", 
+            string streetName = "",
+            string stCode = "", 
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup & marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1
-            {
-                in_func_code = "5",
-                in_platform_ind = "C",
-
-                in_hnd = highAddressNo ?? string.Empty,
-                in_low_hnd = lowAddressNo ?? string.Empty
-            };
-            Wa2F5 wa2f5 = new Wa2F5();
-
-            if (string.IsNullOrWhiteSpace(stCode))
-            {
-                wa1.in_b10sc1.Clear();
-                wa1.in_boro1 = ValidationHelper.ValidateBoroInput(borough);
-                wa1.in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty;
-            }
-            else
-            {
-                wa1.in_b10sc1.Clear();
-                wa1.in_b10sc1.B10scFromString(stCode);
-                wa1.in_stname1 = string.Empty;
-            }
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1, ref wa2f5);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F5Display, F5Response> raw = new GeocallResponse<F5Display, F5Response>
-                {
-                    display = null,
-                    root = new F5Response(wa1, wa2f5)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<F5Display, F5Response> goatlike = new GeocallResponse<F5Display, F5Response>
-                {
-                    display = new F5Display(wa1, wa2f5),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.Function5(
+                new FunctionInput { 
+                    Key = key,
+                    Borough = borough,
+                    LowAddressNo = lowAddressNo,
+                    HighAddressNo = highAddressNo,
+                    StreetName = streetName,
+                    StreetCode = stCode,
+                    DisplayFormat = displayFormat
+            }));
         }
     }
 }

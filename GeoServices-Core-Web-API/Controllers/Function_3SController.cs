@@ -6,6 +6,7 @@ using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
 using GeoXWrapperTest.Helper;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -13,11 +14,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_3SController(Geo geo, AccessControlList accessControlList)
+        public Function_3SController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -59,63 +62,44 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough = "", string onStreet = "", string firstCrossStreet = "", string compassDir = "", string secondCrossStreet = "", string compassDir2 = "", string b10sc1 = "", string b10sc2 = "", string b10sc3 = "", string realStreetFlag = "", string roadbed = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string borough = "",
+            string onStreet = "", 
+            string firstCrossStreet = "", 
+            string compassDir = "", 
+            string secondCrossStreet = "", 
+            string compassDir2 = "", 
+            string b10sc1 = "", 
+            string b10sc2 = "", 
+            string b10sc3 = "", 
+            string realStreetFlag = "", 
+            string roadbed = "", 
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
+            return Ok(_geoService.Function3S(
+                new FunctionInput{
+                    Key = key,
+                    Borough = borough,
+                    OnStreet = onStreet,
+                    FirstCrossStreet = firstCrossStreet,
+                    CompassDir = compassDir,
+                    SecondCrossStreet = secondCrossStreet,
+                    CompassDir2 = compassDir2,
+                    B10SC1 = b10sc1,
+                    B10SC2 = b10sc2,
+                    B10SC3 = b10sc3,
+                    RealStreetFlag = realStreetFlag,
+                    Roadbed = roadbed,
+                    DisplayFormat = displayFormat
+            }));
 
-            //work area setup
-            Wa1 wa1 = new Wa1
-            {
-                in_func_code = "3S",
-                in_platform_ind = "C",
-
-                in_stname1 = onStreet?.Replace(" and ", " & ") ?? string.Empty,
-                in_stname2 = firstCrossStreet?.Replace(" and ", "&") ?? string.Empty,
-                in_stname3 = secondCrossStreet?.Replace(" and ", "&") ?? string.Empty,
-
-                in_compass_dir = compassDir ?? string.Empty,
-                in_compass_dir2 = compassDir2 ?? string.Empty,
-                in_real_street_only = realStreetFlag ?? string.Empty,
-                in_roadbed_request_switch = roadbed ?? string.Empty
-            };
-            Wa2F3s wa2f3s = new Wa2F3s();
-
-            //marshall validated inputs into wa1
-            if (string.IsNullOrEmpty(b10sc1))
-            {
-                wa1.in_b10sc1.boro = ValidationHelper.ValidateBoroInput(borough);
-            }
-            else
-            {
-                wa1.in_b10sc1.B10scFromString(b10sc1 ?? string.Empty);
-                wa1.in_b10sc2.B10scFromString(b10sc2 ?? string.Empty);
-                wa1.in_b10sc3.B10scFromString(b10sc3 ?? string.Empty);
-            }
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1, ref wa2f3s);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F3sDisplay, F3sResponse> raw = new GeocallResponse<F3sDisplay, F3sResponse>
-                {
-                    display = null,
-                    root = new F3sResponse(wa1, wa2f3s)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<F3sDisplay, F3sResponse> goatlike = new GeocallResponse<F3sDisplay, F3sResponse>
-                {
-                    display = new F3sDisplay(wa1, wa2f3s, _geo),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+         
         }
     }
 }

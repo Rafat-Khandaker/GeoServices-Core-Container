@@ -1,4 +1,5 @@
 ﻿using GeoXWrapperLib.Model;
+using GeoXWrapperTest.Model.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace GeoXWrapperTest.Model.Response
 {
     public class F3cResponse
     {
-        public Wa1 wa1 { get; }
-        public Wa2F3ceas wa2f3ceas { get; }
+        public Wa1 wa1 { get; set; }
+        public Wa2F3ceas wa2f3ceas { get; set; }
 
         public F3cResponse(Wa1 wa1, Wa2F3ceas wa2f3ceas)
         {

@@ -5,6 +5,7 @@ using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -12,11 +13,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_DController(Geo geo, AccessControlList accessControlList)
+        public Function_DController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -48,75 +51,36 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string boro = "", string b10sc1 = "", string boro2 = "", string b10sc2 = "", string boro3 = "", string b10sc3 = "", string streetNameLength = "32", string streetNameFormat = "S",
-            string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string boro = "", 
+            string b10sc1 = "", 
+            string boro2 = "", 
+            string b10sc2 = "", 
+            string boro3 = "", 
+            string b10sc3 = "", 
+            string streetNameLength = "32", 
+            string streetNameFormat = "S",
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup
-            Wa1 wa1 = new Wa1()
-            {
-                in_platform_ind = "C",
-
-                in_snl = streetNameLength ?? string.Empty,
-                in_stname_normalization = streetNameFormat ?? string.Empty
-            };
-
-            //Func code validation
-            //Note: only checking first b10sc as they should be the same length. If not, geo will return an error anyway
-            if (!string.IsNullOrWhiteSpace(b10sc1))
-            {
-                int length = string.IsNullOrWhiteSpace(boro)
-                    ? b10sc1.Trim().Length
-                    : b10sc1.Trim().Length + 1; //if boro is present, it contributes one character to the string length
-
-                if (length < 7)
-                    wa1.in_func_code = "D";
-                else if (length > 6 && length < 9)
-                    wa1.in_func_code = "DG";
-                else if (length > 8)
-                    wa1.in_func_code = "DN";
-            }
-
-            //marshall validated inputs into wa1
-            if (string.IsNullOrWhiteSpace(boro))
-                wa1.in_b10sc1.B10scFromString(b10sc1.Trim());
-            else
-                wa1.in_b10sc1.B10scFromString(boro + b10sc1.Trim());
-
-            if (string.IsNullOrWhiteSpace(boro2))
-                wa1.in_b10sc2.B10scFromString(b10sc2.Trim());
-            else
-                wa1.in_b10sc2.B10scFromString(boro2 + b10sc2.Trim());
-
-            if (string.IsNullOrWhiteSpace(boro3))
-                wa1.in_b10sc3.B10scFromString(b10sc3.Trim());
-            else
-                wa1.in_b10sc3.B10scFromString(boro3 + b10sc3.Trim());
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<FDDisplay, FDResponse> raw = new GeocallResponse<FDDisplay, FDResponse>
-                {
-                    display = null,
-                    root = new FDResponse(wa1)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<FDDisplay, FDResponse> goatlike = new GeocallResponse<FDDisplay, FDResponse>
-                {
-                    display = new FDDisplay(wa1),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.FunctionD(
+                new FunctionInput { 
+                    Key = key,
+                    Borough = boro,
+                    B10SC1 = b10sc1,
+                    Borough2 = boro2,
+                    B10SC2 = b10sc2,
+                    Borough3 = boro3,
+                    B10SC3 = b10sc3,
+                    StreetNameLength = streetNameLength,
+                    StreetNameFormat = streetNameFormat,
+                    DisplayFormat = displayFormat
+            }));
         }
     }
 }

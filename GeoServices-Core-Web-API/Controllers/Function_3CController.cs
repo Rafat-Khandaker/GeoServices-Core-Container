@@ -6,6 +6,7 @@ using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -13,11 +14,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService;
 
-        public Function_3CController(Geo geo, AccessControlList accessControlList)
+        public Function_3CController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -56,57 +59,36 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough1 = "", string onStreet = "", string sideOfStreet = "", string borough2 = "", string firstCrossStreet = "", string borough3 = "",
-            string secondCrossStreet = "", string browseFlag = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string borough1 = "", 
+            string onStreet = "", 
+            string sideOfStreet = "",
+            string borough2 = "", 
+            string firstCrossStreet = "", 
+            string borough3 = "",
+            string secondCrossStreet = "", 
+            string browseFlag = "", 
+            string displayFormat = "true"
+         ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup & marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1
+            return Ok(_geoService.Function3C(new FunctionInput
             {
-                in_func_code = "3C",
-                in_platform_ind = "C",
-                in_auxseg_switch = "Y",
-                in_mode_switch = "E",
-
-                in_boro1 = ValidationHelper.ValidateBoroInput(borough1),
-                in_stname1 = onStreet?.Replace(" and ", " & ") ?? string.Empty,
-                in_compass_dir = sideOfStreet ?? string.Empty,
-                in_boro2 = ValidationHelper.ValidateBoroInput(borough2),
-                in_stname2 = firstCrossStreet?.Replace(" and ", " & ") ?? string.Empty,
-                in_boro3 = ValidationHelper.ValidateBoroInput(borough3),
-                in_stname3 = secondCrossStreet?.Replace(" and ", " & ") ?? string.Empty,
-                in_browse_flag = browseFlag ?? string.Empty
-            };
-            Wa2F3ceas wa2f3ceas = new Wa2F3ceas();
-
-            //geocall and finalize response
-            _geo.GeoCall(ref wa1, ref wa2f3ceas);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F3cDisplay, F3cResponse> raw = new GeocallResponse<F3cDisplay, F3cResponse>
-                {
-                    display = null,
-                    root = new F3cResponse(wa1, wa2f3ceas)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<F3cDisplay, F3cResponse> goatlike = new GeocallResponse<F3cDisplay, F3cResponse>
-                {
-                    display = new F3cDisplay(wa1, wa2f3ceas, _geo)
-                    {
-                        LowB7SCList = ValidationHelper.CreateB7ScList(wa2f3ceas.wa2f3ce.lo_x_sts, wa1.out_stname_list, wa2f3ceas.wa2f3ce.lo_x_sts_cnt, 0, _geo),
-                        HighB7SCList = ValidationHelper.CreateB7ScList(wa2f3ceas.wa2f3ce.hi_x_sts, wa1.out_stname_list, wa2f3ceas.wa2f3ce.hi_x_sts_cnt, 5, _geo)
-                    },
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+                Key = key,
+                Borough1 = borough1,
+                OnStreet = onStreet,
+                SideOfStreet = sideOfStreet,
+                Borough2 = borough2,
+                FirstCrossStreet = firstCrossStreet,
+                Borough3 = borough3,
+                SecondCrossStreet = secondCrossStreet,
+                BrowseFlag = browseFlag,
+                DisplayFormat = displayFormat
+            }));
         }
     }
 }

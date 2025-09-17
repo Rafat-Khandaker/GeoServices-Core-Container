@@ -9,8 +9,8 @@ namespace GeoXWrapperTest.Model.Response
 {
     public class F3Response
     {
-        public Wa1 wa1 { get; }
-        public Wa2F3eas wa2f3eas { get; }
+        public Wa1 wa1 { get; set; }
+        public Wa2F3eas wa2f3eas { get; set;  }
 
         public F3Response(Wa1 wa1, Wa2F3eas wa2f3eas)
         {

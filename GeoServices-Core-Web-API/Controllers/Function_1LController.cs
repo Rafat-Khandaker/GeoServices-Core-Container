@@ -1,10 +1,9 @@
 ﻿using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
-using GeoXWrapperLib.Model;
-using GeoXWrapperTest.Model.Display;
+
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
-using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -12,11 +11,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoservice;
 
-        public Function_1LController(Geo geo, AccessControlList accessControlList)
+        public Function_1LController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoservice = geoService;
         }
 
 
@@ -31,41 +32,22 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string addressNo = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string addressNo = "", 
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
 
-            //work area setup
-            //marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1
-            {
-                in_func_code = "1L",
-                in_hnd = addressNo ?? string.Empty
-            };
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F1lDisplay, F1lResponse> raw = new GeocallResponse<F1lDisplay, F1lResponse>
-                {
-                    display = null,
-                    root = new F1lResponse(wa1)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<F1lDisplay, F1lResponse> goatlike = new GeocallResponse<F1lDisplay, F1lResponse>
-                {
-                    display = new F1lDisplay(wa1),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoservice.Function1L( 
+                new FunctionInput { 
+                    Key = key,
+                    AddressNo = addressNo,
+                    DisplayFormat = displayFormat
+            })); 
         }
     }
 }

@@ -1,3 +1,4 @@
+using GeoServices_Core_Commons.Core;
 using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
 using System.Net;
@@ -14,7 +15,9 @@ builder.Services.AddOpenApi();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services
     .AddSingleton<Geo, Geo>()
-    .AddSingleton<AccessControlList, AccessControlList>();
+    .AddSingleton<AccessControlList, AccessControlList>()
+    .AddScoped<GeoService, GeoService>();
+
 
 if (!builder.Environment.IsDevelopment())
     builder.WebHost.ConfigureKestrel(options =>

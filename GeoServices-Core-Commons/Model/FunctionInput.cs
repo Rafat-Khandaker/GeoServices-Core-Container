@@ -8,6 +8,7 @@ namespace GeoXWrapperTest.Model
 {
     public class FunctionInput
     {
+        public string Key { get; set; }
         public string Borough { get; set; } = "";
         public string ZipCode { get; set; } = "";
         public string AddressNo { get; set; } = "";
@@ -24,6 +25,7 @@ namespace GeoXWrapperTest.Model
         public string RoadBed { get; set; } = "";
         public string CompassFlag { get; set; }
         public string Borough1 { get; set; }
+        public string StreetCode { get; set; }
         public string Street1 { get; set; }
         public string SideOfStreet { get; set; }
         public string Borough2 { get; set; }
@@ -49,6 +51,11 @@ namespace GeoXWrapperTest.Model
         public string BBL { get; set; }
 
         public string Bin { get; set; }
+
+        public string Roadbed { get; set; }
+
+        public string DisplayFormat { get; set; }
+
 
 
     }

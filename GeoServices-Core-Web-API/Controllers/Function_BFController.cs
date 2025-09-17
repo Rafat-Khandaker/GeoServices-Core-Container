@@ -6,6 +6,7 @@ using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Response;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -13,11 +14,13 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
+        private GeoService _geoService; 
 
-        public Function_BFController(Geo geo, AccessControlList accessControlList)
+        public Function_BFController(Geo geo, AccessControlList accessControlList, GeoService geoService)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoService;
         }
 
         /// <summary>
@@ -51,43 +54,26 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough = "", string streetName = "", string browseFlag = "", string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
-
-            //work area setup & marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1
-            {
-                in_func_code = "BF",
-
-                in_boro1 = ValidationHelper.ValidateBoroInput(borough),
-                in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty,
-                in_browse_flag = browseFlag ?? string.Empty
-            };
-
-            //geocall and finalize responses
-            _geo.GeoCall(ref wa1);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<FBFDisplay, FBFResponse> raw = new GeocallResponse<FBFDisplay, FBFResponse>
-                {
-                    display = null,
-                    root = new FBFResponse(wa1)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<FBFDisplay, FBFResponse> goatlike = new GeocallResponse<FBFDisplay, FBFResponse>
-                {
-                    display = new FBFDisplay(wa1),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+        public IActionResult Get(
+            string key, 
+            string borough = "", 
+            string streetName = "", 
+            string browseFlag = "", 
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key)) 
+                return Unauthorized();
+            
+            return Ok(_geoService.FunctionBF(
+                new FunctionInput { 
+                    Key = key,
+                    Borough = borough,
+                    StreetName = streetName,
+                    BrowseFlag = browseFlag,
+                    DisplayFormat = displayFormat
+            }));
         }
     }
 }

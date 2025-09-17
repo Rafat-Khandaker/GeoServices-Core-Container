@@ -6,6 +6,7 @@ using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
 using GeoXWrapperTest.Helper;
+using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -13,11 +14,12 @@ namespace GeoServices_Core_Web_API.Controllers
     {
         private Geo _geo;
         private AccessControlList _accessControl;
-
-        public Function_1EController(Geo geo, AccessControlList accessControlList)
+        private GeoService _geoService;
+        public Function_1EController(Geo geo, AccessControlList accessControlList, GeoService geoservice)
         {
             _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
+            _geoService = geoservice;
         }
 
         /// <summary>
@@ -56,61 +58,36 @@ namespace GeoServices_Core_Web_API.Controllers
         /// <response code="400">If required key parameter is missing</response>
         /// <response code="401">If key is invalid or deactivated</response>
         [HttpGet]
-        public IActionResult Get(string key, string borough = "", string zipCode = "", string addressNo = "", string streetName = "", string roadbed = "", string browseFlag = "", string unit = "", string hns = "n",
-            string displayFormat = "true")
-        {
-            if (string.IsNullOrEmpty(key)) return BadRequest("Please provide your API key as a parameter"); else if (!_accessControl.Verify(key)) return Unauthorized();
+        public IActionResult Get(
+            string key, 
+            string borough = "", 
+            string zipCode = "",
+            string addressNo = "", 
+            string streetName = "", 
+            string roadbed = "", 
+            string browseFlag = "", 
+            string unit = "", 
+            string hns = "n",
+            string displayFormat = "true"
+        ){
+            if (string.IsNullOrEmpty(key)) 
+                return BadRequest("Please provide your API key as a parameter"); 
+            else if (!_accessControl.Verify(key))
+                return Unauthorized();
 
-            //work area setup & marshall validated inputs into wa1
-            Wa1 wa1 = new Wa1()
-            {
-                in_func_code = "1E",
-                in_platform_ind = "C",
-                in_mode_switch = "X",
-
-                in_b10sc1 = new B10sc { boro = ValidationHelper.ValidateBoroInput(borough) },
-                in_zip_code = zipCode ?? string.Empty,
-                in_stname1 = streetName?.Replace(" and ", " & ") ?? string.Empty,
-                in_unit = unit?.Trim() ?? string.Empty,
-                in_browse_flag = browseFlag ?? string.Empty,
-                in_roadbed_request_switch = roadbed ?? string.Empty
-            };
-            Wa2F1ex wa2f1ex = new Wa2F1ex();
-
-            if (string.Equals(hns, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(hns, "y", StringComparison.OrdinalIgnoreCase))
-            {
-                wa1.in_hnd = string.Empty;
-                wa1.in_hns = addressNo ?? string.Empty;
-            }
-            else
-            {
-                wa1.in_hnd = addressNo ?? string.Empty;
-                wa1.in_hns = string.Empty;
-            }
-
-            //geocall and finalize
-            _geo.GeoCall(ref wa1, ref wa2f1ex);
-
-            if (string.Equals(displayFormat, "false", StringComparison.OrdinalIgnoreCase))
-            {
-                GeocallResponse<F1eDisplay, F1eResponse> raw = new GeocallResponse<F1eDisplay, F1eResponse>
-                {
-                    display = null,
-                    root = new F1eResponse(wa1, wa2f1ex)
-                };
-
-                return Ok(raw);
-            }
-            else
-            {
-                GeocallResponse<F1eDisplay, F1eResponse> goatlike = new GeocallResponse<F1eDisplay, F1eResponse>
-                {
-                    display = new F1eDisplay(wa1, wa2f1ex, _geo),
-                    root = null
-                };
-
-                return Ok(goatlike);
-            }
+            return Ok(_geoService.Function1E(
+                new FunctionInput { 
+                    Key = key,
+                    Borough = borough,
+                    ZipCode = zipCode,
+                    AddressNo = addressNo,
+                    StreetName = streetName,
+                    Roadbed = roadbed,
+                    BrowseFlag = browseFlag,
+                    Unit = unit,
+                    Hns = hns,
+                    DisplayFormat = displayFormat
+            }));
         }
     }
 }
