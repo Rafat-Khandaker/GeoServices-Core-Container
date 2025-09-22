@@ -1,12 +1,12 @@
-﻿using GeoXWrapperLib;
+﻿using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
+using GeoXWrapperLib;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model;
 using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model.Enum;
 using GeoXWrapperTest.Model.Response;
 using GeoXWrapperTest.Model.Structs;
-using GeoXWrapperTest.Service;
-using GeoXWrapperTest.Service.Contracts;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -44,7 +44,8 @@ namespace GeoXWrapperTest
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
                                                 ZipCode = input.Zip,
-                                                Unit = input.Unit
+                                                Unit = input.Unit,
+                                                DisplayFormat = "false"
                                             }));
 
             
@@ -70,11 +71,11 @@ namespace GeoXWrapperTest
         public void Function1B(AddrInput input, string output)
         {
             var result = JsonSerializer.Serialize(
-                                            GeoService.Function1B(new FunctionInput
-                                            {
+                                            GeoService.Function1B(new FunctionInput{
                                                 Borough = input.Boro,
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
+                                                DisplayFormat = "false"
                                             }));
 
 
@@ -101,13 +102,13 @@ namespace GeoXWrapperTest
         public void Function1E(AddrInput input, string output)
         {
             var result = JsonSerializer.Serialize(
-                                            GeoService.Function1E(new FunctionInput
-                                            {
+                                            GeoService.Function1E(new FunctionInput{
                                                 Borough = input.Boro,
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
                                                 ZipCode = input.Zip,
-                                                Unit = input.Unit
+                                                Unit = input.Unit,
+                                                DisplayFormat = "false"
                                             }));
 
 
@@ -133,13 +134,13 @@ namespace GeoXWrapperTest
         public void Function1L(AddrInput input, string output)
         {
             var result = JsonSerializer.Serialize(
-                                            GeoService.Function1L(new FunctionInput
-                                            {
+                                            GeoService.Function1L(new FunctionInput{
                                                 Borough = input.Boro,
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
                                                 ZipCode = input.Zip,
-                                                Unit = input.Unit
+                                                Unit = input.Unit,
+                                                DisplayFormat = "false"
                                             }));
 
 
@@ -165,14 +166,14 @@ namespace GeoXWrapperTest
         public void Function1N(AddrInput input, string output)
         {
             var result = JsonSerializer.Serialize(
-                                            GeoService.Function1N(new FunctionInput
-                                            {
+                                            GeoService.Function1N(new FunctionInput{
                                                 Borough = input.Boro,
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
                                                 StreetNameLength = input.StNameLength,
                                                 ZipCode = input.Zip,
-                                                Unit = input.Unit
+                                                Unit = input.Unit,
+                                                DisplayFormat = "false"
                                             }));
 
 
@@ -198,14 +199,14 @@ namespace GeoXWrapperTest
         public void Function1R(AddrInput input, string output)
         {
             var result = JsonSerializer.Serialize(
-                                            GeoService.Function1R(new FunctionInput
-                                            {
+                                            GeoService.Function1R(new FunctionInput{
                                                 Borough = input.Boro,
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
                                                 StreetNameLength = input.StNameLength,
                                                 ZipCode = input.Zip,
-                                                Unit = input.Unit
+                                                Unit = input.Unit,
+                                                DisplayFormat = "false"
                                             }));
 
 
@@ -230,7 +231,12 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F2Node_AddrInputs), DynamicDataSourceType.Property)]
         public void Function2Node(AddrInput input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function2NodeId(new FunctionInput{ NodeId = input.NodeId }));
+            var result = JsonSerializer.Serialize(
+                                            GeoService.Function2NodeId(new FunctionInput{
+                                                NodeId = input.NodeId,
+                                                DisplayFormat = "true"
+                                            }));
+
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -252,13 +258,14 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F2_IntrsctInput), DynamicDataSourceType.Property)]
         public void Function2(IntrsctInput input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function2(new FunctionInput
-            {
-                Borough1 = input.Boro,
-                Street1 = input.St1,
-                Borough2 = input.Boro,
-                Street2 = input.St2
-            }));
+            var result = JsonSerializer.Serialize(
+                                            GeoService.Function2(new FunctionInput{
+                                                Borough1 = input.Boro,
+                                                Street1 = input.St1,
+                                                Borough2 = input.Boro,
+                                                Street2 = input.St2,
+                                                DisplayFormat = "true"
+                                            }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -280,14 +287,14 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F3C_IntrsctInput), DynamicDataSourceType.Property)]
         public void Function3C(CrossStreetInputs input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function3C(new FunctionInput
-            {
-                Borough1 = input.Borough1,
-                OnStreet= input.OnStreet,
-                FirstCrossStreet = input.FirstCrossStreet,
-                SecondCrossStreet = input.SecondCrossStreet,
-                CompassFlag = input.CompassDirection
-            }));
+            var result = JsonSerializer.Serialize(GeoService.Function3C(new FunctionInput{
+                                                    Borough1 = input.Borough1,
+                                                    OnStreet= input.OnStreet,
+                                                    FirstCrossStreet = input.FirstCrossStreet,
+                                                    SecondCrossStreet = input.SecondCrossStreet,
+                                                    CompassFlag = input.CompassDirection,
+                                                    DisplayFormat = "true"
+                                                }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -309,13 +316,13 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F3S_IntrsctInput), DynamicDataSourceType.Property)]
         public void Function3S(CrossStreetInputs input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function3S(new FunctionInput
-            {
-                Borough = input.Borough1,
-                OnStreet = input.OnStreet,
-                FirstCrossStreet = input.FirstCrossStreet,
-                SecondCrossStreet = input.SecondCrossStreet,
-            }));
+            var result = JsonSerializer.Serialize(GeoService.Function3S(new FunctionInput{
+                                                        Borough = input.Borough1,
+                                                        OnStreet = input.OnStreet,
+                                                        FirstCrossStreet = input.FirstCrossStreet,
+                                                        SecondCrossStreet = input.SecondCrossStreet,
+                                                        DisplayFormat = "true"
+                                                    }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -336,16 +343,16 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F3_IntrsctInput), DynamicDataSourceType.Property)]
         public void Function3(CrossStreetInputs input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function3(new FunctionInput
-            {
-                Borough1 = input.Borough1,
-                OnStreet = input.OnStreet,
-                Borough2 = input.Borough1,
-                FirstCrossStreet = input.FirstCrossStreet,
-                Borough3 = input.Borough1,
-                SecondCrossStreet = input.SecondCrossStreet,
-                CompassFlag = input.CompassDirection
-            }));
+            var result = JsonSerializer.Serialize(GeoService.Function3_F3(new FunctionInput{
+                                                        Borough1 = input.Borough1,
+                                                        OnStreet = input.OnStreet,
+                                                        Borough2 = input.Borough1,
+                                                        FirstCrossStreet = input.FirstCrossStreet,
+                                                        Borough3 = input.Borough1,
+                                                        SecondCrossStreet = input.SecondCrossStreet,
+                                                        CompassFlag = input.CompassDirection,
+                                                        DisplayFormat = "true"
+                                                    }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -367,13 +374,13 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F5_HighLowAddrInput), DynamicDataSourceType.Property)]
         public void Function5(HighLowAddrInput input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function5(new FunctionInput
-            {
-                Borough = input.Borough,
-                LowAddressNo = input.LowAddressNo,
-                HighAddressNo = input.HighAddressNo,
-                StreetName = input.StreetName,
-            }));
+            var result = JsonSerializer.Serialize(GeoService.Function5(new FunctionInput{
+                                            Borough = input.Borough,
+                                            LowAddressNo = input.LowAddressNo,
+                                            HighAddressNo = input.HighAddressNo,
+                                            StreetName = input.StreetName,
+                                            DisplayFormat = "true"
+                                        }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -395,12 +402,12 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FAP_AddrInputs), DynamicDataSourceType.Property)]
         public void FunctionAP(AddrInput input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionAP(new FunctionInput
-            {
-                Borough = input.Boro,
-                AddressNo = input.AddrNo,
-                StreetName = input.StName
-            }));
+            var result = JsonSerializer.Serialize(GeoService.FunctionAP(new FunctionInput{
+                                                        Borough = input.Boro,
+                                                        AddressNo = input.AddrNo,
+                                                        StreetName = input.StName,
+                                                        DisplayFormat = "true"
+                                                    }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -422,12 +429,12 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FBBL_BBLInputs), DynamicDataSourceType.Property)]
         public void FunctionBBL(BBLInput input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionBBL(new FunctionInput
-            {
-                Borough = input.Boro,
-                Block = input.Block,
-                Lot = input.Lot
-            }));
+            var result = JsonSerializer.Serialize(GeoService.FunctionBBL(new FunctionInput{
+                                                        Borough = input.Boro,
+                                                        Block = input.Block,
+                                                        Lot = input.Lot,
+                                                        DisplayFormat = "true"
+                                                    }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -449,11 +456,11 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FBB_AddrInputs), DynamicDataSourceType.Property)]
         public void FunctionBB(SndEntry input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionBB(new FunctionInput
-            {
-                Borough = input.out_boro_name1,
-                StreetName = input.out_stname1
-            }));
+            var result = JsonSerializer.Serialize(GeoService.FunctionBB(new FunctionInput{
+                                                    Borough = input.out_boro_name1,
+                                                    StreetName = input.out_stname1,
+                                                    DisplayFormat = "true"
+                                                }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -475,10 +482,10 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FBF_AddrInputs), DynamicDataSourceType.Property)]
         public void FunctionBF(SndEntry input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionBF(new FunctionInput
-            {
+            var result = JsonSerializer.Serialize(GeoService.FunctionBF(new FunctionInput{
                 Borough = input.out_boro_name1,
-                StreetName = input.out_stname1
+                StreetName = input.out_stname1,
+                DisplayFormat = "true"
             }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
@@ -500,7 +507,10 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FBIN_ShortBinInputs), DynamicDataSourceType.Property)]
         public void FunctionBIN(string input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionBIN(new FunctionInput{ Bin = input }));
+            var result = JsonSerializer.Serialize(GeoService.FunctionBIN(new FunctionInput{ 
+                Bin = input,
+                DisplayFormat = "true"
+            }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -522,12 +532,12 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FD_StCodeInputs), DynamicDataSourceType.Property)]
         public void FunctionD(StCodeCase input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionD(new FunctionInput
-            {
-                B10SC1 = input.FullB10Sc1,
-                B10SC2 = input.FullB10Sc2,
-                B10SC3 = input.FullB10Sc3
-            }));
+            var result = JsonSerializer.Serialize(GeoService.FunctionD(new FunctionInput{
+                                                        B10SC1 = input.FullB10Sc1,
+                                                        B10SC2 = input.FullB10Sc2,
+                                                        B10SC3 = input.FullB10Sc3,
+                                                        DisplayFormat = "true"
+                                                    }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -548,7 +558,9 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(FHR_AddrInputs), DynamicDataSourceType.Property)]
         public void FunctionHR(string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.FunctionHR());
+            var result = JsonSerializer.Serialize(GeoService.FunctionHR(new FunctionInput { 
+                                                    DisplayFormat = "true"
+                                                }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
@@ -572,7 +584,8 @@ namespace GeoXWrapperTest
         {
             var result = JsonSerializer.Serialize(GeoService.FunctionN(new FunctionInput{
                 StreetName = input.StName,
-                StreetNameLength = input.StNameLength
+                StreetNameLength = input.StNameLength,
+                DisplayFormat = "true"
             }));
 
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");

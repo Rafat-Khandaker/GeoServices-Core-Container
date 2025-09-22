@@ -15,28 +15,16 @@ namespace GeoXWrapperLib
 
         public Geo(){
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
                 NYCgeo = WindowsNYCgeo;
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                NYCgeo = LinuxNYCgeo;
-            }
+
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))           
+                NYCgeo = LinuxNYCgeo;            
         }
 
-        private void LinuxNYCgeo(byte[] wa1, byte[] wa2 = null) {
-            //string wa1String = WA.ByteArrayToStr(wa1);
-            //string wa2String = string.Empty;
-            //if (wa2 != null)
-            //    wa2String = WA.ByteArrayToStr(wa2);
-
-            NYCgeo_Linux(wa1, wa2); 
-        } 
+        private void LinuxNYCgeo(byte[] wa1, byte[] wa2 = null) => NYCgeo_Linux(wa1, wa2); 
         
-        private void WindowsNYCgeo(byte[] wa1, byte[] wa2 = null){
-            NYCgeo_Windows(wa1, wa2);
-        }
-
+        private void WindowsNYCgeo(byte[] wa1, byte[] wa2 = null) => NYCgeo_Windows(wa1, wa2);
+        
 
         [DllImport("NYCgeo", EntryPoint="NYCgeo", CallingConvention = CallingConvention.StdCall)]
         public static extern void NYCgeo_Windows(byte[] wa1, byte[] wa2 = null);

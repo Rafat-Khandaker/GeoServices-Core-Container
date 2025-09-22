@@ -8,8 +8,8 @@ namespace GeoXWrapperLib.Model
 {
     public class Wa2F1b : WA
     {
-        private Wa2F1ex m_wa2f1ex;
         private Wa2F1ax m_wa2f1ax;
+        private Wa2F1ex m_wa2f1ex;
 
         // Constructor for Wa2F1b
         public Wa2F1b()
@@ -111,6 +111,13 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
+        // Property for wa2f1ax
+        public Wa2F1ax wa2f1ax
+        {
+            get => m_wa2f1ax;
+            set => m_wa2f1ax = value;
+        }
+
         // Property for wa2f1ex
         public Wa2F1ex wa2f1ex
         {
@@ -118,11 +125,6 @@ namespace GeoXWrapperLib.Model
             set => m_wa2f1ex = value;
         }
 
-        // Property for wa2f1ax
-        public Wa2F1ax wa2f1ax
-        {
-            get => m_wa2f1ax;
-            set => m_wa2f1ax = value;
-        }
     }
 }
+
