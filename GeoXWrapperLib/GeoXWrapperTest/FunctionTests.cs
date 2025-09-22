@@ -1,5 +1,6 @@
 ﻿using GeoServices_Core_Commons.Core;
 using GeoServices_Core_Commons.Core.Contract;
+using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model;
@@ -19,6 +20,7 @@ namespace GeoXWrapperTest
         private IServiceProvider ServiceProvider;
 
         IGeoService GeoService;
+        Cryptographer CryptographerService;
 
         [TestInitialize]
         public void TestInit()
@@ -27,9 +29,11 @@ namespace GeoXWrapperTest
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<IGeoService, GeoService>()
                 .AddSingleton<Geo, Geo>()
+                .AddScoped<Cryptographer, Cryptographer>()
                 .BuildServiceProvider();
 
             GeoService = ServiceProvider.GetService<IGeoService>();
+            CryptographerService = ServiceProvider.GetService<Cryptographer>();
         }
 
         public static IEnumerable<object[]> F1A_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1A);
@@ -53,15 +57,18 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
+
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_1A", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash+"|"+actual);
+                writer.WriteLine(expectedHash+"|"+expected);
             }
          
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F1B_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1B);
@@ -83,16 +90,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
-            
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
+
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory()+"\\Results_1B", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
-            
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F1E_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1E);
@@ -115,16 +123,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
-           
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
+
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_1E", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
-        
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F1L_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1L);
@@ -134,7 +143,8 @@ namespace GeoXWrapperTest
         public void Function1L(AddrInput input, string output)
         {
             var result = JsonSerializer.Serialize(
-                                            GeoService.Function1L(new FunctionInput{
+                                            GeoService.Function1L(new FunctionInput
+                                            {
                                                 Borough = input.Boro,
                                                 AddressNo = input.AddrNo,
                                                 StreetName = input.StName,
@@ -147,16 +157,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_1L", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F1N_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1N);
@@ -180,16 +191,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_1N", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F1R_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1R);
@@ -213,16 +225,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_1R", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F2Node_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F2Node); 
@@ -241,15 +254,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_2Node", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F2_IntrsctInput => TestResponseHelper.Inputs_Generator(FunctionCode.F2); 
@@ -270,15 +285,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_2", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F3C_IntrsctInput => TestResponseHelper.Inputs_Generator(FunctionCode.F3C);
@@ -299,15 +316,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_3C", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F3S_IntrsctInput => TestResponseHelper.Inputs_Generator(FunctionCode.F3S);
@@ -327,16 +346,19 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_3S", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
+
         public static IEnumerable<object[]> F3_IntrsctInput => TestResponseHelper.Inputs_Generator(FunctionCode.F3);
 
         [TestMethod]
@@ -357,15 +379,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_3", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> F5_HighLowAddrInput => TestResponseHelper.Inputs_Generator(FunctionCode.F5);
@@ -385,15 +409,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_5", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FAP_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FAP);
@@ -412,15 +438,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_AP", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FBBL_BBLInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FBBL);
@@ -439,15 +467,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_BBL", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FBB_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FBB);
@@ -465,15 +495,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_BB", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FBF_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FBF);
@@ -491,15 +523,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_BF", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
         public static IEnumerable<object[]> FBIN_ShortBinInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FBIN);
 
@@ -515,15 +549,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_BIN", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FD_StCodeInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FD);
@@ -542,14 +578,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
+
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_D", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FHR_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FHR);
@@ -565,15 +604,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_HR", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
 
         public static IEnumerable<object[]> FN_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.FN);
@@ -591,15 +632,17 @@ namespace GeoXWrapperTest
             var actual = Regex.Replace(result, @"[\r\t\n\s]+", "");
             var expected = Regex.Replace(output, @"[\r\t\n\s]+", "");
 
+            var actualHash = CryptographerService.HashString(actual);
+            var expectedHash = CryptographerService.HashString(expected);
 
             // Uncomment for Debugging Unit Tests for Errors. Read Logs in Debug Folder
             using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Results_N", append: true))
             {
-                writer.WriteLine(actual);
-                writer.WriteLine(expected);
+                writer.WriteLine(actualHash + "|" + actual);
+                writer.WriteLine(expectedHash + "|" + expected);
             }
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(actualHash, expectedHash);
         }
     }
 }

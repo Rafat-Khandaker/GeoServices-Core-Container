@@ -133,22 +133,6 @@ namespace GeoXWrapperLib.Model
             }
         }
 
-        /// <value>Property for sc5</value>
-        public string sc5
-        {
-            get => m_sc5;
-            set
-            {
-                var strlen = value.Length;
-                if (strlen > 5) strlen = 5;
-                m_sc5 = "     ";
-                if (strlen > 0)
-                {
-                    m_sc5 = new string('0', 5);
-                    m_sc5 = m_sc5.Substring(0, 5 - strlen) + value.Substring(0, strlen);
-                }
-            }
-        }
 
         /// <value>Property for lgc</value>
         public string lgc
@@ -166,5 +150,23 @@ namespace GeoXWrapperLib.Model
                 }
             }
         }
+
+        /// <value>Property for sc5</value>
+        public string sc5
+        {
+            get => m_sc5;
+            set
+            {
+                var strlen = value.Length;
+                if (strlen > 5) strlen = 5;
+                m_sc5 = "     ";
+                if (strlen > 0)
+                {
+                    m_sc5 = new string('0', 5);
+                    m_sc5 = m_sc5.Substring(0, 5 - strlen) + value.Substring(0, strlen);
+                }
+            }
+        }
+
     }
 }
