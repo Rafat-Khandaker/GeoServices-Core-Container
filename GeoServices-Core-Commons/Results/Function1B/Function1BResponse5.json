@@ -71,9 +71,9 @@
       "in_stname3": "                                ",
       "in_stname_normalization": " ",
       "in_tpad_switch": " ",
-      "in_unit": "99            ",
+      "in_unit": "              ",
       "in_xstreet_names_flag": " ",
-      "in_zip_code": "10305",
+      "in_zip_code": "     ",
       "out_attr_bytes": [
         " ",
         " ",
@@ -191,10 +191,10 @@
         "                                ",
         "                                "
       ],
-      "out_unit": "# 99          ",
+      "out_unit": "              ",
       "out_units": {
-        "unit_identifier": "  99      ",
-        "unit_type": "#   "
+        "unit_identifier": "          ",
+        "unit_type": "    "
       },
       "out_warning_code": "  ",
       "out_warning_code2": "  "

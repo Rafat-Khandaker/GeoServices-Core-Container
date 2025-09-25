@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace GeoXWrapperLib.Model
 {
@@ -2041,10 +2042,195 @@ namespace GeoXWrapperLib.Model
             return sb.ToString();
         }
 
-        public VsamKey1 gridkey1
+        public string No_Parking_lanes
         {
-            get => m_gridkey1;
-            set => m_gridkey1 = value;
+            get => m_No_Parking_lanes;
+            set => m_No_Parking_lanes = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string No_Total_Lanes
+        {
+            get => m_Total_Lanes;
+            set => m_Total_Lanes = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string No_Traveling_lanes
+        {
+            get => m_No_Traveling_lanes;
+            set => m_No_Traveling_lanes = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string USPS_city_name
+        {
+            get => m_USPS_city_name;
+            set => m_USPS_city_name = value.Length > 25 ? value.Substring(0, 25) : value;
+        }
+
+        public string ad
+        {
+            get => m_ad;
+            set => m_ad = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string[] additional_valid_lgcs
+        {
+            get => m_additional_valid_lgcs;
+            set => m_additional_valid_lgcs = value;
+        }
+
+        public string alpha_angle
+        {
+            get => m_alpha_angle;
+            set => m_alpha_angle = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string alx
+        {
+            get => m_alx;
+            set => m_alx = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string beta_angle
+        {
+            get => m_beta_angle;
+            set => m_beta_angle = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string bike_lane
+        {
+            get => m_bike_lane;
+            set => m_bike_lane = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string bike_lane2
+        {
+            get => m_bike_lane2;
+            set => m_bike_lane2 = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string bike_traffic_direction
+        {
+            get => m_bike_traffic_direction;
+            set => m_bike_traffic_direction = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string blockface_id
+        {
+            get => m_blockface_id;
+            set => m_blockface_id = value.Length > 10 ? value.Substring(0, 10) : value;
+        }
+
+        public string boe_lgc_pointer
+        {
+            get => m_boe_lgc_pointer;
+            set => m_boe_lgc_pointer = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public B7sc boe_preferred_b7sc
+        {
+            get => m_boe_preferred_b7sc;
+            set => m_boe_preferred_b7sc = value;
+        }
+
+        public string boe_preferred_stname
+        {
+            get => m_boe_preferred_stname;
+            set
+            {
+                int strlen = Math.Min(value.Length, 32);
+                m_boe_preferred_stname = value.Substring(0, strlen).PadRight(32, ' ');
+            }
+        }
+
+        public string cd
+        {
+            get => m_cd;
+            set => m_cd = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string cdta_2020
+        {
+            get => m_cdta_2020;
+            set => m_cdta_2020 = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+
+        public string census_block_2000
+        {
+            get => m_census_block_2000;
+            set => m_census_block_2000 = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+        public string census_block_2010
+        {
+            get => m_census_block_2010;
+            set => m_census_block_2010 = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+        public string census_block_2020
+        {
+            get => m_census_block_2020;
+            set => m_census_block_2020 = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+
+        public string census_block_suffix_2000
+        {
+            get => m_census_block_suffix_2000;
+            set => m_census_block_suffix_2000 = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string census_block_suffix_2010
+        {
+            get => m_census_block_suffix_2010;
+            set => m_census_block_suffix_2010 = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string census_block_suffix_2020
+        {
+            get => m_census_block_suffix_2020;
+            set => m_census_block_suffix_2020 = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string census_tract_1990
+        {
+            get => m_census_tract_1990;
+            set => m_census_tract_1990 = value.Length > 6 ? value.Substring(0, 6) : value;
+        }
+
+        public string census_tract_2000
+        {
+            get => m_census_tract_2000;
+            set => m_census_tract_2000 = value.Length > 6 ? value.Substring(0, 6) : value;
+        }
+
+        public string census_tract_2010
+        {
+            get => m_census_tract_2010;
+            set => m_census_tract_2010 = value.Length > 6 ? value.Substring(0, 6) : value;
+        }
+
+        public string census_tract_2020
+        {
+            get => m_census_tract_2020;
+            set => m_census_tract_2020 = value.Length > 6 ? value.Substring(0, 6) : value;
+        }
+
+        public string circle_radius
+        {
+            get => m_circle_radius;
+            set => m_circle_radius = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string co
+        {
+            get => m_co;
+            set => m_co = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string coincident_seg_cnt
+        {
+            get => m_coincident_seg_cnt;
+            set => m_coincident_seg_cnt = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public ComDist com_dist
+        {
+            get => m_com_dist;
+            set => m_com_dist = value;
         }
 
         public string cont_parity_ind
@@ -2056,538 +2242,6 @@ namespace GeoXWrapperLib.Model
                 strlen = strlen > 1 ? 1 : strlen;
                 m_cont_parity_ind = value.Substring(0, strlen);
             }
-        }
-
-        public string lo_hns
-        {
-            get => m_lo_hns;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 11 ? 11 : strlen;
-                m_lo_hns = value.Substring(0, strlen);
-            }
-        }
-
-        public string hi_hns
-        {
-            get => m_hi_hns;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 11 ? 11 : strlen;
-                m_hi_hns = value.Substring(0, strlen);
-            }
-        }
-
-        public string dcp_pref_lgc
-        {
-            get => m_dcp_pref_lgc;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 2 ? 2 : strlen;
-                m_dcp_pref_lgc = value.Substring(0, strlen);
-            }
-        }
-
-        public string lo_x_sts_cnt
-        {
-            get => m_lo_x_sts_cnt;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_lo_x_sts_cnt = value.Substring(0, strlen);
-            }
-        }
-
-        public B5sc[] lo_x_sts
-        {
-            get => m_lo_x_sts;
-            set => m_lo_x_sts = value;
-        }
-
-        public B5sc lo_x_sts_item(int index) => m_lo_x_sts[index];
-
-        public void lo_x_sts_item(int index, B5sc value) => m_lo_x_sts[index] = value;
-        
-
-        public string hi_x_sts_cnt
-        {
-            get => m_hi_x_sts_cnt;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_hi_x_sts_cnt = value.Substring(0, strlen);
-            }
-        }
-
-        public B5sc[] hi_x_sts
-        {
-            get => m_hi_x_sts;
-            set => m_hi_x_sts = value;
-        }
-
-        public B5sc hi_x_sts_item(int index) => m_hi_x_sts[index];
-
-        public void hi_x_sts_item(int index, B5sc value ) => m_hi_x_sts[index] = value;
-        
-
-        public LionKey lion_key
-        {
-            get => m_lion_key;
-            set => m_lion_key = value;
-        }
-
-        public string spec_addr_flag
-        {
-            get => m_spec_addr_flag;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_spec_addr_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string sos_ind
-        {
-            get => m_sos_ind;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_sos_ind = value.Substring(0, strlen);
-            }
-        }
-
-        public string segment_len
-        {
-            get => m_segment_len;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 5 ? 5 : strlen;
-                m_segment_len = value.Substring(0, strlen);
-            }
-        }
-
-        public string x_coord
-        {
-            get => m_x_coord;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 7 ? 7 : strlen;
-                m_x_coord = value.Substring(0, strlen);
-            }
-        }
-
-        public string y_coord
-        {
-            get => m_y_coord;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 7 ? 7 : strlen;
-                m_y_coord = value.Substring(0, strlen);
-            }
-        }
-
-        public string z_coord
-        {
-            get => m_z_coord;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 7 ? 7 : strlen;
-                m_z_coord = value.Substring(0, strlen);
-            }
-        }
-
-        public string res_gss
-        {
-            get => m_res_gss;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_res_gss = value.Substring(0, strlen);
-            }
-        }
-
-        public string mh_ri_flag
-        {
-            get => m_mh_ri_flag;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_mh_ri_flag = value.Substring(0, strlen);
-            }
-        }
-
-        public string dot_st_light_contract_area
-        {
-            get => m_dot_st_light_contract_area;
-            set
-            {
-                int strlen = value.Length;
-                strlen = strlen > 1 ? 1 : strlen;
-                m_dot_st_light_contract_area = value.Substring(0, strlen);
-            }
-        }
-
-        public ComDist com_dist
-        {
-            get => m_com_dist;
-            set => m_com_dist = value;
-        }
-
-        public string zip_code
-        {
-            get => m_zip_code;
-            set => m_zip_code = value.Length > 5 ? value.Substring(0, 5) : value;
-        }
-
-        public string ed
-        {
-            get => m_ed;
-            set => m_ed = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string ad
-        {
-            get => m_ad;
-            set => m_ad = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string split_ed
-        {
-            get => m_split_ed;
-            set => m_split_ed = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string cd
-        {
-            get => m_cd;
-            set => m_cd = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string sd
-        {
-            get => m_sd;
-            set => m_sd = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string mc
-        {
-            get => m_mc;
-            set => m_mc = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string co
-        {
-            get => m_co;
-            set => m_co = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string health_center_dist
-        {
-            get => m_health_center_dist;
-            set => m_health_center_dist = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string health_area
-        {
-            get => m_health_area;
-            set => m_health_area = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string san_dist
-        {
-            get => m_san_dist;
-            set => m_san_dist = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string san_sched
-        {
-            get => m_san_sched;
-            set => m_san_sched = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string san_reg
-        {
-            get => m_san_reg;
-            set => m_san_reg = value.Length > 5 ? value.Substring(0, 5) : value;
-        }
-
-        public string san_recycle
-        {
-            get => m_san_recycle;
-            set => m_san_recycle = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string police_boro_com
-        {
-            get => m_police_boro_com;
-            set => m_police_boro_com = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string police_pct
-        {
-            get => m_police_pct;
-            set => m_police_pct = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string fire_div
-        {
-            get => m_fire_div;
-            set => m_fire_div = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string fire_bat
-        {
-            get => m_fire_bat;
-            set => m_fire_bat = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string fire_co_type
-        {
-            get => m_fire_co_type;
-            set => m_fire_co_type = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string fire_co_num
-        {
-            get => m_fire_co_num;
-            set => m_fire_co_num = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string split_school_dist_flag
-        {
-            get => m_split_school_dist_flag;
-            set => m_split_school_dist_flag = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string school_dist
-        {
-            get => m_school_dist;
-            set => m_school_dist = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string dynamic_block
-        {
-            get => m_dynamic_block;
-            set => m_dynamic_block = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string police_patrol_boro
-        {
-            get => m_police_patrol_boro;
-            set => m_police_patrol_boro = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string feature_type
-        {
-            get => m_feature_type;
-            set => m_feature_type = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string segment_type
-        {
-            get => m_segment_type;
-            set => m_segment_type = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string alx
-        {
-            get => m_alx;
-            set => m_alx = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string coincident_seg_cnt
-        {
-            get => m_coincident_seg_cnt;
-            set => m_coincident_seg_cnt = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string filler_80ct
-        {
-            get => m_filler_80ct;
-            set => m_filler_80ct = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string census_tract_1990
-        {
-            get => m_census_tract_1990;
-            set => m_census_tract_1990 = value.Length > 6 ? value.Substring(0, 6) : value;
-        }
-
-        public string census_tract_2010
-        {
-            get => m_census_tract_2010;
-            set => m_census_tract_2010 = value.Length > 6 ? value.Substring(0, 6) : value;
-        }
-
-        public string census_block_2010
-        {
-            get => m_census_block_2010;
-            set => m_census_block_2010 = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string census_block_suffix_2010
-        {
-            get => m_census_block_suffix_2010;
-            set => m_census_block_suffix_2010 = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string census_tract_2000
-        {
-            get => m_census_tract_2000;
-            set => m_census_tract_2000 = value.Length > 6 ? value.Substring(0, 6) : value;
-        }
-
-        public string census_block_2000
-        {
-            get => m_census_block_2000;
-            set => m_census_block_2000 = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string census_block_suffix_2000
-        {
-            get => m_census_block_suffix_2000;
-            set => m_census_block_suffix_2000 = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string nta
-        {
-            get => m_nta;
-            set => m_nta = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string dsny_snow_priority
-        {
-            get => m_dsny_snow_priority;
-            set => m_dsny_snow_priority = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string san_org_pick_up
-        {
-            get => m_san_org_pick_up;
-            set => m_san_org_pick_up = value.Length > 5 ? value.Substring(0, 5) : value;
-        }
-
-        public string san_bulk
-        {
-            get => m_san_bulk;
-            set => m_san_bulk = value.Length > 5 ? value.Substring(0, 5) : value;
-        }
-
-        public string hurricane_zone
-        {
-            get => m_hurricane_zone;
-            set => m_hurricane_zone = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string san_commercial_waste_zone
-        {
-            get => m_san_commercial_waste_zone;
-            set => m_san_commercial_waste_zone = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string filler3
-        {
-            get => m_filler3;
-            set => m_filler3 = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string true_hns
-        {
-            get => m_true_hns;
-            set => m_true_hns = value.Length > 11 ? value.Substring(0, 11) : value;
-        }
-
-        public B7sc real_b7sc
-        {
-            get => m_real_b7sc;
-            set => m_real_b7sc = value;
-        }
-
-        public string segment_id
-        {
-            get => m_segment_id;
-            set => m_segment_id = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string curve_flag
-        {
-            get => m_curve_flag;
-            set => m_curve_flag = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string[] valid_lgcs
-        {
-            get => m_valid_lgcs;
-            set => m_valid_lgcs = value;
-        }
-
-        public string valid_lgcs_item(int index) => m_valid_lgcs[index];
-        public void valid_lgcs_item(int index, string value)  => m_valid_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
-
-        public string boe_lgc_pointer
-        {
-            get => m_boe_lgc_pointer;
-            set => m_boe_lgc_pointer = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string segment_azm
-        {
-            get => m_segment_azm;
-            set => m_segment_azm = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string segment_orient
-        {
-            get => m_segment_orient;
-            set => m_segment_orient = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string lo_x_coord
-        {
-            get => m_lo_x_coord;
-            set => m_lo_x_coord = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string lo_y_coord
-        {
-            get => m_lo_y_coord;
-            set => m_lo_y_coord = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string lo_z_coord
-        {
-            get => m_lo_z_coord;
-            set => m_lo_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string hi_x_coord
-        {
-            get => m_hi_x_coord;
-            set => m_hi_x_coord = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-        public string hi_y_coord
-        {
-            get => m_hi_y_coord;
-            set => m_hi_y_coord = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string hi_z_coord
-        {
-            get => m_hi_z_coord;
-            set => m_hi_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
         public string curve_center_x_coord
@@ -2608,100 +2262,48 @@ namespace GeoXWrapperLib.Model
             set => m_curve_center_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string circle_radius
+        public string curve_flag
         {
-            get => m_circle_radius;
-            set => m_circle_radius = value.Length > 7 ? value.Substring(0, 7) : value;
+            get => m_curve_flag;
+            set => m_curve_flag = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+        public string dcp_pref_lgc
+        {
+            get => m_dcp_pref_lgc;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 2 ? 2 : strlen;
+                m_dcp_pref_lgc = value.Substring(0, strlen);
+            }
         }
 
-        public string secant_location
+        public string dot_st_light_contract_area
         {
-            get => m_secant_location;
-            set => m_secant_location = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_dot_st_light_contract_area;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 1 ? 1 : strlen;
+                m_dot_st_light_contract_area = value.Substring(0, strlen);
+            }
         }
 
-        public string beta_angle
+        public string dsny_snow_priority
         {
-            get => m_beta_angle;
-            set => m_beta_angle = value.Length > 5 ? value.Substring(0, 5) : value;
+            get => m_dsny_snow_priority;
+            set => m_dsny_snow_priority = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
-        public string alpha_angle
+        public string dynamic_block
         {
-            get => m_alpha_angle;
-            set => m_alpha_angle = value.Length > 5 ? value.Substring(0, 5) : value;
+            get => m_dynamic_block;
+            set => m_dynamic_block = value.Length > 3 ? value.Substring(0, 3) : value;
         }
-
-        public string from_node
+        public string ed
         {
-            get => m_from_node;
-            set => m_from_node = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string to_node
-        {
-            get => m_to_node;
-            set => m_to_node = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public LionKey vanity_lion_key
-        {
-            get => m_vanity_lion_key;
-            set => m_vanity_lion_key = value;
-        }
-
-        public string vanity_sos
-        {
-            get => m_vanity_sos;
-            set => m_vanity_sos = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string split_lo_hns
-        {
-            get => m_split_lo_hns;
-            set => m_split_lo_hns = value.Length > 11 ? value.Substring(0, 11) : value;
-        }
-
-        public string traffic_dir
-        {
-            get => m_traffic_dir;
-            set => m_traffic_dir = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string turn_restrictions
-        {
-            get => m_turn_restrictions;
-            set => m_turn_restrictions = value.Length > 10 ? value.Substring(0, 10) : value;
-        }
-
-        public string gbicurv_fraction
-        {
-            get => m_gbicurv_fraction;
-            set => m_gbicurv_fraction = value.Length > 3 ? value.Substring(0, 3) : value;
-        }
-
-        public string roadway_type
-        {
-            get => m_roadway_type;
-            set => m_roadway_type = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string physical_id
-        {
-            get => m_physical_id;
-            set => m_physical_id = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string generic_id
-        {
-            get => m_generic_id;
-            set => m_generic_id = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string nypd_id
-        {
-            get => m_nypd_id;
-            set => m_nypd_id = value.Length > 7 ? value.Substring(0, 7) : value;
+            get => m_ed;
+            set => m_ed = value.Length > 3 ? value.Substring(0, 3) : value;
         }
 
         public string fdny_id
@@ -2710,16 +2312,31 @@ namespace GeoXWrapperLib.Model
             set => m_fdny_id = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string bike_lane2
+        public string feature_type
         {
-            get => m_bike_lane2;
-            set => m_bike_lane2 = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_feature_type;
+            set => m_feature_type = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
-        public string bike_traffic_direction
+        public string federal_classification_code
         {
-            get => m_bike_traffic_direction;
-            set => m_bike_traffic_direction = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_federal_classification_code;
+            set => m_federal_classification_code = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string filler01
+        {
+            get => m_filler01;
+            set => m_filler01 = value.Length > 213 ? value.Substring(0, 213) : value; // Enforced length limit
+        }
+
+        public string filler02
+        {
+            get => m_filler02;
+            set
+            {
+                int strlen = Math.Min(value.Length, 52);
+                m_filler02 = value.Substring(0, strlen).PadRight(52, ' ');
+            }
         }
 
         public string filler03
@@ -2728,76 +2345,39 @@ namespace GeoXWrapperLib.Model
             set => m_filler03 = value.Length > 5 ? value.Substring(0, 5) : value;
         }
 
-        public string street_status
+        public string filler3
         {
-            get => m_street_status;
-            set => m_street_status = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_filler3;
+            set => m_filler3 = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string street_width
+        public string filler_80ct
         {
-            get => m_street_width;
-            set => m_street_width = value.Length > 3 ? value.Substring(0, 3) : value;
+            get => m_filler_80ct;
+            set => m_filler_80ct = value.Length > 3 ? value.Substring(0, 3) : value;
+        }
+        public string fire_bat
+        {
+            get => m_fire_bat;
+            set => m_fire_bat = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string fire_co_num
+        {
+            get => m_fire_co_num;
+            set => m_fire_co_num = value.Length > 3 ? value.Substring(0, 3) : value;
         }
 
-        public string street_width_irregular
+        public string fire_co_type
         {
-            get => m_street_width_irregular;
-            set => m_street_width_irregular = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_fire_co_type;
+            set => m_fire_co_type = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
-        public string bike_lane
+        public string fire_div
         {
-            get => m_bike_lane;
-            set => m_bike_lane = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_fire_div;
+            set => m_fire_div = value.Length > 2 ? value.Substring(0, 2) : value;
         }
-
-        public string federal_classification_code
-        {
-            get => m_federal_classification_code;
-            set => m_federal_classification_code = value.Length > 2 ? value.Substring(0, 2) : value;
-        }
-
-        public string right_of_way_type
-        {
-            get => m_right_of_way_type;
-            set => m_right_of_way_type = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string[] additional_valid_lgcs
-        {
-            get => m_additional_valid_lgcs;
-            set => m_additional_valid_lgcs = value;
-        }
-
-        public string additional_valid_lgcs_item(int index) => m_additional_valid_lgcs[index];
-        public void additional_valid_lgcs_item(int index, string value) => m_additional_valid_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
-
-        public string legacy_segment_id
-        {
-            get => m_legacy_segment_id;
-            set => m_legacy_segment_id = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
-
-        public string[] from_dcp_preferred_lgcs
-        {
-            get => m_from_dcp_preferred_lgcs;
-            set => m_from_dcp_preferred_lgcs = value;
-        }
-
-        public string from_dcp_preferred_lgcs_item(int index)  => m_from_dcp_preferred_lgcs[index];
-        public void from_dcp_preferred_lgcs_item(int index, string value)  => m_from_dcp_preferred_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
-        
-
-        public string[] to_dcp_preferred_lgcs
-        {
-            get => m_to_dcp_preferred_lgcs;
-            set => m_to_dcp_preferred_lgcs = value;
-        }
-
-        public string to_dcp_preferred_lgcs_item(int index) => m_to_dcp_preferred_lgcs[index];
-        public void to_dcp_preferred_lgcs_item(int index, string value) => m_to_dcp_preferred_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
-        
 
         public string[] from_additional_lgcs
         {
@@ -2805,24 +2385,115 @@ namespace GeoXWrapperLib.Model
             set => m_from_additional_lgcs = value;
         }
 
-        public string from_additional_lgcs_item(int index) => m_from_additional_lgcs[index];
-        public void from_additional_lgcs_item(int index, string value) => m_from_additional_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
-        
-
-        public string[] to_additional_lgcs
+        public string[] from_dcp_preferred_lgcs
         {
-            get => m_to_additional_lgcs;
-            set => m_to_additional_lgcs = value;
+            get => m_from_dcp_preferred_lgcs;
+            set => m_from_dcp_preferred_lgcs = value;
+        }
+        public string from_node
+        {
+            get => m_from_node;
+            set => m_from_node = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+        public string gbicurv_fraction
+        {
+            get => m_gbicurv_fraction;
+            set => m_gbicurv_fraction = value.Length > 3 ? value.Substring(0, 3) : value;
+        }
+        public string generic_id
+        {
+            get => m_generic_id;
+            set => m_generic_id = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+        public string grc
+        {
+            get => m_grc;
+            set => m_grc = value.Length > 2 ? value.Substring(0, 2) : value;
         }
 
-        public string to_additional_lgcs_item(int index) => m_to_additional_lgcs[index];
-        public void to_additional_lgcs_item(int index, string value) => m_to_additional_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
-        
-
-        public string no_cross_street_calculation_flag
+        public VsamKey1 gridkey1
         {
-            get => m_no_cross_street_calculation_flag;
-            set => m_no_cross_street_calculation_flag = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_gridkey1;
+            set => m_gridkey1 = value;
+        }
+
+        public string health_area
+        {
+            get => m_health_area;
+            set => m_health_area = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+        public string health_center_dist
+        {
+            get => m_health_center_dist;
+            set => m_health_center_dist = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string hi_hns
+        {
+            get => m_hi_hns;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 11 ? 11 : strlen;
+                m_hi_hns = value.Substring(0, strlen);
+            }
+        }
+
+        public B7sc[] hi_x_b7sc_list
+        {
+            get => m_hi_x_b7sc_list;
+            set => m_hi_x_b7sc_list = value;
+        }
+
+        public string hi_x_coord
+        {
+            get => m_hi_x_coord;
+            set => m_hi_x_coord = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string[] hi_x_stname_list
+        {
+            get => m_hi_x_stname_list;
+            set => m_hi_x_stname_list = value;
+        }
+
+        public B5sc[] hi_x_sts
+        {
+            get => m_hi_x_sts;
+            set => m_hi_x_sts = value;
+        }
+        public string hi_x_sts_cnt
+        {
+            get => m_hi_x_sts_cnt;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 1 ? 1 : strlen;
+                m_hi_x_sts_cnt = value.Substring(0, strlen);
+            }
+        }
+
+        public string hi_x_sts_cnt2
+        {
+            get => m_hi_x_sts_cnt2;
+            set => m_hi_x_sts_cnt2 = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+        public string hi_y_coord
+        {
+            get => m_hi_y_coord;
+            set => m_hi_y_coord = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string hi_z_coord
+        {
+            get => m_hi_z_coord;
+            set => m_hi_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string hurricane_zone
+        {
+            get => m_hurricane_zone;
+            set => m_hurricane_zone = value.Length > 2 ? value.Substring(0, 2) : value;
         }
 
         public string individual_segment_length
@@ -2831,28 +2502,268 @@ namespace GeoXWrapperLib.Model
             set => m_individual_segment_length = value.Length > 5 ? value.Substring(0, 5) : value;
         }
 
-        public string nta_name
-        {
-            get => m_nta_name;
-            set => m_nta_name = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string USPS_city_name
-        {
-            get => m_USPS_city_name;
-            set => m_USPS_city_name = value.Length > 25 ? value.Substring(0, 25) : value;
-        }
-
         public string latitude
         {
             get => m_latitude;
             set => m_latitude = value.Length > 9 ? value.Substring(0, 9) : value;
         }
+        public string legacy_segment_id
+        {
+            get => m_legacy_segment_id;
+            set => m_legacy_segment_id = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
 
+        public LionKey lion_key
+        {
+            get => m_lion_key;
+            set => m_lion_key = value;
+        }
+
+        public string lo_hns
+        {
+            get => m_lo_hns;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 11 ? 11 : strlen;
+                m_lo_hns = value.Substring(0, strlen);
+            }
+        }
+
+        public B7sc[] lo_x_b7sc_list
+        {
+            get => m_lo_x_b7sc_list;
+            set => m_lo_x_b7sc_list = value;
+        }
+
+        public string lo_x_coord
+        {
+            get => m_lo_x_coord;
+            set => m_lo_x_coord = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+        public string[] lo_x_stname_list
+        {
+            get => m_lo_x_stname_list;
+            set => m_lo_x_stname_list = value;
+        }
+
+        public B5sc[] lo_x_sts
+        {
+            get => m_lo_x_sts;
+            set => m_lo_x_sts = value;
+        }
+        public string lo_x_sts_cnt
+        {
+            get => m_lo_x_sts_cnt;
+            set => m_lo_x_sts_cnt = (value.Length > 1 ? value.Substring(0, 1) : value).PadRight(1);
+        }
+        public string lo_x_sts_cnt2
+        {
+            get => m_lo_x_sts_cnt2;
+            set => m_lo_x_sts_cnt2 = (value.Length > 1 ? value.Substring(0, 1) : value).PadRight(1);
+        }
+        public string lo_y_coord
+        {
+            get => m_lo_y_coord;
+            set => m_lo_y_coord = (value.Length > 7 ? value.Substring(0, 7) : value).PadRight(7);
+        }
+        public string lo_z_coord
+        {
+            get => m_lo_z_coord;
+            set => m_lo_z_coord = (value.Length > 7 ? value.Substring(0, 7) : value).PadRight(7);
+        }
         public string longitude
         {
             get => m_longitude;
             set => m_longitude = value.Length > 11 ? value.Substring(0, 11) : value;
+        }
+
+        public string mc
+        {
+            get => m_mc;
+            set => m_mc = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string mh_ri_flag
+        {
+            get => m_mh_ri_flag;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 1 ? 1 : strlen;
+                m_mh_ri_flag = value.Substring(0, strlen);
+            }
+        }
+
+        public string no_cross_street_calculation_flag
+        {
+            get => m_no_cross_street_calculation_flag;
+            set => m_no_cross_street_calculation_flag = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string nta
+        {
+            get => m_nta;
+            set => m_nta = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+        public string nta_2020
+        {
+            get => m_nta_2020;
+            set => m_nta_2020 = value.Length > 6 ? value.Substring(0, 6) : value;
+        }
+        public string nta_name
+        {
+            get => m_nta_name;
+            set => m_nta_name = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+        public string nypd_id
+        {
+            get => m_nypd_id;
+            set => m_nypd_id = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string physical_id
+        {
+            get => m_physical_id;
+            set => m_physical_id = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string police_area
+        {
+            get => m_police_area;
+            set => m_police_area = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string police_boro_com
+        {
+            get => m_police_boro_com;
+            set => m_police_boro_com = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string police_patrol_boro
+        {
+            get => m_police_patrol_boro;
+            set => m_police_patrol_boro = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string police_pct
+        {
+            get => m_police_pct;
+            set => m_police_pct = value.Length > 3 ? value.Substring(0, 3) : value;
+        }
+        public string police_sector
+        {
+            get => m_police_sector;
+            set => m_police_sector = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+        public string puma_2020
+        {
+            get => m_puma_2020;
+            set => m_puma_2020 = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string puma_code
+        {
+            get => m_puma_code;
+            set => m_puma_code = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+        public B7sc real_b7sc
+        {
+            get => m_real_b7sc;
+            set => m_real_b7sc = value;
+        }
+
+        public string reason_code
+        {
+            get => m_reason_code;
+            set => m_reason_code = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+        public string reason_code_qualifier
+        {
+            get => m_reason_code_qualifier;
+            set => m_reason_code_qualifier = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string res_gss
+        {
+            get => m_res_gss;
+            set
+            {
+                int strlen = value.Length;
+                strlen = strlen > 1 ? 1 : strlen;
+                m_res_gss = value.Substring(0, strlen);
+            }
+        }
+
+        public string right_of_way_type
+        {
+            get => m_right_of_way_type;
+            set => m_right_of_way_type = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string roadway_type
+        {
+            get => m_roadway_type;
+            set => m_roadway_type = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+        public string san_bulk
+        {
+            get => m_san_bulk;
+            set => m_san_bulk = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string san_commercial_waste_zone
+        {
+            get => m_san_commercial_waste_zone;
+            set => m_san_commercial_waste_zone = value.Length > 4 ? value.Substring(0, 4) : value;
+        }
+
+
+        public string san_dist
+        {
+            get => m_san_dist;
+            set => m_san_dist = value.Length > 3 ? value.Substring(0, 3) : value;
+        }
+
+        public string san_org_pick_up
+        {
+            get => m_san_org_pick_up;
+            set => m_san_org_pick_up = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string san_recycle
+        {
+            get => m_san_recycle;
+            set => m_san_recycle = value.Length > 3 ? value.Substring(0, 3) : value;
+        }
+
+        public string san_reg
+        {
+            get => m_san_reg;
+            set => m_san_reg = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string san_sched
+        {
+            get => m_san_sched;
+            set => m_san_sched = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string school_dist
+        {
+            get => m_school_dist;
+            set => m_school_dist = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string sd
+        {
+            get => m_sd;
+            set => m_sd = value.Length > 2 ? value.Substring(0, 2) : value;
+        }
+
+        public string secant_location
+        {
+            get => m_secant_location;
+            set => m_secant_location = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
         public string seg_from_node
@@ -2861,11 +2772,6 @@ namespace GeoXWrapperLib.Model
             set => m_seg_from_node = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string seg_to_node
-        {
-            get => m_seg_to_node;
-            set => m_seg_to_node = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
         public string seg_from_x_coord
         {
             get => m_seg_from_x_coord;
@@ -2876,12 +2782,18 @@ namespace GeoXWrapperLib.Model
         {
             get => m_seg_from_y_coord;
             set => m_seg_from_y_coord = value.Length > 7 ? value.Substring(0, 7) : value;
-        }
+        } 
 
         public string seg_from_z_coord
         {
             get => m_seg_from_z_coord;
             set => m_seg_from_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
+        }
+
+        public string seg_to_node
+        {
+            get => m_seg_to_node;
+            set => m_seg_to_node = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
         public string seg_to_x_coord
@@ -2902,34 +2814,46 @@ namespace GeoXWrapperLib.Model
             set => m_seg_to_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string blockface_id
+        public string segment_azm
         {
-            get => m_blockface_id;
-            set => m_blockface_id = value.Length > 10 ? value.Substring(0, 10) : value;
+            get => m_segment_azm;
+            set => m_segment_azm = value.Length > 3 ? value.Substring(0, 3) : value;
         }
 
-        public string No_Traveling_lanes
+        public string segment_id
         {
-            get => m_No_Traveling_lanes;
-            set => m_No_Traveling_lanes = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_segment_id;
+            set => m_segment_id = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string No_Parking_lanes
+        public string segment_len
         {
-            get => m_No_Parking_lanes;
-            set => m_No_Parking_lanes = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_segment_len;
+            set => m_segment_len = value.Length > 5 ? value.Substring(0, 5) : value;
         }
 
-        public string No_Total_Lanes
+        public string segment_orient
         {
-            get => m_Total_Lanes;
-            set => m_Total_Lanes = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_segment_orient;
+            set => m_segment_orient = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
-        public string st_width_max
+        public string segment_type
         {
-            get => m_st_width_max;
-            set => m_st_width_max = value.Length > 3 ? value.Substring(0, 3) : value;
+            get => m_segment_type;
+            set => m_segment_type = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string sos_ind
+        {
+            get => m_sos_ind;
+            set => m_sos_ind = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string spec_addr_flag
+        {
+            get => m_spec_addr_flag;
+            set => m_spec_addr_flag = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
         public string speed_limit
@@ -2938,82 +2862,123 @@ namespace GeoXWrapperLib.Model
             set => m_speed_limit = value.Length > 2 ? value.Substring(0, 2) : value;
         }
 
-        public string puma_code
+        public string split_ed
         {
-            get => m_puma_code;
-            set => m_puma_code = value.Length > 5 ? value.Substring(0, 5) : value;
+            get => m_split_ed;
+            set => m_split_ed = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
-        public string police_sector
+        public string split_lo_hns
         {
-            get => m_police_sector;
-            set => m_police_sector = value.Length > 4 ? value.Substring(0, 4) : value;
+            get => m_split_lo_hns;
+            set => m_split_lo_hns = value.Length > 11 ? value.Substring(0, 11) : value;
         }
 
-        public string police_area
+        public string split_school_dist_flag
         {
-            get => m_police_area;
-            set => m_police_area = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_split_school_dist_flag;
+            set => m_split_school_dist_flag = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
+        public string st_width_max
+        {
+            get => m_st_width_max;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 3) strlen = 3;
+                m_st_width_max = value.Substring(0, strlen);
+            }
+        }
+        public string street_status
+        {
+            get => m_street_status;
+            set => m_street_status = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string street_width
+        {
+            get => m_street_width;
+            set => m_street_width = value.Length > 3 ? value.Substring(0, 3) : value;
+        }
+
+        public string street_width_irregular
+        {
+            get => m_street_width_irregular;
+            set => m_street_width_irregular = value.Length > 1 ? value.Substring(0, 1) : value;
+        }
+
+        public string[] to_additional_lgcs
+        {
+            get => m_to_additional_lgcs;
+            set => m_to_additional_lgcs = value;
+        }
+        public string[] to_dcp_preferred_lgcs
+        {
+            get => m_to_dcp_preferred_lgcs;
+            set => m_to_dcp_preferred_lgcs = value;
+        }
+        public string to_node
+        {
+            get => m_to_node;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 7) strlen = 7;
+                m_to_node = value.Substring(0, strlen);
+            }
+        }
+
+        public string traffic_dir
+        {
+            get => m_traffic_dir;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_traffic_dir = value.Substring(0, strlen);
+            }
+        }
         public string truck_route_type
         {
             get => m_truck_route_type;
-            set => m_truck_route_type = value.Length > 1 ? value.Substring(0, 1) : value;
+            set
+            {
+                int strlen = value.Length;
+                if (strlen > 1) strlen = 1;
+                m_truck_route_type = value.Substring(0, strlen);
+            }
         }
 
-        public string census_tract_2020
+        public string true_hns
         {
-            get => m_census_tract_2020;
-            set => m_census_tract_2020 = value.Length > 6 ? value.Substring(0, 6) : value;
+            get => m_true_hns;
+            set => m_true_hns = (value.Length > 11 ? value.Substring(0, 11) : value).PadRight(11);
         }
 
-        public string census_block_2020
+        public string turn_restrictions
         {
-            get => m_census_block_2020;
-            set => m_census_block_2020 = value.Length > 4 ? value.Substring(0, 4) : value;
+            get => m_turn_restrictions;
+            set => m_turn_restrictions = (value.Length > 10 ? value.Substring(0, 10) : value).PadRight(10);
         }
 
-        public string census_block_suffix_2020
+        [XmlArrayItem(typeof(string), ElementName = "lgc")]
+        public string[] valid_lgcs
         {
-            get => m_census_block_suffix_2020;
-            set => m_census_block_suffix_2020 = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_valid_lgcs;
+            set => m_valid_lgcs = value;
         }
 
-        public string nta_2020
+        public LionKey vanity_lion_key
         {
-            get => m_nta_2020;
-            set => m_nta_2020 = value.Length > 6 ? value.Substring(0, 6) : value;
+            get => m_vanity_lion_key;
+            set => m_vanity_lion_key = value;
         }
 
-        public string cdta_2020
+        public string vanity_sos
         {
-            get => m_cdta_2020;
-            set => m_cdta_2020 = value.Length > 4 ? value.Substring(0, 4) : value;
-        }
-
-        public string puma_2020
-        {
-            get => m_puma_2020;
-            set => m_puma_2020 = value.Length > 5 ? value.Substring(0, 5) : value;
-        }
-
-        public string filler01
-        {
-            get => m_filler01;
-            set => m_filler01 = value.Length > 213 ? value.Substring(0, 213) : value; // Enforced length limit
-        }
-
-        public string reason_code
-        {
-            get => m_reason_code;
-            set => m_reason_code = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public string reason_code_qualifier
-        {
-            get => m_reason_code_qualifier;
-            set => m_reason_code_qualifier = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_vanity_sos;
+            set => m_vanity_sos = value.Length > 1 ? value.Substring(0, 1) : value;
         }
 
         public string warning_code
@@ -3022,49 +2987,66 @@ namespace GeoXWrapperLib.Model
             set => m_warning_code = value.Length > 2 ? value.Substring(0, 2) : value;
         }
 
-        public string grc
+        public string x_coord
         {
-            get => m_grc;
-            set => m_grc = value.Length > 2 ? value.Substring(0, 2) : value;
+            get => m_x_coord;
+            set => m_x_coord = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public string lo_x_sts_cnt2
+        public string y_coord
         {
-            get => m_lo_x_sts_cnt2;
-            set => m_lo_x_sts_cnt2 = value.Length > 1 ? value.Substring(0, 1) : value;
+            get => m_y_coord;
+            set => m_y_coord = value.Length > 7 ? value.Substring(0, 7) : value;
         }
 
-        public B7sc[] lo_x_b7sc_list
+        public string z_coord
         {
-            get => m_lo_x_b7sc_list;
-            set => m_lo_x_b7sc_list = value;
+            get => m_z_coord;
+            set => m_z_coord = value.Length > 7 ? value.Substring(0, 7) : value;
         }
+
+        public string zip_code
+        {
+            get => m_zip_code;
+            set => m_zip_code = value.Length > 5 ? value.Substring(0, 5) : value;
+        }
+
+        public string valid_lgcs_item(int index) => m_valid_lgcs[index];
+        public void valid_lgcs_item(int index, string value)  => m_valid_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
+
+
+        public string additional_valid_lgcs_item(int index) => m_additional_valid_lgcs[index];
+        public void additional_valid_lgcs_item(int index, string value) => m_additional_valid_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
+
+        public string from_dcp_preferred_lgcs_item(int index) => m_from_dcp_preferred_lgcs[index];
+        public void from_dcp_preferred_lgcs_item(int index, string value) => m_from_dcp_preferred_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
+
+
+        public B5sc lo_x_sts_item(int index) => m_lo_x_sts[index];
+
+        public void lo_x_sts_item(int index, B5sc value) => m_lo_x_sts[index] = value;
+
+
+        public B5sc hi_x_sts_item(int index) => m_hi_x_sts[index];
+
+        public void hi_x_sts_item(int index, B5sc value) => m_hi_x_sts[index] = value;
+
+
+        public string to_dcp_preferred_lgcs_item(int index) => m_to_dcp_preferred_lgcs[index];
+        public void to_dcp_preferred_lgcs_item(int index, string value) => m_to_dcp_preferred_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
+
+        public string from_additional_lgcs_item(int index) => m_from_additional_lgcs[index];
+        public void from_additional_lgcs_item(int index, string value) => m_from_additional_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
+     
+
+        public string to_additional_lgcs_item(int index) => m_to_additional_lgcs[index];
+        public void to_additional_lgcs_item(int index, string value) => m_to_additional_lgcs[index] = value.Length > 2 ? value.Substring(0, 2) : value;
 
         public B7sc lo_x_b7sc_list_item(int index) => m_lo_x_b7sc_list[index];
         public void lo_x_b7sc_list_item(int index, B7sc value) => m_lo_x_b7sc_list[index] = value;
         
-
-        public string hi_x_sts_cnt2
-        {
-            get => m_hi_x_sts_cnt2;
-            set => m_hi_x_sts_cnt2 = value.Length > 1 ? value.Substring(0, 1) : value;
-        }
-
-        public B7sc[] hi_x_b7sc_list
-        {
-            get => m_hi_x_b7sc_list;
-            set => m_hi_x_b7sc_list = value;
-        }
-
         public B7sc hi_x_b7sc_list_item(int index)  => m_hi_x_b7sc_list[index];
         public void hi_x_b7sc_list_item(int index, B7sc value) => m_hi_x_b7sc_list[index] = value;
-        
-
-        public string[] lo_x_stname_list
-        {
-            get => m_lo_x_stname_list;
-            set => m_lo_x_stname_list = value;
-        }
 
         public string LoXStnameListItem(int index)  => m_lo_x_stname_list[index];
 
@@ -3078,12 +3060,6 @@ namespace GeoXWrapperLib.Model
 
         }
 
-        public string[] hi_x_stname_list
-        {
-            get => m_hi_x_stname_list;
-            set => m_hi_x_stname_list = value;
-        }
-
         public string HiXStnameListItem(int index) => m_hi_x_stname_list[index];
 
         public void HiXStnameListItem(int index, string value){
@@ -3093,31 +3069,6 @@ namespace GeoXWrapperLib.Model
                 m_hi_x_stname_list[index] = value.Substring(0, strlen).PadRight(32, ' ');
         }
 
-        public B7sc boe_preferred_b7sc
-        {
-            get => m_boe_preferred_b7sc;
-            set => m_boe_preferred_b7sc = value;
-        }
-
-        public string boe_preferred_stname
-        {
-            get => m_boe_preferred_stname;
-            set
-            {
-                int strlen = Math.Min(value.Length, 32);
-                m_boe_preferred_stname = value.Substring(0, strlen).PadRight(32, ' ');
-            }
-        }
-
-        public string filler02
-        {
-            get => m_filler02;
-            set
-            {
-                int strlen = Math.Min(value.Length, 52);
-                m_filler02 = value.Substring(0, strlen).PadRight(52, ' ');
-            }
-        }
 
 
     }
