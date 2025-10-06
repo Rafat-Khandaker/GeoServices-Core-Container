@@ -2,180 +2,173 @@
   "display": null,
   "root": {
     "wa1": {
-      "in_func_code": "1L",
-      "in_hnd": "\\120           ",
-      "in_hns": "           ",
-      "in_low_hnd": "                ",
-      "in_low_hns": "           ",
+      "in_auxseg_switch": " ",
       "in_b10sc1": {
         "boro": " ",
-        "sc5": "     ",
         "lgc": "  ",
+        "sc5": "     ",
         "spv": "   "
       },
+      "in_b10sc2": {
+        "boro": " ",
+        "lgc": "  ",
+        "sc5": "     ",
+        "spv": "   "
+      },
+      "in_b10sc3": {
+        "boro": " ",
+        "lgc": "  ",
+        "sc5": "     ",
+        "spv": "   "
+      },
+      "in_bbl": {
+        "block": "     ",
+        "boro": " ",
+        "lot": "    "
+      },
+      "in_bin": {
+        "binnum": "      ",
+        "boro": " "
+      },
+      "in_bin_string": "       ",
       "in_boro1": " ",
       "in_boro2": " ",
       "in_boro3": " ",
-      "in_stname1": "                                ",
-      "in_b10sc2": {
-        "boro": " ",
-        "sc5": "     ",
-        "lgc": "  ",
-        "spv": "   "
-      },
-      "in_stname2": "                                ",
-      "in_b10sc3": {
-        "boro": " ",
-        "sc5": "     ",
-        "lgc": "  ",
-        "spv": "   "
-      },
-      "in_stname3": "                                ",
-      "in_bbl": {
-        "boro": " ",
-        "block": "     ",
-        "lot": "    "
-      },
-      "in_filler01": " ",
-      "in_bin": {
-        "boro": " ",
-        "binnum": "      "
-      },
-      "in_bin_string": "       ",
+      "in_browse_flag": " ",
       "in_compass_dir": " ",
       "in_compass_dir2": " ",
+      "in_filler01": " ",
+      "in_filler03": "                                                                                  ",
+      "in_filler4": "                              ",
+      "in_func_code": "1L",
+      "in_hn_justification": " ",
+      "in_hn_norm_override": " ",
+      "in_hnd": "\\120           ",
+      "in_hnl": "  ",
+      "in_hns": "           ",
+      "in_legacy_grc_flag": " ",
+      "in_long_wa2_flag": " ",
+      "in_low_hnd": "                ",
+      "in_low_hns": "           ",
+      "in_mode_switch": " ",
       "in_node": "       ",
       "in_platform_ind": " ",
-      "in_zip_code": "     ",
-      "in_unit": "              ",
-      "in_filler03": "                                                                                  ",
-      "in_long_wa2_flag": " ",
-      "in_hn_justification": " ",
-      "in_hnl": "  ",
-      "in_hn_norm_override": " ",
-      "in_snl": "  ",
-      "in_stname_normalization": " ",
-      "in_xstreet_names_flag": " ",
-      "in_roadbed_request_switch": " ",
-      "in_legacy_grc_flag": " ",
-      "in_auxseg_switch": " ",
-      "in_browse_flag": " ",
       "in_real_street_only": " ",
+      "in_roadbed_request_switch": " ",
+      "in_snl": "  ",
+      "in_stname1": "                                ",
+      "in_stname2": "                                ",
+      "in_stname3": "                                ",
+      "in_stname_normalization": " ",
       "in_tpad_switch": " ",
-      "in_mode_switch": " ",
-      "in_filler4": "                              ",
-      "out_boro_name1": "         ",
-      "out_hnd": "                ",
-      "out_hns": "           ",
-      "out_b10sc1": {
-        "boro": " ",
-        "sc5": "     ",
-        "lgc": "  ",
-        "spv": "   "
-      },
-      "out_stname1": "                                ",
-      "out_b10sc2": {
-        "boro": " ",
-        "sc5": "     ",
-        "lgc": "  ",
-        "spv": "   "
-      },
-      "out_stname2": "                                ",
-      "out_b10sc3": {
-        "boro": " ",
-        "sc5": "     ",
-        "lgc": "  ",
-        "spv": "   "
-      },
-      "out_stname3": "                                ",
-      "out_bbl": {
-        "boro": " ",
-        "block": "     ",
-        "lot": "    "
-      },
-      "out_filler02": " ",
-      "out_low_hnd": "                ",
-      "out_low_hns": "           ",
-      "out_bin": {
-        "boro": " ",
-        "binnum": "      "
-      },
+      "in_unit": "              ",
+      "in_xstreet_names_flag": " ",
+      "in_zip_code": "     ",
       "out_attr_bytes": [
         " ",
         " ",
         " "
       ],
-      "out_reason_code2": " ",
-      "out_reason_code_qualifier2": " ",
-      "out_warning_code2": "  ",
-      "out_grc2": "  ",
-      "out_error_message2": "                                                                                ",
-      "out_node": "       ",
-      "out_units": {
-        "unit_type": "    ",
-        "unit_identifier": "          "
+      "out_b10sc1": {
+        "boro": " ",
+        "lgc": "  ",
+        "sc5": "     ",
+        "spv": "   "
       },
-      "out_unit": "              ",
-      "out_filler03": "                 ",
-      "out_st_attr": " ",
-      "out_reason_code": "1",
-      "out_reason_code_qualifier": " ",
-      "out_warning_code": "  ",
-      "out_grc": "13",
-      "out_error_message": "ADDRESS NBR \\120  CONTAINS AN INVALID CHARACTER(\\) IN POSITION 1.              ",
-      "out_number_of_stcodes": "  ",
+      "out_b10sc2": {
+        "boro": " ",
+        "lgc": "  ",
+        "sc5": "     ",
+        "spv": "   "
+      },
+      "out_b10sc3": {
+        "boro": " ",
+        "lgc": "  ",
+        "sc5": "     ",
+        "spv": "   "
+      },
       "out_b7sc_list": [
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         },
         {
           "boro": " ",
-          "sc5": "     ",
-          "lgc": "  "
+          "lgc": "  ",
+          "sc5": "     "
         }
       ],
+      "out_bbl": {
+        "block": "     ",
+        "boro": " ",
+        "lot": "    "
+      },
+      "out_bin": {
+        "binnum": "      ",
+        "boro": " "
+      },
+      "out_boro_name1": "         ",
+      "out_error_message": "ADDRESS NBR \\120  CONTAINS AN INVALID CHARACTER(\\) IN POSITION 1.              ",
+      "out_error_message2": "                                                                                ",
+      "out_filler02": " ",
+      "out_filler03": "                 ",
+      "out_grc": "13",
+      "out_grc2": "  ",
+      "out_hnd": "                ",
+      "out_hns": "           ",
+      "out_low_hnd": "                ",
+      "out_low_hns": "           ",
+      "out_node": "       ",
+      "out_number_of_stcodes": "  ",
+      "out_reason_code": "1",
+      "out_reason_code2": " ",
+      "out_reason_code_qualifier": " ",
+      "out_reason_code_qualifier2": " ",
+      "out_st_attr": " ",
+      "out_stname1": "                                ",
+      "out_stname2": "                                ",
+      "out_stname3": "                                ",
       "out_stname_list": [
         "                                ",
         "                                ",
@@ -187,7 +180,14 @@
         "                                ",
         "                                ",
         "                                "
-      ]
+      ],
+      "out_unit": "              ",
+      "out_units": {
+        "unit_identifier": "          ",
+        "unit_type": "    "
+      },
+      "out_warning_code": "  ",
+      "out_warning_code2": "  "
     }
   }
 }
