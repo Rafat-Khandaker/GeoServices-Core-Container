@@ -16,8 +16,9 @@ namespace GeoXWrapperTest.Model.Display
         public string in_func_code => _wa1.in_func_code;
         public string in_hnd => _wa1.in_hnd;
         public string out_error_message => _wa1.out_error_message;
-        public string out_reason_code => _wa1.out_reason_code;
         public string out_grc => _wa1.out_grc;
         public string out_hnd => _wa1.out_hnd;
+
+        public string out_reason_code => _wa1.out_reason_code;
     }
 }

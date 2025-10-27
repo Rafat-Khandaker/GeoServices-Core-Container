@@ -218,7 +218,7 @@ namespace GeoXWrapperTest
                                                 StreetNameLength = input.StNameLength,
                                                 ZipCode = input.Zip,
                                                 Unit = input.Unit,
-                                                DisplayFormat = "false"
+                                                DisplayFormat = "true"
                                             }));
 
 
