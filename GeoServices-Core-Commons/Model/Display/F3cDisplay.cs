@@ -1,4 +1,5 @@
 ﻿using DCP.Geosupport.DotNet.fld_def_lib;
+using GeoServices_Core_Commons.Model;
 using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
@@ -31,7 +32,9 @@ namespace GeoXWrapperTest.Model.Display
             GeoCaller = geoCaller;
         }
 
-        public override List<string> AuxiliarySegmentIDList => _wa2f3ceas.auxseg_id_list.Where(auxSegId => !string.IsNullOrWhiteSpace(auxSegId)).ToList();
+        public override List<AuxiliarySegment> AuxiliarySegmentIDList => _wa2f3ceas.auxseg_id_list.Where(auxSegId => !string.IsNullOrWhiteSpace(auxSegId)).Select(s => new AuxiliarySegment { ID = s }).ToList();
+        public override List<LowHighB7SC> HighB7SCList { get; set; }
+        public override List<LowHighB7SC> LowB7SCList { get; set; }
 
         public override string out_from_node => _wa2f3ce.from_node;
         public override string out_to_node => _wa2f3ce.to_node;

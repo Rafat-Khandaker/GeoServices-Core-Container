@@ -72,8 +72,8 @@ namespace GeoXWrapperTest.Model.Display
         public string out_co => _wa2f2.co.TrimStart('0');
         public string out_com_dist => _wa2f2.com_dist.boro + _wa2f2.com_dist.district_number;
         public string out_compass => _wa2f2.compass;
-        public string out_dcp_pref_lgc1 => $"{_wa1.out_b10sc1.boro}{_wa1.out_b10sc1.sc5}{_wa2f2.dcp_pref_lgc1}/ {ValidationHelper.ReadStNameFdg(_wa1.out_b10sc1.boro, _wa1.out_b10sc1.sc5, _wa2f2.dcp_pref_lgc1, GeoCaller)}";
-        public string out_dcp_pref_lgc2 => $"{_wa1.out_b10sc2.boro}{_wa1.out_b10sc2.sc5}{_wa2f2.dcp_pref_lgc2}/ {ValidationHelper.ReadStNameFdg(_wa1.out_b10sc2.boro, _wa1.out_b10sc2.sc5, _wa2f2.dcp_pref_lgc2, GeoCaller)}";
+        public string out_dcp_pref_lgc1 => !String.IsNullOrEmpty(in_node)? "N/A" : $"{_wa1.out_b10sc1.boro}{_wa1.out_b10sc1.sc5}{_wa2f2.dcp_pref_lgc1}/ {ValidationHelper.ReadStNameFdg(_wa1.out_b10sc1.boro, _wa1.out_b10sc1.sc5, _wa2f2.dcp_pref_lgc1, GeoCaller)}";
+        public string out_dcp_pref_lgc2 => !String.IsNullOrEmpty(in_node) ? "N/A" : $"{_wa1.out_b10sc2.boro}{_wa1.out_b10sc2.sc5}{_wa2f2.dcp_pref_lgc2}/ {ValidationHelper.ReadStNameFdg(_wa1.out_b10sc2.boro, _wa1.out_b10sc2.sc5, _wa2f2.dcp_pref_lgc2, GeoCaller)}";
         public string out_dot_st_light_contract_area => _wa2f2.dot_st_light_contract_area;
         public string out_error_message => _wa1.out_error_message;
         public string out_fire_bat => _wa2f2.fire_bat.TrimStart('0');

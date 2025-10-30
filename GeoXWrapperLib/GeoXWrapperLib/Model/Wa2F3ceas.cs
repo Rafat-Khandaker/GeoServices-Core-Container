@@ -61,19 +61,11 @@ namespace GeoXWrapperLib.Model
             m_auxseg_filler = inString.Substring(850, 6);
             m_auxseg_count = inString.Substring(856, 4);
 
-            using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + "\\Debug_Results_3c", append: true))
-            {
-                writer.WriteLine(inString);
+            for (int i = 0; i < 70; i++)
+                try{ m_auxseg_id_list[i] = inString.Substring(860 + (i * 7), 7); } catch { m_auxseg_id_list[i] = string.Empty; }
 
-                for (int i = 0; i < 70; i++)
-                    try {
-                        var test = inString.Substring(860 + (i * 7), 7);
-                        writer.WriteLine(test);
 
-                        m_auxseg_id_list[i] = test;
-                    }
-                    catch { m_auxseg_id_list[i] = string.Empty; }
-            }
+
             //for (int i = 0; i < 70; i++)
             //    try { m_auxseg_id_list[i] = inString.Substring(860 + (i * 7), 7); } 
             //    catch { m_auxseg_id_list[i] = string.Empty; }

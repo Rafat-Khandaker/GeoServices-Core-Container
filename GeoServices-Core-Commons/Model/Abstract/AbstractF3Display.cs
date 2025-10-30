@@ -1,4 +1,5 @@
-﻿using GeoXWrapperLib.Model;
+﻿using GeoServices_Core_Commons.Model;
+using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Display;
 using System;
@@ -14,9 +15,9 @@ namespace GeoXWrapperTest.Model.Abstract
         protected Wa1 _wa1;
 
         #region Data Lists
-        public abstract List<string> AuxiliarySegmentIDList { get; } //CHILD MUST OVERRIDE
-        public List<LowHighB7SC> LowB7SCList { get;  set; }
-        public List<LowHighB7SC> HighB7SCList { get;  set; }
+        public abstract List<AuxiliarySegment> AuxiliarySegmentIDList { get; } //CHILD MUST OVERRIDE
+        public abstract List<LowHighB7SC> LowB7SCList { get;  set; }
+        public abstract List<LowHighB7SC> HighB7SCList { get;  set; }
 
         public List<SimilarName> SimilarNamesList => ValidationHelper.CreateSimilarNamesList(_wa1.out_b7sc_list, _wa1.out_stname_list);
         #endregion

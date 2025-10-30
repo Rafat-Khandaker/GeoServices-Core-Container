@@ -304,11 +304,12 @@ namespace GeoXWrapperTest
         [DynamicData(nameof(F3C_IntrsctInput), DynamicDataSourceType.Property)]
         public void Function3C(CrossStreetInputs input, string output)
         {
-            var result = JsonSerializer.Serialize(GeoService.Function3C(new FunctionInput{
+            var result = JsonSerializer.Serialize(GeoService.Function3_F3C(new FunctionInput{
                                                     Borough1 = input.Borough1,
                                                     OnStreet= input.OnStreet,
                                                     FirstCrossStreet = input.FirstCrossStreet,
                                                     SecondCrossStreet = input.SecondCrossStreet,
+                                                    SideOfStreet = input.CompassDirection,
                                                     CompassFlag = input.CompassDirection,
                                                     DisplayFormat = "true"
                                                 }));
