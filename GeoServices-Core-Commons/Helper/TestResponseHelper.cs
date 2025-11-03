@@ -2,6 +2,7 @@
 using GeoXWrapperTest.Model;
 using GeoXWrapperTest.Model.Enum;
 using GeoXWrapperTest.Model.Structs;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -9,7 +10,8 @@ namespace GeoXWrapperTest.Helper
 {
     public static class TestResponseHelper
     {
-        
+        public static bool Debug_On { get; set; } = true;
+
         public static IEnumerable<object[]> Inputs_Generator(FunctionCode code)
         {
             switch (code) 
@@ -327,6 +329,70 @@ namespace GeoXWrapperTest.Helper
                 default:
                     return string.Empty;
             }
+        }
+
+        public static bool ValidateInputResults(string[] actualInputs, string[] expectedInputs, string functionFileName) {
+            var falseSwitch = false;
+
+            var actualInputParts = actualInputs[1].Substring(1, actualInputs[1].Length - 1).Split(",").ToList();
+            var expectedInputsParts = expectedInputs[1].Substring(1, expectedInputs[1].Length - 1).Split(",").ToList();
+
+            List<string> actualInputParts_NonMatch;
+            List<string> expectedInputParts_NonMatch;
+            List<string[]> errorList = new List<string[]>();
+
+            actualInputParts_NonMatch = actualInputParts.Where(a => !expectedInputsParts.Contains(a)).ToList();
+            expectedInputParts_NonMatch = expectedInputsParts.Where(e => !actualInputParts.Contains(e)).ToList();
+
+            expectedInputParts_NonMatch.ForEach((enm) => {
+                var enmparts = enm.Split(':');
+                var anmPart = actualInputParts_NonMatch.Where(anm => anm.Contains(enmparts[0])).FirstOrDefault();
+
+                if (anmPart == null)
+                {
+                    errorList.Add(new string[] { "ENEP", $"{{ {enmparts[0]} : {enmparts[1]} }}" });
+                    falseSwitch = true;
+                }
+                else if (!anmPart.Contains(enmparts[1]))
+                {
+                    errorList.Add(new string[] { "ENMV", $"{{ Actual: {anmPart} , Expected: {enmparts[1]} }}" });
+                    falseSwitch = true;
+                }
+            });
+
+            actualInputParts_NonMatch.Where(anm => !expectedInputParts_NonMatch.Contains(anm.Split(":")[0]))
+                                   .ToList()
+                                    .ForEach(e => errorList.Add(new string[] { "WNCL", $"new: {e}" }));
+
+
+            if (Debug_On)
+            {
+                File.Delete(Directory.GetCurrentDirectory() + $"\\{functionFileName}");
+                using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + $"\\{functionFileName}", append: true))
+                {
+
+                    writer.WriteLine(actualInputs[0] + "|" + actualInputs[1]);
+                    writer.WriteLine(expectedInputs[0] + "|" + expectedInputs[1]);
+
+                    writer.WriteLine("-------------- Error! No Existing Parameter in Actual ----------------------");
+                    errorList.Where(e => e[0].Equals("ENEP")).ToList().ForEach(e => writer.WriteLine(e[1]));
+
+                    writer.WriteLine("-------------- Error! No Matching Value in Actual ----------------------");
+                    errorList.Where(e => e[0].Equals("ENMV")).ToList().ForEach(e => writer.WriteLine(e[1]));
+
+                    writer.WriteLine("-------------- Warning! Parameter Not Contained in Legacy ----------------------");
+                    errorList.Where(e => e[0].Equals("WNCL")).ToList().ForEach(e => writer.WriteLine(e[1]));
+
+                    writer.Write("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+                }
+            }
+                
+
+     
+
+            
+
+            return !falseSwitch;
         }
 
     }
