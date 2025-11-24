@@ -10,6 +10,8 @@ using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class Function_BFController : Controller
     {
         private Geo _geo;
