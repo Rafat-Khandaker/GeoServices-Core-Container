@@ -7,14 +7,14 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y wget && apt-get install -y unzip  && apt-get clean 
 
-RUN wget -O "linux_geo25b_25.2.zip" "https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/geosupport/linux_geo25c_25.3.zip"
-RUN unzip linux_geo25b_25.2.zip
+RUN wget -O "linux_geo25d_25.4.zip" "https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/geosupport/linux_geo25d_25.4.zip"
+RUN unzip linux_geo25d_25.4.zip
 
 #ENV LD_DEBUG=libs
 
 #ENV LD_BIN_PATH=app/bin/Debug/net9.0/lib/bin
-ENV LD_LIBRARY_PATH=version-25b_25.2/lib
-ENV GEOFILES=version-25b_25.2/fls/
+ENV LD_LIBRARY_PATH=version-25d_25.4/lib
+ENV GEOFILES=version-25d_25.4/fls/
 
 #ENV LD_LIBRARY_PATH=app/bin/Debug/net9.0/lib/bin
 #ENV GEOFILES=app/bin/Debug/net9.0/lib/fls/

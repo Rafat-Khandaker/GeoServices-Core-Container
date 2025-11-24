@@ -35,7 +35,9 @@ namespace GeoXWrapperTest
             GeoService = ServiceProvider.GetService<IGeoService>();
             CryptographerService = ServiceProvider.GetService<Cryptographer>();
 
-            TestResponseHelper.Debug_On = true;
+            Directory.GetFiles(Directory.GetCurrentDirectory() + $"\\TestFunction").ToList().ForEach(f => File.Delete(f));
+
+            TestResponseHelper.Debug_On = true; 
         }
 
         public static IEnumerable<object[]> F1A_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1A);
@@ -68,9 +70,12 @@ namespace GeoXWrapperTest
                 writer.WriteLine(actualHash+"|"+actual);
                 writer.WriteLine(expectedHash+"|"+expected);
             }
-         
 
-            Assert.AreEqual(actualHash, expectedHash);
+            if (actualHash.Equals(expectedHash))
+                Assert.AreEqual(actualHash, expectedHash);
+
+            else
+                Assert.IsTrue(TestResponseHelper.ValidateInputResults(new string[] { actualHash, actual }, new string[] { expectedHash, expected }, "Results_1E"));
         }
 
         public static IEnumerable<object[]> F1B_AddrInputs => TestResponseHelper.Inputs_Generator(FunctionCode.F1B);

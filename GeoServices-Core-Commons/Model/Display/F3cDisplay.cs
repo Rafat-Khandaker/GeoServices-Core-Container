@@ -220,7 +220,7 @@ namespace GeoXWrapperTest.Model.Display
 
         #region Segment Side
         public override string out_seg_side_comdist => _segment.comdist.district_number;
-        public override string out_seg_side_comdist_boro => _segment.comdist.boro;
+        public override string out_seg_side_comdist_boro => ValidationHelper.GetBorough(_segment.comdist.boro);
         public override string out_seg_side_lhnd => _segment.lhnd;
         public override string out_seg_side_hhnd => _segment.hhnd;
         public override string out_seg_side_zip_code => _segment.zip_code;
@@ -233,7 +233,7 @@ namespace GeoXWrapperTest.Model.Display
         public override string out_seg_side_puma_code => _segment.puma_code;
         public override string out_seg_side_puma_2020 => _wa2f3ce.puma_2020;
         public override string out_seg_side_nta => $"{_segment.nta}: {_segment.nta_name}";
-        public override string out_seg_side_boro => _segment.boro;
+        public override string out_seg_side_boro => ValidationHelper.GetBorough(_segment.boro);
         public override string out_seg_side_census_tract_2020 => !string.IsNullOrWhiteSpace(_segment.census_tract_2020.Substring(4, 2))
             ? $"{_segment.census_tract_2020.Substring(0, 4)}.{_segment.census_tract_2020.Substring(4, 2)}"
             : _segment.census_tract_2020;

@@ -521,14 +521,12 @@ namespace GeoXWrapperLib.Model
 
         public string in_stname2
         {
-            get => m_in_stname2; 
+            get => m_in_stname2;
             set
             {
-                int strlen = value.Length;
-                if (strlen > 32) strlen = 32;
-                m_in_stname2 = new string(' ', 32);
-                if (strlen > 0)
-                    m_in_stname2 = value.Substring(0, strlen).PadRight(32);
+                var strlen = (value ?? "");
+                strlen = strlen.Length > 32 ? strlen[..32] : strlen.PadRight(32);
+                m_in_stname2 = strlen;
             }
         }
 

@@ -687,33 +687,44 @@ namespace GeoXWrapperTest.Helper
                 in_platform_ind = "C"
             };
 
+            int total = 0;
+
             List<CrxStInfoF3S> f3sList = new List<CrxStInfoF3S>();
 
             foreach (CrossStreetInfo crxStInfo in crxStList.ToList())
             {
-                if (string.IsNullOrWhiteSpace(crxStInfo.node_num))
+                if (string.IsNullOrWhiteSpace(crxStInfo.node_num.Trim()))
                     break;
 
-                //Use FDL to find intersecting streets
-                for (int i = 0; i < 5; i++)
-                {
-                    wa1_dl.out_b7sc_list[i] = crxStInfo.xstr_b7sc_list[i];
-                }
-                geoCaller.GeoCall(ref wa1_dl);
 
-                CrxStInfoF3S f3sCrxSt = new CrxStInfoF3S
-                {
-                    out_intersecting_street = wa1_dl.out_stname_list[0].Trim(),
-                    out_second_intersecting_street = wa1_dl.out_stname_list[1].Trim(),
-                    out_third_intersecting_street = wa1_dl.out_stname_list[2].Trim(),
-                    out_fourth_intersecting_street = wa1_dl.out_stname_list[3].Trim(),
-                    out_fifth_intersecting_street = wa1_dl.out_stname_list[4].Trim(),
-                    out_xstr_cnt = crxStInfo.xstr_cnt, //intersecting st count
-                    out_distance = string.IsNullOrWhiteSpace(crxStInfo.distance.TrimStart('0'))
-                        ? "0"
-                        : crxStInfo.distance.TrimStart('0'),
-                    out_node_num = crxStInfo.node_num
-                };
+                CrxStInfoF3S f3sCrxSt = new CrxStInfoF3S();
+
+                    wa1_dl.out_b7sc_list[0] = crxStInfo.xstr_b7sc_list[0];
+                    geoCaller.GeoCall(ref wa1_dl);
+                    f3sCrxSt.out_intersecting_street = wa1_dl.out_stname_list[0].Trim();
+
+                    wa1_dl.out_b7sc_list[1] = crxStInfo.xstr_b7sc_list[1];
+                    geoCaller.GeoCall(ref wa1_dl);
+                    f3sCrxSt.out_second_intersecting_street = wa1_dl.out_stname_list[1].Trim();
+
+                    wa1_dl.out_b7sc_list[2] = crxStInfo.xstr_b7sc_list[2];
+                    geoCaller.GeoCall(ref wa1_dl);
+                    f3sCrxSt.out_third_intersecting_street = wa1_dl.out_stname_list[2].Trim();
+
+                    wa1_dl.out_b7sc_list[3] = crxStInfo.xstr_b7sc_list[3];
+                    geoCaller.GeoCall(ref wa1_dl);
+                    f3sCrxSt.out_fourth_intersecting_street = wa1_dl.out_stname_list[3].Trim();
+
+                    wa1_dl.out_b7sc_list[4] = crxStInfo.xstr_b7sc_list[4];
+                    geoCaller.GeoCall(ref wa1_dl);
+                    f3sCrxSt.out_fifth_intersecting_street = wa1_dl.out_stname_list[4].Trim();
+
+                    f3sCrxSt.out_xstr_cnt = crxStInfo.xstr_cnt; //intersecting st count
+                    f3sCrxSt.out_distance = string.IsNullOrWhiteSpace(crxStInfo.distance.TrimStart('0'))
+                                ? "0"
+                                : crxStInfo.distance.TrimStart('0');
+                    f3sCrxSt.out_node_num = crxStInfo.node_num;
+                
 
                 //stringified gap flag
                 string flagCode = string.Empty;
@@ -732,6 +743,7 @@ namespace GeoXWrapperTest.Helper
                         flagCode = "New";
                         break;
                 }
+
                 f3sCrxSt.out_gap_flag = flagCode;
 
                 //final processing on out_intersecting_street
@@ -740,9 +752,29 @@ namespace GeoXWrapperTest.Helper
                     : f3sCrxSt.out_intersecting_street;
 
                 f3sList.Add(f3sCrxSt);
+
             }
 
             return f3sList;
+        }
+
+        public static string GetBorough(string boro)
+        {
+            switch (boro)
+            {
+                case "1":
+                    return "Manhattan";
+                case "2":
+                    return "Bronx";
+                case "3":
+                    return "Brooklyn";
+                case "4":
+                    return "Queens";
+                case "5":
+                    return "Staten Island";
+                default:
+                    return string.Empty;
+            }
         }
     }
 }

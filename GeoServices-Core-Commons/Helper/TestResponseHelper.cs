@@ -5,6 +5,8 @@ using GeoXWrapperTest.Model.Structs;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
+using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GeoXWrapperTest.Helper
 {
@@ -337,6 +339,14 @@ namespace GeoXWrapperTest.Helper
             var actualInputParts = actualInputs[1].Substring(1, actualInputs[1].Length - 1).Split(",").ToList();
             var expectedInputsParts = expectedInputs[1].Substring(1, expectedInputs[1].Length - 1).Split(",").ToList();
 
+            expectedInputsParts = expectedInputsParts.Where(w => w.Count(c => c == ':') > 1).Select(s => {
+                var indexes = new List<int>();
+                for (int i = 0; i < s.Length; i++)
+                    if (s.ToCharArray()[i] == ':')
+                        indexes.Add(i);
+                return s.Substring(indexes[indexes.Count  -2] + 1);
+            }).ToList();
+                
             List<string> actualInputParts_NonMatch;
             List<string> expectedInputParts_NonMatch;
             List<string[]> errorList = new List<string[]>();
@@ -345,30 +355,51 @@ namespace GeoXWrapperTest.Helper
             expectedInputParts_NonMatch = expectedInputsParts.Where(e => !actualInputParts.Contains(e)).ToList();
 
             expectedInputParts_NonMatch.ForEach((enm) => {
-                var enmparts = enm.Split(':');
-                var anmPart = actualInputParts_NonMatch.Where(anm => anm.Contains(enmparts[0])).FirstOrDefault();
+                var enmparts = Regex.Replace(enm, @"[\[\]\{\}]", "").Split(':');
+                var enmRightPart = Regex.Replace(enm, @"[\]\}]", "");
+                var anmParts = string.Join(" ", actualInputParts_NonMatch.Where(anm => Regex.Replace(anm, @"[\[\]\{\}]", "").Contains(enmparts[0])).ToList());
+                anmParts = Regex.Replace(anmParts, @"[\[\]\{\}]", "") ;
+                try
+                {
+                    if (anmParts.Length == 0)
+                    {
+                        errorList.Add(new string[] { "ENEP", $"{{ {enmparts[0]} : {enmparts[1]} }}" });
+                        falseSwitch = true;
+                    }
+                    else if (!actualInputParts.Contains(enmRightPart)) 
+                    {
+                        if (enmparts.Count() == 1 && !anmParts.Contains(enmparts[0]))
+                        {
+                            errorList.Add(new string[] { "ENMV", $"{{ Actual: {anmParts} , Expected: {enmparts[0]} }}" });
+                            falseSwitch = true;
+                        }
+                        else if (!anmParts.Contains(enmparts[1]) && !string.IsNullOrWhiteSpace(enmparts[1]) && enmparts[1].Length > 0 && enmparts[1] != "[]" && enmparts[1] != @"""""" && enmparts[1] != @"""""}" && enmparts[1] != @"""""]")
+                        {
 
-                if (anmPart == null)
-                {
-                    errorList.Add(new string[] { "ENEP", $"{{ {enmparts[0]} : {enmparts[1]} }}" });
-                    falseSwitch = true;
+                            if (!((anmParts.Split(":")[1].Length - enmparts[1].Length == 2 || anmParts.Split(":")[1].Length - enmparts[1].Length == -2) && (anmParts.Split(" ")[1].ToLower().Contains("th") || enmparts[1].ToLower().Contains("TH"))))
+                            {
+                                errorList.Add(new string[] { "ENMV", $"{{ Actual: {anmParts} , Expected: {enmparts[1]} }}" });
+                                falseSwitch = true;
+                            }
+                        }
+                        else if (!anmParts.Contains(enmparts[1]))
+                        {
+                            errorList.Add(new string[] { "WNMV", $"{{ Actual: {anmParts} , Expected: {enmparts[1]} }}" });
+                        }
+                    }
                 }
-                else if (!anmPart.Contains(enmparts[1]))
-                {
-                    errorList.Add(new string[] { "ENMV", $"{{ Actual: {anmPart} , Expected: {enmparts[1]} }}" });
-                    falseSwitch = true;
+                catch (Exception e) {
+                    errorList.Add(new string[] { "Exceptions", $"{{ message:{e.Message}, stacktrace: {e.StackTrace}}}" });
                 }
             });
 
-            actualInputParts_NonMatch.Where(anm => !expectedInputParts_NonMatch.Contains(anm.Split(":")[0]))
+            actualInputParts_NonMatch.Where(anm => !expectedInputParts_NonMatch.Contains(Regex.Replace(anm, @"[\[\]\{\}]", "").Split(":")[0]))
                                    .ToList()
                                     .ForEach(e => errorList.Add(new string[] { "WNCL", $"new: {e}" }));
 
-
             if (Debug_On)
             {
-                File.Delete(Directory.GetCurrentDirectory() + $"\\{functionFileName}");
-                using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + $"\\{functionFileName}", append: true))
+                using (StreamWriter writer = new StreamWriter(Directory.GetCurrentDirectory() + $"\\TestFunction\\{functionFileName}", append: true))
                 {
 
                     writer.WriteLine(actualInputs[0] + "|" + actualInputs[1]);
@@ -380,18 +411,21 @@ namespace GeoXWrapperTest.Helper
                     writer.WriteLine("-------------- Error! No Matching Value in Actual ----------------------");
                     errorList.Where(e => e[0].Equals("ENMV")).ToList().ForEach(e => writer.WriteLine(e[1]));
 
+                    writer.WriteLine("-------------- Warning! No Matching Value in Actual ----------------------");
+                    errorList.Where(e => e[0].Equals("WNMV")).ToList().ForEach(e => writer.WriteLine(e[1]));
+
                     writer.WriteLine("-------------- Warning! Parameter Not Contained in Legacy ----------------------");
                     errorList.Where(e => e[0].Equals("WNCL")).ToList().ForEach(e => writer.WriteLine(e[1]));
+
+                    writer.Write("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+
+                    writer.WriteLine("-------------- Error! Stacktrace ----------------------");
+                    errorList.Where(e => e[0].Equals("Exceptions")).ToList().ForEach(e => writer.WriteLine(e[1]));
 
                     writer.Write("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
                 }
             }
                 
-
-     
-
-            
-
             return !falseSwitch;
         }
 

@@ -59,8 +59,9 @@ namespace GeoXWrapperTest.Model.Display
                 {
                     string gapFlag = crxStInfo.gap_flag.Trim();
 
-                    if (int.TryParse(crxStInfo.distance, out int street_distance) && !string.Equals(gapFlag, "G", StringComparison.OrdinalIgnoreCase) && !string.Equals(gapFlag, "N", StringComparison.OrdinalIgnoreCase))
+                    if (!new List<string> { "G", "N" }.Contains(gapFlag))
                     {
+                        int.TryParse(crxStInfo.distance, out int street_distance);
                         total += street_distance;
                     }
                 }
