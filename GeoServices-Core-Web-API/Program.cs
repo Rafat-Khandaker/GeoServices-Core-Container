@@ -1,4 +1,5 @@
 using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
 using System.Net;
@@ -14,9 +15,10 @@ builder.Services.AddOpenApi();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services
-    .AddSingleton<Geo, Geo>()
+    .AddSingleton<IGeoCaller, GeoCaller>()
     .AddSingleton<AccessControlList, AccessControlList>()
-    .AddScoped<GeoService, GeoService>();
+    .AddScoped<GeoService, GeoService>()
+    .AddScoped<Geo, Geo>();
 
 
 if (!builder.Environment.IsDevelopment())

@@ -51,7 +51,7 @@ namespace GeoServices_Core_Commons.Core
                 wa1.in_hns = string.Empty;
             }
 
-            GeoCaller.GeoCall(ref wa1, ref wa2f1ax);
+            GeoCaller.GeoCall(wa1, wa2f1ax);
 
             var _funcReadStNameFd = (string inBoro, string inStCode) =>
             {
