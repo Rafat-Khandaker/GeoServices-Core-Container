@@ -29,7 +29,7 @@ namespace GeoServices_Core_Commons.Core
                     if (Mutex.WaitOne(10) && max > 0) {
                         await Task.Run(() => geoCallfunction());
                         Mutex.ReleaseMutex();
-                    }else await SafeHanddle(geoCallfunction, lockResource, retry++, max--);
+                    }else await SafeHanddle(geoCallfunction, lockResource, retry, max--);
                 }
                 else await Task.Run(() => geoCallfunction());
             }
