@@ -22,14 +22,14 @@ namespace GeoServices_Core_Commons.Core
             Mutex = new Mutex();
         }
 
-        private async Task SafeHanddle(GeoCallFunction geoCallfunction, bool lockResource = false, int retry = 1 )
+        private async Task SafeHanddle(GeoCallFunction geoCallfunction, bool lockResource = false, int retry = 1, int max = 10)
         {
             try {
                 if (lockResource) {
-                    if (Mutex.WaitOne(10)) {
-                        await SafeHanddle(geoCallfunction, lockResource, retry++);
+                    if (Mutex.WaitOne(10) && max > 0) {
+                        await Task.Run(() => geoCallfunction());
                         Mutex.ReleaseMutex();
-                    }
+                    }else await SafeHanddle(geoCallfunction, lockResource, retry++, max--);
                 }
                 else await Task.Run(() => geoCallfunction());
             }
@@ -38,6 +38,7 @@ namespace GeoServices_Core_Commons.Core
                 if (retry < 3)
                 {
                     Thread.Sleep(100);
+                    await SafeHanddle(geoCallfunction, lockResource, retry++);
                 }
                 else return;
             }
