@@ -13,7 +13,7 @@ namespace GeoServices_Core_Commons.Core
     public class GeoCaller : IGeoCaller
     {
         public Geo Geo { get; set; }
-        private Mutex Mutex { get; set; }
+        private static Mutex Mutex { get; set; }
         private delegate void GeoCallFunction();
 
         public GeoCaller(Geo _geo)
