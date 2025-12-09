@@ -20,3 +20,8 @@ GeoXWrapperLib/GeoXWrapperLib/lib/fls/**
 /GeoServices-Core-Web-API/.bash_history
 
 
+/GeoServices-Core-Batch-Processor/obj
+/GeoServices-Core-Batch-Processor/Properties
+/GeoServices-Core-Database/obj/Debug
+/GeoServices-Core-Web-API/version-25d_25.4
+/GeoServices-Core-Web-API/linux_geo25d_25.4.zip

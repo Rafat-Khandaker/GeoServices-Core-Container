@@ -1,5 +1,4 @@
 ﻿using GeoXWrapperLib.Model;
-using GeoXWrapperLib;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model.Enum;
@@ -13,11 +12,13 @@ namespace GeoServices_Core_Commons.Core
 {
     public class GeoService : IGeoService
     {
-        Geo GeoCaller;
+        IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
 
-        public GeoService(Geo _geoCaller)
+        public GeoService(IGeoCaller _geoCaller, ValidationHelper _validationHelper)
         {
             GeoCaller = _geoCaller;
+            ValidationHelper = _validationHelper;
         }
 
         public GeocallResponse<F1aDisplay, F1aResponse> Function1A(FunctionInput input)
@@ -51,7 +52,7 @@ namespace GeoServices_Core_Commons.Core
                 wa1.in_hns = string.Empty;
             }
 
-            GeoCaller.GeoCall(wa1, wa2f1ax);
+            GeoCaller.GeoCall(wa1, wa2f1ax).Wait();
 
             var _funcReadStNameFd = (string inBoro, string inStCode) =>
             {
@@ -66,7 +67,7 @@ namespace GeoServices_Core_Commons.Core
                     }
                 };
 
-                GeoCaller.GeoCall(ref wa1);
+                GeoCaller.GeoCall(wa1).Wait();
 
                 return wa1.out_stname1;
             };
@@ -92,7 +93,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F1aDisplay, F1aResponse> goatlike = new GeocallResponse<F1aDisplay, F1aResponse>
                 {
-                    display = new F1aDisplay(wa1, wa2f1ax)
+                    display = new F1aDisplay(wa1, wa2f1ax, ValidationHelper)
                     {
                         AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1ax.addr_x_list, wa1.in_tpad_switch),
                         CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1ax, wa1.in_tpad_switch, FunctionCode.F1A, GeoCaller)
@@ -134,7 +135,7 @@ namespace GeoServices_Core_Commons.Core
                 wa1.in_hns = string.Empty;
             }
 
-            GeoCaller.GeoCall(ref wa1, ref wa2f1b);
+            GeoCaller.GeoCall(wa1, wa2f1b).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -150,7 +151,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F1bDisplay, F1bResponse> goatlike = new GeocallResponse<F1bDisplay, F1bResponse>()
                 {
-                    display = new F1bDisplay(wa1, wa2f1b, GeoCaller)
+                    display = new F1bDisplay(wa1, wa2f1b, GeoCaller, ValidationHelper)
                     {
                         AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1b.wa2f1ax.addr_x_list, wa1.in_tpad_switch),
                         CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1b.wa2f1ax, wa1.in_tpad_switch, FunctionCode.F1B, GeoCaller)
@@ -191,7 +192,7 @@ namespace GeoServices_Core_Commons.Core
             }
 
             //geocall and finalize
-            GeoCaller.GeoCall(ref wa1, ref wa2f1ex);
+            GeoCaller.GeoCall(wa1, wa2f1ex).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -207,7 +208,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F1eDisplay, F1eResponse> goatlike = new GeocallResponse<F1eDisplay, F1eResponse>
                 {
-                    display = new F1eDisplay(wa1, wa2f1ex, GeoCaller),
+                    display = new F1eDisplay(wa1, wa2f1ex, GeoCaller, ValidationHelper),
                     root = null
                 };
 
@@ -224,7 +225,7 @@ namespace GeoServices_Core_Commons.Core
                 in_hnd = input.AddressNo ?? string.Empty
             };
 
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -260,7 +261,7 @@ namespace GeoServices_Core_Commons.Core
                 in_stname_normalization = input.StreetNameFormat ?? string.Empty
             };
 
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -293,7 +294,7 @@ namespace GeoServices_Core_Commons.Core
 
             };
 
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -335,7 +336,7 @@ namespace GeoServices_Core_Commons.Core
             };
             Wa2F2w wa2f2w = new Wa2F2w();
 
-            GeoCaller.GeoCall(ref wa1, ref wa2f2w);
+            GeoCaller.GeoCall(wa1, wa2f2w).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -351,7 +352,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F2Display, F2Response> goatlike = new GeocallResponse<F2Display, F2Response>
                 {
-                    display = new F2Display(wa1, wa2f2w, GeoCaller),
+                    display = new F2Display(wa1, wa2f2w, GeoCaller, ValidationHelper),
                     root = null
                 };
 
@@ -396,7 +397,7 @@ namespace GeoServices_Core_Commons.Core
             Wa2F2w wa2f2w = new Wa2F2w();
 
             //execute geocall and finalize response
-            GeoCaller.GeoCall(ref wa1, ref wa2f2w);
+            GeoCaller.GeoCall(wa1, wa2f2w).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -413,7 +414,7 @@ namespace GeoServices_Core_Commons.Core
                 //there will be no data lists aside from the similar names list -> all of them deal with GRC03 exclusively, and there is no GRC03 for a F2Node
                 GeocallResponse<F2Display, F2Response> goatlike = new GeocallResponse<F2Display, F2Response>
                 {
-                    display = new F2Display(wa1, wa2f2w, GeoCaller),
+                    display = new F2Display(wa1, wa2f2w, GeoCaller, ValidationHelper),
                     root = null
                 };
 
@@ -440,7 +441,7 @@ namespace GeoServices_Core_Commons.Core
             };
             Wa2F3ceas wa2f3ceas = new Wa2F3ceas();
 
-            GeoCaller.GeoCall(ref wa1, ref wa2f3ceas);
+            GeoCaller.GeoCall(wa1, wa2f3ceas).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -456,7 +457,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F3cDisplay, F3cResponse> goatlike = new GeocallResponse<F3cDisplay, F3cResponse>
                 {
-                    display = new F3cDisplay(wa1, wa2f3ceas, GeoCaller)
+                    display = new F3cDisplay(wa1, wa2f3ceas, GeoCaller, ValidationHelper)
                     {
                         LowB7SCList = ValidationHelper.CreateB7ScList(wa2f3ceas.wa2f3ce.lo_x_sts, wa1.out_stname_list, wa2f3ceas.wa2f3ce.lo_x_sts_cnt, 0, GeoCaller),
                         HighB7SCList = ValidationHelper.CreateB7ScList(wa2f3ceas.wa2f3ce.hi_x_sts, wa1.out_stname_list, wa2f3ceas.wa2f3ce.hi_x_sts_cnt, 5, GeoCaller)
@@ -500,7 +501,7 @@ namespace GeoServices_Core_Commons.Core
             }
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1, ref wa2f3s);
+            GeoCaller.GeoCall(wa1, wa2f3s).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -516,7 +517,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F3sDisplay, F3sResponse> goatlike = new GeocallResponse<F3sDisplay, F3sResponse>
                 {
-                    display = new F3sDisplay(wa1, wa2f3s, GeoCaller),
+                    display = new F3sDisplay(wa1, wa2f3s, GeoCaller, ValidationHelper),
                     root = null
                 };
 
@@ -547,7 +548,7 @@ namespace GeoServices_Core_Commons.Core
             //geocall to F3 or F3C based on presence of in_compass_dir parameter and finalize the F3/F3C response
             wa1.in_func_code = "3C";
             Wa2F3ceas wa2f3ceas = new Wa2F3ceas();
-            GeoCaller.GeoCall(ref wa1, ref wa2f3ceas);
+            GeoCaller.GeoCall(wa1, wa2f3ceas).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -563,7 +564,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<F3cDisplay, F3cResponse> f3cGoatlike = new GeocallResponse<F3cDisplay, F3cResponse>
                 {
-                    display = new F3cDisplay(wa1, wa2f3ceas, GeoCaller)
+                    display = new F3cDisplay(wa1, wa2f3ceas, GeoCaller, ValidationHelper)
                     {
                         LowB7SCList = ValidationHelper.CreateB7ScList(wa2f3ceas.wa2f3ce.lo_x_sts, wa1.out_stname_list, wa2f3ceas.wa2f3ce.lo_x_sts_cnt, 0, GeoCaller),
                         HighB7SCList = ValidationHelper.CreateB7ScList(wa2f3ceas.wa2f3ce.hi_x_sts, wa1.out_stname_list, wa2f3ceas.wa2f3ce.hi_x_sts_cnt, 5, GeoCaller),
@@ -598,9 +599,9 @@ namespace GeoServices_Core_Commons.Core
            
                 wa1.in_func_code = "3";
                 Wa2F3eas wa2f3eas = new Wa2F3eas();
-                GeoCaller.GeoCall(ref wa1, ref wa2f3eas);
+                GeoCaller.GeoCall(wa1, wa2f3eas).Wait();
 
-                if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
                 {
                     GeocallResponse<F3Display, F3Response> f3Raw = new GeocallResponse<F3Display, F3Response>
                     {
@@ -614,7 +615,7 @@ namespace GeoServices_Core_Commons.Core
                 {
                     GeocallResponse<F3Display, F3Response> f3Goatlike = new GeocallResponse<F3Display, F3Response>
                     {
-                        display = new F3Display(wa1, wa2f3eas, GeoCaller)
+                        display = new F3Display(wa1, wa2f3eas, GeoCaller, ValidationHelper)
                         {
                             LowB7SCList = ValidationHelper.CreateB7ScList(wa2f3eas.wa2f3e.lo_x_sts, wa1.out_stname_list, wa2f3eas.wa2f3e.lo_x_sts_cnt, 0, GeoCaller),
                             HighB7SCList = ValidationHelper.CreateB7ScList(wa2f3eas.wa2f3e.hi_x_sts, wa1.out_stname_list, wa2f3eas.wa2f3e.hi_x_sts_cnt, 5, GeoCaller),
@@ -654,7 +655,7 @@ namespace GeoServices_Core_Commons.Core
             }
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1, ref wa2f5);
+            GeoCaller.GeoCall(wa1, wa2f5).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -707,7 +708,7 @@ namespace GeoServices_Core_Commons.Core
             }
 
             //geocall and finalize response
-            GeoCaller.GeoCall(ref wa1, ref wa2fapx);
+            GeoCaller.GeoCall(wa1, wa2fapx).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -723,7 +724,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<FapDisplay, FapResponse> goatlike = new GeocallResponse<FapDisplay, FapResponse>
                 {
-                    display = new FapDisplay(wa1, wa2fapx),
+                    display = new FapDisplay(wa1, wa2fapx, ValidationHelper),
                     root = null
                 };
 
@@ -762,7 +763,7 @@ namespace GeoServices_Core_Commons.Core
             }
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1, ref wa2f1ax);
+            GeoCaller.GeoCall(wa1, wa2f1ax).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -778,7 +779,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<FBBLDisplay, FBBLResponse> goatlike = new GeocallResponse<FBBLDisplay, FBBLResponse>
                 {
-                    display = new FBBLDisplay(wa1, wa2f1ax, GeoCaller)
+                    display = new FBBLDisplay(wa1, wa2f1ax, GeoCaller, ValidationHelper)
                     {
                         AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1ax.addr_x_list, wa1.in_tpad_switch),
                         CompleteBINList = ValidationHelper.CreateCompleteBINList(wa1, wa2f1ax, wa1.in_tpad_switch, FunctionCode.FBBL, GeoCaller),
@@ -804,7 +805,7 @@ namespace GeoServices_Core_Commons.Core
             };
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -843,7 +844,7 @@ namespace GeoServices_Core_Commons.Core
             };
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -897,7 +898,7 @@ namespace GeoServices_Core_Commons.Core
             }
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1, ref wa2f1ax);
+            GeoCaller.GeoCall(wa1, wa2f1ax).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -913,7 +914,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<FBNDisplay, FBNResponse> goatlike = new GeocallResponse<FBNDisplay, FBNResponse>
                 {
-                    display = new FBNDisplay(wa1, wa2f1ax, GeoCaller)
+                    display = new FBNDisplay(wa1, wa2f1ax, GeoCaller, ValidationHelper)
                     {
                         AddressRangeList = ValidationHelper.CreateAddressRangeList(wa2f1ax.addr_x_list, wa1.in_tpad_switch)
                     },
@@ -968,7 +969,7 @@ namespace GeoServices_Core_Commons.Core
                 wa1.in_b10sc3.B10scFromString(input.Borough3 + input.B10SC3.Trim());
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -984,7 +985,7 @@ namespace GeoServices_Core_Commons.Core
             {
                 GeocallResponse<FDDisplay, FDResponse> goatlike = new GeocallResponse<FDDisplay, FDResponse>
                 {
-                    display = new FDDisplay(wa1),
+                    display = new FDDisplay(wa1, ValidationHelper),
                     root = null
                 };
 
@@ -1002,7 +1003,7 @@ namespace GeoServices_Core_Commons.Core
             Wa2Fhr wa2fhr = new Wa2Fhr();
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1, ref wa2fhr);
+            GeoCaller.GeoCall(wa1, wa2fhr).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {
@@ -1039,7 +1040,7 @@ namespace GeoServices_Core_Commons.Core
             };
 
             //geocall and finalize responses
-            GeoCaller.GeoCall(ref wa1);
+            GeoCaller.GeoCall(wa1).Wait();
 
             if (string.Equals(input.DisplayFormat, "false", StringComparison.OrdinalIgnoreCase))
             {

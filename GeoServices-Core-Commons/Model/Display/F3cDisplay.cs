@@ -1,6 +1,7 @@
 ﻿using DCP.Geosupport.DotNet.fld_def_lib;
+using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoServices_Core_Commons.Model;
-using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model.Abstract;
@@ -14,9 +15,10 @@ namespace GeoXWrapperTest.Model.Display
         private readonly Wa2F3ceas _wa2f3ceas;
         private readonly Wa2F3ce _wa2f3ce;
         private readonly SegSideB7sc _segment;
-        Geo GeoCaller;
+        IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
 
-        public F3cDisplay(Wa1 wa1, Wa2F3ceas wa2f3ceas, Geo geoCaller)
+        public F3cDisplay(Wa1 wa1, Wa2F3ceas wa2f3ceas, IGeoCaller geoCaller, ValidationHelper validationHelper) : base(validationHelper)
         {
             _wa1 = wa1;
             _wa2f3ceas = wa2f3ceas;
@@ -25,6 +27,7 @@ namespace GeoXWrapperTest.Model.Display
             _segment = _wa2f3ceas.wa2f3ce.seg_side;
 
             GeoCaller = geoCaller;
+            ValidationHelper = validationHelper;
         }
 
         public override List<AuxiliarySegment> AuxiliarySegmentIDList => _wa2f3ceas.auxseg_id_list.Where(auxSegId => !string.IsNullOrWhiteSpace(auxSegId)).Select(s => new AuxiliarySegment { ID = s }).ToList();

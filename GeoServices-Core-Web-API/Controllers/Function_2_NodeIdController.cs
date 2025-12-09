@@ -11,13 +11,11 @@ namespace GeoServices_Core_Web_API.Controllers
 {
     public class Function_2_NodeIdController : Controller
     {
-        private Geo _geo;
         private AccessControlList _accessControl;
         private GeoService _geoService;
 
-        public Function_2_NodeIdController(Geo geo, AccessControlList accessControlList, GeoService geoService)
+        public Function_2_NodeIdController( AccessControlList accessControlList, GeoService geoService)
         {
-            _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;
         }

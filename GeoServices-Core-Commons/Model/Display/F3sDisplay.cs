@@ -1,4 +1,5 @@
-﻿using GeoXWrapperLib;
+﻿using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
@@ -13,13 +14,15 @@ namespace GeoXWrapperTest.Model.Display
     {
         private readonly Wa1 _wa1;
         private readonly Wa2F3s _wa2f3s;
-        Geo GeoCaller;
+        IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
 
-        public F3sDisplay(Wa1 wa1, Wa2F3s wa2f3s, Geo geoCaller)
+        public F3sDisplay(Wa1 wa1, Wa2F3s wa2f3s, IGeoCaller geoCaller, ValidationHelper validationHelper)
         {
             _wa1 = wa1;
             _wa2f3s = wa2f3s;
             GeoCaller = geoCaller;
+            ValidationHelper = validationHelper;
 
         }
 

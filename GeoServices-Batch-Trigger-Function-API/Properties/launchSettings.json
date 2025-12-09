@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "GeoServices_Batch_Trigger_Function_API": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7118"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "containerRunArguments": "--init",
+      "httpPort": 30188,
+      "useSSL": false
+    }
+  }
+}

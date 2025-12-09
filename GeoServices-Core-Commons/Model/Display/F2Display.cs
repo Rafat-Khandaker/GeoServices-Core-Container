@@ -1,5 +1,6 @@
 ﻿using DCP.Geosupport.DotNet.fld_def_lib;
-using GeoXWrapperLib;
+using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 
@@ -11,15 +12,18 @@ namespace GeoXWrapperTest.Model.Display
         private readonly Wa1 _wa1;
         private readonly Wa2F2w _wa2f2w;
         private readonly Wa2F2 _wa2f2;
-        Geo GeoCaller;
+        IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
 
-        public F2Display(Wa1 wa1, Wa2F2w wa2f2w, Geo geoCaller)
+
+        public F2Display(Wa1 wa1, Wa2F2w wa2f2w, IGeoCaller geoCaller, ValidationHelper validationHelper)
         {
             _wa1 = wa1;
             _wa2f2w = wa2f2w;
 
             _wa2f2 = _wa2f2w.wa2f2;
             GeoCaller = geoCaller;
+            ValidationHelper = validationHelper;
 
         }
 

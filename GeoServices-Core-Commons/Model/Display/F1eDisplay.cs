@@ -1,7 +1,9 @@
 ﻿using DCP.Geosupport.DotNet.fld_def_lib;
-using GeoXWrapperLib;
+using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
+using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 
 
 namespace GeoXWrapperTest.Model.Display
@@ -11,15 +13,16 @@ namespace GeoXWrapperTest.Model.Display
         private static readonly fld_dict _fld = new fld_dict();
         private readonly Wa1 _wa1;
         private readonly Wa2F1ex _wa2f1ex;
-        Geo GeoCaller;
+        IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
 
 
-        public F1eDisplay(Wa1 wa1, Wa2F1ex wa2f1ex, Geo geoCaller)
+        public F1eDisplay(Wa1 wa1, Wa2F1ex wa2f1ex, IGeoCaller geoCaller, ValidationHelper validationHelper)
         {
             _wa1 = wa1;
             _wa2f1ex = wa2f1ex;
             GeoCaller = geoCaller;
-
+            ValidationHelper = validationHelper;
         }
 
         #region Data Lists

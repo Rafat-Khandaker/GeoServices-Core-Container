@@ -1,7 +1,5 @@
 ﻿using GeoServices_Core_Commons.Helper;
-using GeoXWrapperLib;
-using GeoXWrapperLib.Model;
-using GeoXWrapperTest.Model.Display;
+
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
@@ -14,13 +12,11 @@ namespace GeoServices_Core_Web_API.Controllers
     [Route("[controller]")]
     public class Function_3SController : Controller
     {
-        private Geo _geo;
         private AccessControlList _accessControl;
         private GeoService _geoService;
 
-        public Function_3SController(Geo geo, AccessControlList accessControlList, GeoService geoService)
+        public Function_3SController(AccessControlList accessControlList, GeoService geoService)
         {
-            _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;
         }

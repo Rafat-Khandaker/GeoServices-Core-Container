@@ -2,6 +2,7 @@ using GeoServices_Core_Commons.Core;
 using GeoServices_Core_Commons.Core.Contract;
 using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
+using GeoXWrapperTest.Helper;
 using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +16,9 @@ builder.Services.AddOpenApi();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services
-    .AddSingleton<IGeoCaller, GeoCaller>()
     .AddSingleton<AccessControlList, AccessControlList>()
+    .AddScoped<ValidationHelper, ValidationHelper>()
+    .AddScoped<IGeoCaller, GeoCaller>()
     .AddScoped<GeoService, GeoService>()
     .AddScoped<Geo, Geo>();
 

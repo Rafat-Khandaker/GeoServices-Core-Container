@@ -1,7 +1,6 @@
 ﻿using GeoServices_Core_Commons.Core;
 using GeoServices_Core_Commons.Core.Contract;
 using GeoServices_Core_Commons.Helper;
-using GeoXWrapperLib;
 using GeoXWrapperTest.Helper;
 using GeoXWrapperTest.Model;
 using GeoXWrapperTest.Model.Display;
@@ -28,7 +27,7 @@ namespace GeoXWrapperTest
             // Setup the DI container   // Set up the Dependency Injection container
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<IGeoService, GeoService>()
-                .AddSingleton<Geo, Geo>()
+                .AddSingleton<IGeoCaller, GeoCaller>()
                 .AddScoped<Cryptographer, Cryptographer>()
                 .BuildServiceProvider();
 

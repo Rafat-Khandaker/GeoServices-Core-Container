@@ -16,12 +16,14 @@ namespace GeoXWrapperTest.Model.Display
         private static readonly fld_dict _fld = new fld_dict();
         private readonly Wa1 _wa1;
         private readonly Wa2F1ax _wa2f1ax;
+        ValidationHelper ValidationHelper;
 
 
-        public F1aDisplay(Wa1 wa1, Wa2F1ax wa2f1ax)
+        public F1aDisplay(Wa1 wa1, Wa2F1ax wa2f1ax, ValidationHelper validationHelper)
         {
             _wa1 = wa1;
             _wa2f1ax = wa2f1ax;
+            ValidationHelper = validationHelper;
         }
 
         #region Data Lists - Must Set in Function Controller

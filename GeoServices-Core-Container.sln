@@ -16,6 +16,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Web-API.Dockerfile = Web-API.Dockerfile
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServices-Batch-Trigger-Function-API", "GeoServices-Batch-Trigger-Function-API\GeoServices-Batch-Trigger-Function-API.csproj", "{D40CF698-126F-4D7F-A4DF-55A640A7269E}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GeoServices-Core-Database", "GeoServices-Core-Database\GeoServices-Core-Database.sqlproj", "{363A4475-DE09-4A2D-9278-32BAB1B56EA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeoServices-Core-Batch-Processor", "GeoServices-Core-Batch-Processor\GeoServices-Core-Batch-Processor.csproj", "{F686705C-F819-4D50-81E0-E1C397B01D7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +44,20 @@ Global
 		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6963E6C2-88F6-451E-BBF9-12A26C5A07CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D40CF698-126F-4D7F-A4DF-55A640A7269E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D40CF698-126F-4D7F-A4DF-55A640A7269E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D40CF698-126F-4D7F-A4DF-55A640A7269E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D40CF698-126F-4D7F-A4DF-55A640A7269E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363A4475-DE09-4A2D-9278-32BAB1B56EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363A4475-DE09-4A2D-9278-32BAB1B56EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363A4475-DE09-4A2D-9278-32BAB1B56EA7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{363A4475-DE09-4A2D-9278-32BAB1B56EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363A4475-DE09-4A2D-9278-32BAB1B56EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{363A4475-DE09-4A2D-9278-32BAB1B56EA7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F686705C-F819-4D50-81E0-E1C397B01D7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F686705C-F819-4D50-81E0-E1C397B01D7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F686705C-F819-4D50-81E0-E1C397B01D7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F686705C-F819-4D50-81E0-E1C397B01D7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

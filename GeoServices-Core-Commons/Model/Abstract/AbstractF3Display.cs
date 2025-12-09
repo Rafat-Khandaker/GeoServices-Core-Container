@@ -12,6 +12,12 @@ namespace GeoXWrapperTest.Model.Abstract
 {
     public abstract class AbstractF3Display 
     {
+        ValidationHelper ValidationHelper;
+
+        public AbstractF3Display(ValidationHelper validationHelper) {
+            ValidationHelper = validationHelper;
+        }
+
         protected Wa1 _wa1;
 
         #region Data Lists

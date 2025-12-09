@@ -1,5 +1,4 @@
 ﻿using GeoServices_Core_Commons.Helper;
-using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Model.Display;
 using GeoXWrapperTest.Model;
@@ -14,12 +13,10 @@ namespace GeoServices_Core_Web_API.Controllers
     [Route("[controller]")]
     public class Function_1EController : Controller
     {
-        private Geo _geo;
         private AccessControlList _accessControl;
         private GeoService _geoService;
-        public Function_1EController(Geo geo, AccessControlList accessControlList, GeoService geoservice)
+        public Function_1EController(AccessControlList accessControlList, GeoService geoservice)
         {
-            _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoservice;
         }

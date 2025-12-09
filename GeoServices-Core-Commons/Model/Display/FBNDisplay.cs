@@ -1,5 +1,6 @@
 ﻿using DCP.Geosupport.DotNet.fld_def_lib;
-using GeoXWrapperLib;
+using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
@@ -16,12 +17,15 @@ namespace GeoXWrapperTest.Model.Display
         private static readonly fld_dict _fld = new fld_dict();
         private readonly Wa1 _wa1;
         private readonly Wa2F1ax _wa2f1ax;
-        private Geo GeoCaller;
-        public FBNDisplay(Wa1 wa1, Wa2F1ax wa2f1ax, Geo geoCaller)
+        private IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
+
+        public FBNDisplay(Wa1 wa1, Wa2F1ax wa2f1ax, IGeoCaller geoCaller, ValidationHelper validationHelper)
         {
             _wa1 = wa1;
             _wa2f1ax = wa2f1ax;
             GeoCaller = geoCaller;
+            ValidationHelper = validationHelper;
         }
 
         #region Data Lists - Must be set in controller

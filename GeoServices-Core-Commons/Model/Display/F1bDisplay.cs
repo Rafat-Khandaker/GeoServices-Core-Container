@@ -1,5 +1,6 @@
 ﻿using DCP.Geosupport.DotNet.fld_def_lib;
-using GeoXWrapperLib;
+using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoXWrapperLib.Model;
 using GeoXWrapperTest.Helper;
 using System;
@@ -20,15 +21,16 @@ namespace GeoXWrapperTest.Model.Display
         //pointers to wa2f1b's sub-work areas for conveinence
         private Wa2F1ax _f1ax => _wa2f1b.wa2f1ax;
         private Wa2F1ex _f1ex => _wa2f1b.wa2f1ex;
-        Geo GeoCaller;
+        IGeoCaller GeoCaller;
+        ValidationHelper ValidationHelper;
 
-    
-        public F1bDisplay(Wa1 wa1, Wa2F1b wa2f1b, Geo geoCaller)
+
+        public F1bDisplay(Wa1 wa1, Wa2F1b wa2f1b, IGeoCaller geoCaller, ValidationHelper validationHelper)
         {
             _wa1 = wa1;
             _wa2f1b = wa2f1b;
             GeoCaller = geoCaller;
-
+            ValidationHelper = validationHelper;
         }
 
         #region Data Lists - Must Set in Function Controller

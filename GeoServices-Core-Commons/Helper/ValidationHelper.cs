@@ -1,29 +1,30 @@
 ﻿
-using System.Text.RegularExpressions;
-using GeoXWrapperTest.Model;
-using GeoXWrapperLib.Model;
-using GeoXWrapperTest.Model.Enum;
-using GeoXWrapperLib;
 using DCP.Geosupport.DotNet.fld_def_lib;
+using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
+using GeoXWrapperLib.Model;
+using GeoXWrapperTest.Model;
+using GeoXWrapperTest.Model.Enum;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace GeoXWrapperTest.Helper
 {
-    public static class ValidationHelper 
+    public class ValidationHelper 
     {
-        private static readonly Regex _houseNumRgx = new Regex(@"^[0-9a-zA-Z\s'?!;,:\-()\.\&\/]+$");
-        private static readonly Regex _stNameRgx = new Regex(@"^[0-9a-zA-Z\s'?!;,:\-()\.\&\/]+$");
+        private readonly Regex _houseNumRgx = new Regex(@"^[0-9a-zA-Z\s'?!;,:\-()\.\&\/]+$");
+        private readonly Regex _stNameRgx = new Regex(@"^[0-9a-zA-Z\s'?!;,:\-()\.\&\/]+$");
 
-        private static readonly BoroAlias _manhattan = new BoroAlias("Manhattan", "MN", "1");
-        private static readonly BoroAlias _newYork = new BoroAlias("New York", "NY", "1");
-        private static readonly BoroAlias _bronx = new BoroAlias("Bronx", "BX", "2");
-        private static readonly BoroAlias _brooklyn = new BoroAlias("Brooklyn", "BK", "3");
-        private static readonly BoroAlias _queens = new BoroAlias("Queens", "QN", "4");
-        private static readonly BoroAlias _statenIsland = new BoroAlias("Staten Island", "SI", "5");
+        private readonly BoroAlias _manhattan = new BoroAlias("Manhattan", "MN", "1");
+        private readonly BoroAlias _newYork = new BoroAlias("New York", "NY", "1");
+        private readonly BoroAlias _bronx = new BoroAlias("Bronx", "BX", "2");
+        private readonly BoroAlias _brooklyn = new BoroAlias("Brooklyn", "BK", "3");
+        private readonly BoroAlias _queens = new BoroAlias("Queens", "QN", "4");
+        private readonly BoroAlias _statenIsland = new BoroAlias("Staten Island", "SI", "5");
 
-        private static readonly fld_dict _fld = new fld_dict();
+        private readonly fld_dict _fld = new fld_dict();
 
-        public static string ValidateBoroInput(string boro)
+        public string ValidateBoroInput(string boro)
         {
             if (string.IsNullOrWhiteSpace(boro))
                 return string.Empty;
@@ -41,7 +42,7 @@ namespace GeoXWrapperTest.Helper
                 return boro;
         }
 
-        public static List<AddressRangeApx> CreateAddressRangeList(IEnumerable<AddrRange_apx> addrXList)
+        public List<AddressRangeApx> CreateAddressRangeList(IEnumerable<AddrRange_apx> addrXList)
         {
             if (!addrXList.Any())
                 return Enumerable.Empty<AddressRangeApx>().ToList();
@@ -68,7 +69,7 @@ namespace GeoXWrapperTest.Helper
             return arlAp;
         }
 
-        public static List<AddressRange> CreateAddressRangeList(IEnumerable<AddrRangeX> addrXList, string tpad)
+        public List<AddressRange> CreateAddressRangeList(IEnumerable<AddrRangeX> addrXList, string tpad)
         {
             if (!addrXList.Any())
                 return Enumerable.Empty<AddressRange>().ToList();
@@ -102,7 +103,7 @@ namespace GeoXWrapperTest.Helper
         /// </summary>
         /// <param name="addrXList">The addr_x_list coming from wa2</param>
         /// <returns>Dictionary of k: address type flag as string, v: address type string</returns>
-        public static Dictionary<string,string> CreateAddressRangeKeys(AddrRangeX[] addrXList)
+        public Dictionary<string,string> CreateAddressRangeKeys(AddrRangeX[] addrXList)
         {
             var arHt = new Dictionary<string,string>();
 
@@ -119,7 +120,7 @@ namespace GeoXWrapperTest.Helper
             return arHt;
         }
 
-        private static string DescribeKey(string typeKey)
+        private string DescribeKey(string typeKey)
         {
             switch (typeKey)
             {
@@ -161,7 +162,7 @@ namespace GeoXWrapperTest.Helper
         /// <param name="outB7scList">WA1's out_b7sc_list</param>
         /// <param name="outStNameList">WA1's out_stname_list</param>
         /// <returns>List of SimilarName objects for with geocall error/warning data</returns>
-        public static List<SimilarName> CreateSimilarNamesList(IEnumerable<B7sc> outB7scList, IEnumerable<string> outStNameList)
+        public List<SimilarName> CreateSimilarNamesList(IEnumerable<B7sc> outB7scList, IEnumerable<string> outStNameList)
         {
             if (!outB7scList.Any() || !outStNameList.Any())
                 return Enumerable.Empty<SimilarName>().ToList();
@@ -187,7 +188,7 @@ namespace GeoXWrapperTest.Helper
 
             return snl;
         }
-        public static string ReadBoroName(string boroCode)
+        public string ReadBoroName(string boroCode)
         {
             switch (boroCode)
             {
@@ -205,7 +206,7 @@ namespace GeoXWrapperTest.Helper
                     return string.Empty;
             }
         }
-        public static List<CompleteBIN> CreateCompleteBINList(Wa1 wa1, Wa2F1ax wa2f1ax, string tpad, FunctionCode funcCode, Geo geoCaller)
+        public List<CompleteBIN> CreateCompleteBINList(Wa1 wa1, Wa2F1ax wa2f1ax, string tpad, FunctionCode funcCode, IGeoCaller geoCaller)
         {
             string acceptedFunc;
             switch (funcCode)
@@ -265,7 +266,7 @@ namespace GeoXWrapperTest.Helper
             if (usingTpad)
             {
                 Wa2F1al_TPAD wa2f1al_tpad = new Wa2F1al_TPAD();
-                geoCaller.GeoCall(ref wa1Copy, ref wa2f1al_tpad);
+                geoCaller.GeoCall(wa1Copy, wa2f1al_tpad);
 
                 foreach (TPADLongWa2Info binTpad in wa2f1al_tpad.TPAD_list)
                 {
@@ -282,7 +283,7 @@ namespace GeoXWrapperTest.Helper
             else
             {
                 Wa2F1al wa2f1al = new Wa2F1al();
-                geoCaller.GeoCall(ref wa1Copy, ref wa2f1al);
+                geoCaller.GeoCall(wa1Copy, wa2f1al);
 
                 foreach (BIN bin in wa2f1al.bin_list)
                 {
@@ -300,9 +301,9 @@ namespace GeoXWrapperTest.Helper
             return bins;
         }
 
-        public static string ValidateStName(string input) => _stNameRgx.Match(input).Success ? input : string.Empty;
+        public string ValidateStName(string input) => _stNameRgx.Match(input).Success ? input : string.Empty;
 
-        private static bool InsEq(string a, string b) => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
+        private bool InsEq(string a, string b) => string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
 
         readonly struct BoroAlias
         {
@@ -325,7 +326,7 @@ namespace GeoXWrapperTest.Helper
             public bool Match(string input) => string.Equals(input, Name, StringComparison.OrdinalIgnoreCase) || string.Equals(input, Abbreviation, StringComparison.OrdinalIgnoreCase) || string.Equals(input, Code, StringComparison.OrdinalIgnoreCase);
         }
 
-        private static string DescribeAddrKey(string key)
+        private string DescribeAddrKey(string key)
         {
             switch (key)
             {
@@ -360,7 +361,7 @@ namespace GeoXWrapperTest.Helper
                     return string.Empty;
             }
         }
-        public static List<LowHighB7SC> CreateB7ScList(IEnumerable<B7sc> xB7scList, IEnumerable<string> xStNameList)
+        public List<LowHighB7SC> CreateB7ScList(IEnumerable<B7sc> xB7scList, IEnumerable<string> xStNameList)
         {
             if (!xB7scList.Any() || !xStNameList.Any())
                 return Enumerable.Empty<LowHighB7SC>().ToList();
@@ -388,7 +389,7 @@ namespace GeoXWrapperTest.Helper
         }
 
 
-        public static List<LowHighB7SC> CreateB7ScList(IEnumerable<B7sc> xB7scList, IEnumerable<string> xStNameList, string length, int offset, Geo geoCaller)
+        public List<LowHighB7SC> CreateB7ScList(IEnumerable<B7sc> xB7scList, IEnumerable<string> xStNameList, string length, int offset, IGeoCaller geoCaller)
         {
             if (!int.TryParse(length, out int len) || len == 0)
                 return Enumerable.Empty<LowHighB7SC>().ToList();
@@ -409,7 +410,7 @@ namespace GeoXWrapperTest.Helper
             return b7scList;
         }
 
-        public static string ValidateHouseNum(string input, Geo geoCaller)
+        public string ValidateHouseNum(string input, IGeoCaller geoCaller)
         {
             Wa1 wa1Fd = new Wa1
             {
@@ -417,14 +418,14 @@ namespace GeoXWrapperTest.Helper
                 in_platform_ind = "C",
                 in_hns = input
             };
-            geoCaller.GeoCall(ref wa1Fd);
+            geoCaller.GeoCall(wa1Fd);
 
             return _houseNumRgx.Match(wa1Fd.out_hnd).Success
                 ? wa1Fd.out_hnd
                 : string.Empty;
         }
 
-        public static string ReadStNameFdg(B10sc b10sc, string lgcs, Geo geoCaller)
+        public string ReadStNameFdg(B10sc b10sc, string lgcs, IGeoCaller geoCaller)
         {
             Wa1 wa1Dg = new Wa1
             {
@@ -437,14 +438,14 @@ namespace GeoXWrapperTest.Helper
                     lgc = lgcs
                 }
             };
-            geoCaller.GeoCall(ref wa1Dg);
+            geoCaller.GeoCall(wa1Dg);
 
             return !string.Equals(wa1Dg.out_stname1, new string('?', 32), StringComparison.CurrentCulture)
                 ? ValidateStName(wa1Dg.out_stname1)
                 : string.Empty;
         }
 
-        public static string ReadStNameFdg(string inBoro, string inSc5, string inLgc, Geo geoCaller)
+        public string ReadStNameFdg(string inBoro, string inSc5, string inLgc, IGeoCaller geoCaller)
         {
             Wa1 wa1 = new Wa1
             {
@@ -457,12 +458,12 @@ namespace GeoXWrapperTest.Helper
                     lgc = inLgc
                 }
             };
-            geoCaller.GeoCall(ref wa1);
+            geoCaller.GeoCall(wa1);
 
             return wa1.out_stname1;
         }
 
-        public static string ReadStNameFd(string inBoro, string inStCode, Geo geoCaller)
+        public string ReadStNameFd(string inBoro, string inStCode, IGeoCaller geoCaller)
         {
             Wa1 wa1 = new Wa1
             {
@@ -474,12 +475,12 @@ namespace GeoXWrapperTest.Helper
                     sc5 = inStCode
                 }
             };
-            geoCaller.GeoCall(ref wa1);
+            geoCaller.GeoCall(wa1);
 
             return wa1.out_stname1;
         }
 
-        private static string ReadStCode1N(B7sc b7sc, string st, Geo geoCaller)
+        private string ReadStCode1N(B7sc b7sc, string st, IGeoCaller geoCaller)
         {
             Wa1 wa1F1n = new Wa1
             {
@@ -491,7 +492,7 @@ namespace GeoXWrapperTest.Helper
                     boro = b7sc.boro
                 }
             };
-            geoCaller.GeoCall(ref wa1F1n);
+            geoCaller.GeoCall(wa1F1n);
 
             string boro = b7sc.boro.Trim().TrimStart('0');
             string sc5 = b7sc.sc5.Trim();
@@ -500,7 +501,7 @@ namespace GeoXWrapperTest.Helper
             return boro + sc5 + lgc;
         }
 
-        public static string ReadOrientation(string sos)
+        public string ReadOrientation(string sos)
         {
             switch (sos)
             {
@@ -512,7 +513,7 @@ namespace GeoXWrapperTest.Helper
                     return string.Empty;
             }
         }
-        public static Dictionary<int, List<string>> CreateNodeB7ScDictionary(string[] nodes, B7sc[,,] b7scs)
+        public Dictionary<int, List<string>> CreateNodeB7ScDictionary(string[] nodes, B7sc[,,] b7scs)
         {
             Dictionary<int, List<string>> nodeB7Scs = new Dictionary<int, List<string>>();
             int currentKey = 0;
@@ -543,7 +544,7 @@ namespace GeoXWrapperTest.Helper
             return nodeB7Scs;
         }
 
-        public static Dictionary<int, List<string>> CreateCrossStreetDict(string boroCode, Wa2F2w wa2f2w, Geo geoCaller)
+        public Dictionary<int, List<string>> CreateCrossStreetDict(string boroCode, Wa2F2w wa2f2w, IGeoCaller geoCaller)
         {
             if (string.IsNullOrEmpty(ValidateBoroInput(boroCode)) || !wa2f2w.node_list.Any())
                 return new Dictionary<int, List<string>>();
@@ -579,7 +580,7 @@ namespace GeoXWrapperTest.Helper
                     }
                 }
 
-                geoCaller.GeoCall(ref wa1Dl);
+                geoCaller.GeoCall(wa1Dl);
                 #endregion
 
                 #region Combine Matching Street Names from the FDL Call
@@ -632,7 +633,7 @@ namespace GeoXWrapperTest.Helper
                                     in_boro1 = ValidateBoroInput(boroCode),
                                     in_stname1 = current.Split(',')[0]
                                 };
-                                geoCaller.GeoCall(ref wa1_1n);
+                                geoCaller.GeoCall(wa1_1n);
                                 string stCode1 = wa1_1n.out_b10sc1.B10scToString().Substring(0, 6);
 
                                 wa1_1n = new Wa1
@@ -641,7 +642,7 @@ namespace GeoXWrapperTest.Helper
                                     in_boro1 = ValidateBoroInput(boroCode),
                                     in_stname1 = next.Split(',')[0]
                                 };
-                                geoCaller.GeoCall(ref wa1_1n);
+                                geoCaller.GeoCall(wa1_1n);
                                 string stCode2 = wa1_1n.out_b10sc1.B10scToString().Substring(0, 6);
 
                                 if (InsEq(stCode1, stCode2))
@@ -676,7 +677,7 @@ namespace GeoXWrapperTest.Helper
             return crxStDict;
         }
 
-        public static List<CrxStInfoF3S> CreateF3sIntrsctList(IEnumerable<CrossStreetInfo> crxStList, Geo geoCaller)
+        public List<CrxStInfoF3S> CreateF3sIntrsctList(IEnumerable<CrossStreetInfo> crxStList, IGeoCaller geoCaller)
         {
             if (!crxStList.Any())
                 return Enumerable.Empty<CrxStInfoF3S>().ToList();
@@ -700,23 +701,23 @@ namespace GeoXWrapperTest.Helper
                 CrxStInfoF3S f3sCrxSt = new CrxStInfoF3S();
 
                     wa1_dl.out_b7sc_list[0] = crxStInfo.xstr_b7sc_list[0];
-                    geoCaller.GeoCall(ref wa1_dl);
+                    geoCaller.GeoCall(wa1_dl);
                     f3sCrxSt.out_intersecting_street = wa1_dl.out_stname_list[0].Trim();
 
                     wa1_dl.out_b7sc_list[1] = crxStInfo.xstr_b7sc_list[1];
-                    geoCaller.GeoCall(ref wa1_dl);
+                    geoCaller.GeoCall(wa1_dl);
                     f3sCrxSt.out_second_intersecting_street = wa1_dl.out_stname_list[1].Trim();
 
                     wa1_dl.out_b7sc_list[2] = crxStInfo.xstr_b7sc_list[2];
-                    geoCaller.GeoCall(ref wa1_dl);
+                    geoCaller.GeoCall(wa1_dl);
                     f3sCrxSt.out_third_intersecting_street = wa1_dl.out_stname_list[2].Trim();
 
                     wa1_dl.out_b7sc_list[3] = crxStInfo.xstr_b7sc_list[3];
-                    geoCaller.GeoCall(ref wa1_dl);
+                    geoCaller.GeoCall(wa1_dl);
                     f3sCrxSt.out_fourth_intersecting_street = wa1_dl.out_stname_list[3].Trim();
 
                     wa1_dl.out_b7sc_list[4] = crxStInfo.xstr_b7sc_list[4];
-                    geoCaller.GeoCall(ref wa1_dl);
+                    geoCaller.GeoCall(wa1_dl);
                     f3sCrxSt.out_fifth_intersecting_street = wa1_dl.out_stname_list[4].Trim();
 
                     f3sCrxSt.out_xstr_cnt = crxStInfo.xstr_cnt; //intersecting st count
@@ -758,7 +759,7 @@ namespace GeoXWrapperTest.Helper
             return f3sList;
         }
 
-        public static string GetBorough(string boro)
+        public string GetBorough(string boro)
         {
             switch (boro)
             {

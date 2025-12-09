@@ -13,6 +13,10 @@ namespace GeoXWrapperTest.Model.Display
     {
         private static readonly fld_dict _fld = new fld_dict();
         private readonly Wa1 _wa1;
+        private ValidationHelper ValidationHelper;
+        public F1nDisplay(ValidationHelper validationHelper) {
+            ValidationHelper = validationHelper;
+        }
 
         public F1nDisplay(Wa1 wa1) => _wa1 = wa1;
         public List<SimilarName> SimilarNamesList => ValidationHelper.CreateSimilarNamesList(_wa1.out_b7sc_list, _wa1.out_stname_list);

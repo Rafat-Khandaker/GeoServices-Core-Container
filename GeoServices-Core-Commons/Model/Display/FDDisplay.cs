@@ -12,8 +12,13 @@ namespace GeoXWrapperTest.Model.Display
     public class FDDisplay 
     {
         private readonly Wa1 _wa1;
+        ValidationHelper ValidationHelper;
 
-        public FDDisplay(Wa1 wa1) => _wa1 = wa1;
+        public FDDisplay(Wa1 wa1, ValidationHelper validationHelper) 
+        { 
+            _wa1 = wa1;
+            ValidationHelper = validationHelper;
+        }
 
         #region Data List
         public List<StreetCode> StreetCodeList

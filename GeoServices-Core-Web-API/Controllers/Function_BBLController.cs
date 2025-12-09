@@ -1,7 +1,5 @@
 ﻿using GeoServices_Core_Commons.Helper;
-using GeoXWrapperLib;
-using GeoXWrapperLib.Model;
-using GeoXWrapperTest.Model.Enum;
+
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Display;
@@ -15,13 +13,11 @@ namespace GeoServices_Core_Web_API.Controllers
     [Route("[controller]")]
     public class Function_BBLController : Controller
     {
-        private Geo _geo;
         private AccessControlList _accessControl;
         private GeoService _geoService;
 
-        public Function_BBLController(Geo geo, AccessControlList accessControlList, GeoService geoService)
+        public Function_BBLController( AccessControlList accessControlList, GeoService geoService)
         {
-            _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;
         }

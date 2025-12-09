@@ -10,13 +10,11 @@ namespace GeoServices_Core_Web_API.Controllers
     [Route("[controller]")]
     public class Function_1RController : Controller
     {
-        private Geo _geo;
         private AccessControlList _accessControl;
         GeoService _geoService;
 
-        public Function_1RController(Geo geo, AccessControlList accessControlList, GeoService geoService)
+        public Function_1RController(AccessControlList accessControlList, GeoService geoService)
         {
-            _geo = geo;
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;
         }
