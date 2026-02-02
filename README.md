@@ -58,6 +58,9 @@ while centralizing project repository into a single git repository.
 
   <img width="848" height="554" alt="image" src="https://github.com/user-attachments/assets/3cde40fd-6b5f-4252-9b23-850f6b25d070" />
 
+- Generating the following report results:
+  <img width="959" height="315" alt="image" src="https://github.com/user-attachments/assets/2c35c646-8e0d-4924-8c6d-61951a8395b7" />
+
 - You may adjust these settings from the "appsettings.json" file associated to the "GeoCaller.cs" Instructions from the GeoServices-Core-Commons Library 
 
   <img width="171" height="147" alt="image" src="https://github.com/user-attachments/assets/2c9fe468-ca0a-4812-96f9-c7da76003677" />
