@@ -51,3 +51,14 @@ while centralizing project repository into a single git repository.
 # Debug in Visual Studio  
 - Simply execute with Dockerfile inside the Project directory eg:.. GeoServices-Core-Container/Geoservices-Core-Web-API/Dockerfile  
 - You can run the docker container inside visual studio with breakpoints in program
+
+# Batching Systems and Parallel Processing Settings
+- GeoXWrapper is now operational on parallel threads in the new Dot Net Linux Container with Mutex Function On/Off
+- You may adjust Mutex Function Settings for durability of Geoservice but the best Operational Speed and Stability were determined by default from unit testing parallel threads and generating a report on local.db SQLite DB file from multiple test runs that generated the following output.
+
+  <img width="848" height="554" alt="image" src="https://github.com/user-attachments/assets/3cde40fd-6b5f-4252-9b23-850f6b25d070" />
+
+- You may adjust these settings from the "appsettings.json" file associated to the "GeoCaller.cs" Instructions from the GeoServices-Core-Commons Library 
+
+  <img width="171" height="147" alt="image" src="https://github.com/user-attachments/assets/2c9fe468-ca0a-4812-96f9-c7da76003677" />
+
