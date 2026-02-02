@@ -28,6 +28,7 @@ namespace GeoXWrapperTest.Model.Enum
         F1L,
         FBF,
         FHR,
-        F5
+        F5,
+        ALL
     }
 }

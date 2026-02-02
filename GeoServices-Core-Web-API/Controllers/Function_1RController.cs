@@ -1,8 +1,9 @@
-﻿using GeoServices_Core_Commons.Helper;
+﻿using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
+using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
 using GeoXWrapperTest.Model;
 using Microsoft.AspNetCore.Mvc;
-using GeoServices_Core_Commons.Core;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -11,9 +12,9 @@ namespace GeoServices_Core_Web_API.Controllers
     public class Function_1RController : Controller
     {
         private AccessControlList _accessControl;
-        GeoService _geoService;
+        IGeoService _geoService;
 
-        public Function_1RController(AccessControlList accessControlList, GeoService geoService)
+        public Function_1RController(AccessControlList accessControlList, IGeoService geoService)
         {
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;

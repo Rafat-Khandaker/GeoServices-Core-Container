@@ -12,14 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-
-
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services
     .AddSingleton<AccessControlList, AccessControlList>()
-    .AddScoped<ValidationHelper, ValidationHelper>()
-    .AddScoped<IGeoCaller, GeoCaller>()
-    .AddScoped<GeoService, GeoService>()
+    .AddSingleton<ValidationHelper, ValidationHelper>()
+    .AddSingleton<IGeoCaller, GeoCaller>()
+    .AddSingleton<IGeoService, GeoService>()
     .AddScoped<Geo, Geo>();
 
 
@@ -52,5 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+SQLitePCL.Batteries.Init();
 
 app.Run();

@@ -1,4 +1,5 @@
 using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoServices_Core_Commons.Helper;
 using GeoXWrapperLib;
 using GeoXWrapperLib.Model;
@@ -16,9 +17,9 @@ namespace GeoServices_Core_Web_API.Controllers;
 public class Function_1AController : ControllerBase
 {
     private AccessControlList _accessControl;
-    private GeoService _geoService;
+    private IGeoService _geoService;
 
-    public Function_1AController(AccessControlList accessControlList, GeoService geoService) 
+    public Function_1AController(AccessControlList accessControlList, IGeoService geoService) 
     {
         _accessControl = accessControlList.ReadKeyFile(true).Result;
         _geoService = geoService;

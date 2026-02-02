@@ -6,6 +6,7 @@ using GeoXWrapperTest.Model.Response;
 using GeoXWrapperTest.Model;
 
 using GeoServices_Core_Commons.Core.Contract;
+using Microsoft.Extensions.Configuration;
 
 
 namespace GeoServices_Core_Commons.Core

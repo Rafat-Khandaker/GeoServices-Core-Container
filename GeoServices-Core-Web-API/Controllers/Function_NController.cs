@@ -1,20 +1,20 @@
-﻿using GeoServices_Core_Commons.Helper;
-
+﻿using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
+using GeoServices_Core_Commons.Helper;
 using GeoXWrapperTest.Model;
-using Microsoft.AspNetCore.Mvc;
 using GeoXWrapperTest.Model.Response;
-using GeoServices_Core_Commons.Core;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class Functon_NController : Controller
+    public class Function_NController : Controller
     {
         private AccessControlList _accessControl;
-        private GeoService _geoService;
+        private IGeoService _geoService;
 
-        public Functon_NController(AccessControlList accessControlList, GeoService geoService)
+        public Function_NController(AccessControlList accessControlList, IGeoService geoService)
         {
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;

@@ -1,12 +1,13 @@
-﻿using GeoXWrapperLib.Model;
-using GeoXWrapperLib;
-using GeoXWrapperTest.Model.Display;
-using GeoXWrapperTest.Model;
-using Microsoft.AspNetCore.Mvc;
-using GeoXWrapperTest.Model.Response;
-using GeoXWrapperTest.Helper;
+﻿using GeoServices_Core_Commons.Core;
+using GeoServices_Core_Commons.Core.Contract;
 using GeoServices_Core_Commons.Helper;
-using GeoServices_Core_Commons.Core;
+using GeoXWrapperLib;
+using GeoXWrapperLib.Model;
+using GeoXWrapperTest.Helper;
+using GeoXWrapperTest.Model;
+using GeoXWrapperTest.Model.Display;
+using GeoXWrapperTest.Model.Response;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GeoServices_Core_Web_API.Controllers
 {
@@ -15,9 +16,9 @@ namespace GeoServices_Core_Web_API.Controllers
     public class Function_2Controller : Controller
     {
         private AccessControlList _accessControl;
-        private GeoService _geoService;
+        private IGeoService _geoService;
 
-        public Function_2Controller(AccessControlList accessControlList, GeoService geoService)
+        public Function_2Controller(AccessControlList accessControlList, IGeoService geoService)
         {
             _accessControl = accessControlList.ReadKeyFile(true).Result;
             _geoService = geoService;

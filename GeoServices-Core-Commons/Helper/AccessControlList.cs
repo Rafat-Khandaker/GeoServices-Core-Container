@@ -8,10 +8,16 @@ namespace GeoServices_Core_Commons.Helper
     public class AccessControlList
     {           
 
-        private string AccessKeysFilePath = Directory.GetCurrentDirectory() + "/AccessKeys/AccessKeys.json";
-        private Regex KeyPattern = new Regex("^[a-zA-Z0-9]{16}$");
+        private string AccessKeysFilePath { get; set; }
+        private Regex KeyPattern { get; set; }
 
-        public  HashSet<string> ActiveKeys { get; set; } = new HashSet<string>();
+        public  HashSet<string> ActiveKeys { get; set; } 
+
+        public AccessControlList() {
+            AccessKeysFilePath = Directory.GetCurrentDirectory() + "/AccessKeys/AccessKeys.json";
+            KeyPattern = new Regex("^[a-zA-Z0-9]{16}$");
+            ActiveKeys = new HashSet<string>();
+        }
 
         public bool Verify(string userKey) => KeyPattern.IsMatch(userKey) && ActiveKeys.Contains(userKey);
 
