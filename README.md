@@ -53,7 +53,7 @@ while centralizing project repository into a single git repository.
 - You can run the docker container inside visual studio with breakpoints in program
 
 # Batching Systems and Parallel Processing Settings
-- GeoXWrapper is now operational on parallel threads in the new Dot Net Linux Container with Mutex Function On/Off. The Mutex operation was inserted to ensure that only a single thread can access the Geocall function at a time to ensure operational stability without failure. It is possible to achieve a greater speed with the Mutex function turned off. So far, the mutex operation turned on prevents any failed calls on the application within a 1900 parallel call testing environment.
+- GeoXWrapper is now operational on parallel threads in the new Dot Net Linux Container with Mutex Function On/Off. The Mutex operation was inserted to ensure that only a single thread can access the Geocall function at a time to ensure operational stability without failure. It is possible to achieve a greater speed with the Mutex function turned off. So far, the mutex operation turned on prevents any failed calls on the application within a 1900 parallel call testing environment and mitigate production overloads, resulting in application crash and 502 gateway errors for large volume of users batching into the system.
 - You may adjust Mutex Function Settings for durability of Geoservice but the best Operational Speed and Stability were determined by default from unit testing parallel threads and generating a report on local.db SQLite DB file from multiple test runs that generated the following output.
 
   <img width="848" height="554" alt="image" src="https://github.com/user-attachments/assets/3cde40fd-6b5f-4252-9b23-850f6b25d070" />
