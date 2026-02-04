@@ -10,7 +10,9 @@ namespace GeoServices_Core_Commons.Core
     public class GeoCaller : IGeoCaller
     {
         public Geo Geo { get; set; }
-        private static Mutex Mutex { get; set; }
+
+        private static readonly SemaphoreSlim Mutex = new SemaphoreSlim(1, 1);
+
         private delegate void GeoCallFunction(bool x = false);
 
         private readonly IConfiguration Configuration; 
@@ -20,7 +22,6 @@ namespace GeoServices_Core_Commons.Core
         public GeoCaller(Geo _geo, IConfiguration configuration)
         {
             Geo = _geo;
-            Mutex = new Mutex();
             Configuration = configuration;
 
             Settings = new SafeHandleMutex
@@ -35,29 +36,41 @@ namespace GeoServices_Core_Commons.Core
 
         private async Task SafeHanddle(GeoCallFunction geoCallfunction, int retry = 1, int max = 100)
         {
-            try {
-                if (Settings.Lock) {
-                    if (Mutex.WaitOne(Settings.Wait) && max > 0)
+            try
+            {
+                if (Settings.Lock)
+                {
+                    if (max > 0)
                     {
-                        await Task.Run(() => geoCallfunction());
-                        Mutex.ReleaseMutex();
+                        if (!await Mutex.WaitAsync(Settings.Wait))
+                            return;
+
+                        try
+                        {
+                            await Task.Run(() => geoCallfunction());
+                            return;
+                        }
+                        finally
+                        {
+                            Mutex.Release();
+                        }
                     }
-                    else if (max <= 0) 
+                    else if (max <= 0)
                         geoCallfunction(true);
-                    else 
+                    else
                         await SafeHanddle(geoCallfunction, retry, --max);
                 }
-                else 
-                        await Task.Run(() => geoCallfunction());
+                else
+                    await Task.Run(() => geoCallfunction());
             }
-            catch {
-
+            catch(Exception ex)
+            {
                 if (retry < Settings.Retry)
                 {
                     Thread.Sleep(Settings.Sleep);
                     await SafeHanddle(geoCallfunction, retry++);
                 }
-                else 
+                else
                     geoCallfunction(true);
             }
         }
@@ -70,7 +83,7 @@ namespace GeoServices_Core_Commons.Core
 
 
         public async Task GeoCall(WA inwa1) => await SafeHanddle((error) => Geo.GeoCall(ref inwa1));
-            
+
 
         public async Task GeoCall(Wa1 inwa1) => await SafeHanddle((error) => { if (!error) Geo.GeoCall(ref inwa1); else HandleError(ref inwa1);});
 

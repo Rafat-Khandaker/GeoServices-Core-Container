@@ -17,8 +17,8 @@ builder.Services
     .AddSingleton<AccessControlList, AccessControlList>()
     .AddSingleton<ValidationHelper, ValidationHelper>()
     .AddSingleton<IGeoCaller, GeoCaller>()
-    .AddSingleton<IGeoService, GeoService>()
-    .AddScoped<Geo, Geo>();
+    .AddSingleton<Geo, Geo>()
+    .AddScoped<IGeoService, GeoService>();
 
 
 if (!builder.Environment.IsDevelopment())
