@@ -43,7 +43,7 @@ namespace GeoServices_Core_Commons.Core
                     if (max > 0)
                     {
                         if (!await Mutex.WaitAsync(Settings.Wait))
-                            return;
+                            await SafeHanddle(geoCallfunction, retry, --max);
 
                         try
                         {

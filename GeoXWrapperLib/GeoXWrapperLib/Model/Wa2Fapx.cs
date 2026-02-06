@@ -191,7 +191,11 @@ namespace GeoXWrapperLib.Model
 
             for (i = 0; i < 21; i++)
             {
-                m_addr_x_list[i] = new AddrRange_apx(inString.Substring(364 + (i * 116), 116));
+                try {
+                    m_addr_x_list[i] = new AddrRange_apx(inString.Substring(364 + (i * 116), 116)); 
+                }catch (Exception e) {
+                    m_addr_x_list[i] = new AddrRange_apx();
+                }
             }
         }
 

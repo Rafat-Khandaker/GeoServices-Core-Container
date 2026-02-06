@@ -44,12 +44,12 @@ namespace GeoXWrapperTest
             // Setup the DI container   // Set up the Dependency Injection container
             ServiceProvider = new ServiceCollection()
                 .AddSingleton<Microsoft.Extensions.Configuration.IConfiguration>(Configuration)
-                .AddSingleton<IGeoService, GeoService>()
                 .AddSingleton<IGeoCaller, GeoCaller>()
                 .AddSingleton<AccessControlList, AccessControlList>()
-                .AddScoped<Geo, Geo>()
-                .AddScoped<ValidationHelper, ValidationHelper>()
-                .AddScoped<Cryptographer, Cryptographer>()
+                .AddSingleton<Geo, Geo>()
+                .AddSingleton<IGeoService, GeoService>()
+                .AddSingleton<ValidationHelper, ValidationHelper>()
+                .AddSingleton<Cryptographer, Cryptographer>()
                 .BuildServiceProvider();
 
             GeoService = ServiceProvider.GetService<IGeoService>();

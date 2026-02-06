@@ -123,7 +123,8 @@ namespace GeoXWrapperLib.Model
 
                 for (int i = 0; i < 5; i++)
                 {
-                    m_xstr_b7sc_list[i] = new B7sc(inString.Substring(15 + (i * 8), 8));
+                    try { m_xstr_b7sc_list[i] = new B7sc(inString.Substring(15 + (i * 8), 8)); }
+                    catch { m_xstr_b7sc_list[i] = new B7sc(); }
                 }
             }
         }

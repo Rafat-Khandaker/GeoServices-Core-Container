@@ -92,16 +92,10 @@ namespace GeoXWrapperLib.Model
             try { m_hhnd = inString.Substring(16, 16); } catch { m_hhnd = string.Empty; }
             try { m_b7sc = new B7sc(inString.Substring(32, 8)); } catch { m_b7sc = new B7sc(); }
             try { m_bin = new BIN(inString.Substring(40, 7)); } catch { m_bin = new BIN(); }
-
             try { m_sos = inString.Substring(47, 1); } catch { m_sos = string.Empty; }
             try { m_addrType = inString.Substring(48, 1); } catch { m_addrType = string.Empty; }
             try { m_filler01 = inString.Substring(49, 1); } catch { m_filler01 = string.Empty; }
-            try { m_stname = inString.Substring(50, 32); } catch { m_lhnd = string.Empty; }
-            try { m_lhnd = inString.Substring(0, 16); } catch { m_lhnd = string.Empty; }
-            try { m_lhnd = inString.Substring(0, 16); } catch { m_lhnd = string.Empty; }
-            try { m_lhnd = inString.Substring(0, 16); } catch { m_lhnd = string.Empty; }
-            try { m_lhnd = inString.Substring(0, 16); } catch { m_lhnd = string.Empty; }
-            
+            try { m_stname = inString.Substring(50, 32); } catch { m_stname = string.Empty; }
         }
 
         public string Display(char separator)
