@@ -25,3 +25,6 @@ GeoXWrapperLib/GeoXWrapperLib/lib/fls/**
 /GeoServices-Core-Database/obj/Debug
 /GeoServices-Core-Web-API/version-25d_25.4
 /GeoServices-Core-Web-API/linux_geo25d_25.4.zip
+/GeoServices-Core-Database/bin/Debug
+/GeoServices-Core-Batch-Processor/bin/Debug/net9.0/runtimes/win/lib/net9.0
+/GeoServices-Core-Batch-Processor/bin/Debug/net9.0
